@@ -3,25 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Antonio Solimene — Ceramista</title>
+  <title>Antonio Solimene — Ceramista in Vietri dal 1876</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            serif: ['"Playfair Display"', 'serif'],
+            serif: ['"Cormorant Garamond"', 'serif'],
             sans: ['"Plus Jakarta Sans"', 'sans-serif'],
           },
           colors: {
             vietri: {
-              cobalto: '#0A3B72',
+              cobalto: '#0A3764',
               cotto: '#BA4924',
-              ocra: '#D99B26',
-              ramina: '#1E5841'
+              ocra: '#D89828',
+              ramina: '#1D553F',
+              pietra: '#F8F7F4'
             }
           }
         }
@@ -29,249 +30,506 @@
     }
   </script>
 </head>
-<body class="bg-white text-neutral-900 font-sans antialiased">
+<body class="bg-vietri-pietra text-neutral-900 font-sans selection:bg-vietri-cobalto selection:text-white antialiased">
 
-  <!-- Header identitario con ritratto dell'artigiano -->
-  <header class="pt-14 pb-8 px-4 max-w-3xl mx-auto text-center">
-    <!-- Ritratto al tornio con bordo fine -->
-    <div class="relative w-28 h-28 mx-auto mb-5">
-      <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&w=500&q=80" 
-           alt="Antonio Solimene al tornio" 
-           class="w-full h-full object-cover rounded-full border border-neutral-300 shadow-sm filter grayscale contrast-110">
-    </div>
-    
-    <h1 class="font-serif text-3xl sm:text-4xl text-neutral-950 tracking-tight font-semibold flex items-center justify-center gap-2">
-      Antonio Solimene
-    </h1>
-    <p class="text-xs uppercase tracking-[0.25em] text-neutral-500 font-medium mt-1">
-      ceramista ⚱️
-    </p>
-    
-    <p class="mt-3 text-sm sm:text-base text-neutral-600 font-light max-w-md mx-auto leading-relaxed">
-      Creazioni uniche modellate a mano con le tecniche della tradizione vietrese
-    </p>
-
-    <!-- Barra Navigazione Essenziale a 3 Voci -->
-    <nav class="mt-8 flex justify-center items-center gap-10 text-xs uppercase tracking-[0.2em] border-y border-neutral-200 py-3.5 text-neutral-700">
-      <button onclick="filterCategory('tutti')" class="hover:text-vietri-cobalto font-medium transition underline underline-offset-8 decoration-neutral-900">Oggetti</button>
-      <a href="#storia" class="hover:text-vietri-cobalto transition">Storia</a>
-      <a href="#contatti" class="hover:text-vietri-cobalto transition">Contatti</a>
-    </nav>
-  </header>
-
-  <!-- Filtri Sottocategorie Richieste dal Vocale -->
-  <div class="max-w-5xl mx-auto px-4 pt-2 pb-6 flex justify-center items-center gap-4 sm:gap-8 text-xs text-neutral-500">
-    <button onclick="filterCategory('tutti')" class="cat-btn font-medium text-neutral-900 hover:text-black">Tutte le opere</button>
-    <span class="text-neutral-300">|</span>
-    <button onclick="filterCategory('tavola')" class="cat-btn hover:text-neutral-900 transition">Tavola & Servizio</button>
-    <span class="text-neutral-300">|</span>
-    <button onclick="filterCategory('arredo')" class="cat-btn hover:text-neutral-900 transition">Oggettistica & Arredo</button>
-    <span class="text-neutral-300">|</span>
-    <button onclick="filterCategory('artistico')" class="cat-btn hover:text-neutral-900 transition">Pezzi Artistici</button>
-  </div>
-
-  <!-- Griglia Fotografica a Colori Vivi -->
-  <main class="max-w-5xl mx-auto px-4 pb-24">
-    <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
-      <!-- Generato dinamicamente via JS -->
-    </div>
-  </main>
-
-  <!-- Modale Dettaglio Prodotto con WhatsApp Attivo e Stripe Nascosto -->
-  <div id="productModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white max-w-md w-full overflow-hidden border border-neutral-200 shadow-2xl p-6 relative">
-      <button onclick="closeModal()" class="absolute top-4 right-4 text-neutral-400 hover:text-neutral-900 text-xl font-light">✕</button>
-      
-      <!-- Foto Grande a Colori -->
-      <div class="aspect-square bg-neutral-100 mb-5 overflow-hidden border border-neutral-100">
-        <img id="modalImg" src="" alt="" class="w-full h-full object-cover">
-      </div>
-      
-      <div class="flex justify-between items-baseline">
-        <h3 id="modalTitle" class="font-serif text-2xl text-neutral-900"></h3>
-        <span id="modalPrice" class="font-serif text-xl font-bold text-neutral-950"></span>
-      </div>
-      
-      <!-- Palette Smalti dell'Opera -->
-      <div class="flex items-center gap-2 mt-2">
-        <span class="text-[10px] uppercase tracking-wider text-neutral-400">Tonalità Smalto:</span>
-        <div id="modalColors" class="flex gap-1.5"></div>
-      </div>
-
-      <p id="modalDesc" class="text-xs text-neutral-600 mt-3 leading-relaxed font-light"></p>
-      
-      <!-- Azioni di Acquisto -->
-      <div class="mt-6 flex flex-col gap-2">
-        <!-- WhatsApp Diretto -->
-        <a id="modalWaBtn" href="#" target="_blank" 
-           class="w-full text-center bg-[#25D366] hover:bg-[#1EBE5D] text-white text-xs uppercase tracking-wider py-3.5 px-4 font-medium transition flex items-center justify-center gap-2 shadow-sm">
-          <span>Ordina su WhatsApp</span>
-        </a>
-
-        <!-- Predisposizione Stripe / POS Online (Nascosto) -->
-        <a id="modalStripeBtn" href="#" target="_blank" 
-           class="w-full text-center bg-neutral-900 hover:bg-neutral-800 text-white text-xs uppercase tracking-wider py-3 px-4 font-medium transition hidden">
-          <span>Acquista con Carta di Credito</span>
+  <!-- 1. HERO EDITORIALE (Stile Bottega d'Autore) -->
+  <section class="relative min-h-[85vh] flex flex-col justify-between px-6 py-12 border-b border-neutral-300/80 bg-white">
+    <div class="max-w-6xl w-full mx-auto flex justify-between items-center text-xs uppercase tracking-[0.25em] text-neutral-500">
+      <span>Vietri sul Mare — Costiera Amalfitana</span>
+      <div class="flex items-center gap-6">
+        <span class="hidden sm:inline">Tradizione Familiare dal 1876</span>
+        <a href="#contatti" class="text-neutral-900 font-medium hover:text-vietri-cobalto border-b border-neutral-900 pb-0.5 transition-colors">
+          Contatti & Bottega ↗
         </a>
       </div>
     </div>
-  </div>
 
-  <!-- Sezione Storia Breve -->
-  <section id="storia" class="bg-neutral-50 border-t border-neutral-200 py-16 px-4">
-    <div class="max-w-2xl mx-auto text-center">
-      <h2 class="font-serif text-2xl text-neutral-900">Materia, Acqua e Fuoco</h2>
-      <p class="text-xs sm:text-sm text-neutral-600 mt-4 leading-relaxed font-light">
-        Ogni pezzo nasce dal tornio nella bottega di Vietri sul Mare. Lavorazione a mano libera senza stampi industriali, smalti cotti ad alta temperatura secondo la tradizione secolare della costiera.
+    <div class="max-w-4xl mx-auto text-center my-auto py-12">
+      <span class="text-xs uppercase tracking-[0.35em] text-vietri-cobalto font-medium block mb-4">Arte e Maestria del Tornio</span>
+      <h1 class="font-serif text-5xl sm:text-7xl lg:text-8xl tracking-tight text-neutral-950 font-normal leading-[0.95]">
+        Antonio Solimene
+      </h1>
+      <p class="font-serif italic text-xl sm:text-2xl text-neutral-600 mt-6 max-w-2xl mx-auto leading-relaxed">
+        «Alla fine, chi sceglie le nostre opere non acquista solo una ceramica: resta invischiato nell’argilla, nel mare e nella nostra storia.»
       </p>
+      
+      <div class="mt-10 flex flex-wrap justify-center gap-5 text-xs uppercase tracking-[0.2em]">
+        <a href="#collezioni" class="bg-neutral-950 text-white px-8 py-4 hover:bg-vietri-cobalto transition-all duration-300">
+          Esplora le Opere
+        </a>
+        <a href="#storia" class="border border-neutral-400 px-8 py-4 text-neutral-800 hover:border-neutral-950 transition-all">
+          La Stirpe dei Tornianti
+        </a>
+        <a href="https://wa.me/393899819834?text=Ciao%20Antonio!%20Ti%20scrivo%20dal%20tuo%20sito%20web,%20vorrei%20informazioni%20sulle%20tue%20ceramiche." 
+           target="_blank" rel="noopener noreferrer"
+           class="border border-[#25D366] text-neutral-900 px-7 py-4 hover:bg-[#25D366] hover:text-white transition-all flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-[#25D366] inline-block animate-pulse"></span>
+          <span>Scrivi su WhatsApp</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="text-center text-[11px] uppercase tracking-[0.3em] text-neutral-400">
+      Scorri per entrare in bottega ↓
     </div>
   </section>
 
-  <!-- Footer con Social e Contatti -->
-  <footer id="contatti" class="border-t border-neutral-200 py-12 text-center text-neutral-400 text-xs">
-    <div class="flex justify-center gap-8 mb-4 text-neutral-700 text-xs tracking-widest uppercase">
-      <a href="https://instagram.com" target="_blank" class="hover:text-black transition">Instagram</a>
-      <a href="https://facebook.com" target="_blank" class="hover:text-black transition">Facebook</a>
-      <a href="mailto:info@antoniosolimene.it" class="hover:text-black transition">Email</a>
+  <!-- 2. LA STORIA DI FAMIGLIA (Da Vincenzo a Nonno Ciccio) -->
+  <section id="storia" class="py-20 px-6 border-b border-neutral-300/80 bg-vietri-pietra">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+        
+        <div class="md:col-span-5 text-center">
+          <div class="relative w-64 h-64 sm:w-72 sm:h-72 mx-auto rounded-full overflow-hidden border border-neutral-300 shadow-sm p-1 bg-white">
+            <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&w=600&q=80" 
+                 alt="Antonio Solimene al tornio" 
+                 class="w-full h-full object-cover rounded-full filter grayscale contrast-110">
+          </div>
+          <p class="font-serif text-lg text-neutral-900 mt-4">Antonio Solimene</p>
+          <p class="text-xs uppercase tracking-widest text-neutral-500">Torniante in Vietri sul Mare</p>
+        </div>
+
+        <div class="md:col-span-7 space-y-5 text-neutral-700">
+          <span class="text-xs uppercase tracking-[0.3em] text-neutral-400 font-semibold block">Quattro Generazioni</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-neutral-950 font-normal leading-tight">
+            Dal bisnonno Vincenzo a Nonno Ciccio: l'anima dell'argilla viva.
+          </h2>
+          
+          <p class="text-sm leading-relaxed font-light">
+            La nostra storia inizia con il bisnonno <strong>Vincenzo</strong> (1876-1958), detto <em>“cupaiuolo”</em>, così rapido e instancabile al tornio a pedali che a fine giornata pareva una scultura d'argilla. Un testimone raccolto da nonno <strong>Francesco</strong> (detto <em>Ciccio</em>), che trasformò il mestiere in pura arte, portando i suoi riflessi vitrei e i suoi smalti materici fino alla prestigiosa manifattura fiorentina “Cantagalli” al fianco di Max Malamerson.
+          </p>
+
+          <p class="text-sm leading-relaxed font-light">
+            Soprannominato il <em>“torniante dell’opaco e trasparente azzurro mediterraneo”</em>, Ciccio continuò a forgiare al tornio anche quando la malattia gli faceva tremare le mani, con una precisione che lasciava tutti sbalorditi. Oggi, noi nipoti continuiamo questo gesto: nessun pezzo seriale, nessuna scorciatoia. Solo terra, tornio, acqua e fuoco.
+          </p>
+        </div>
+
+      </div>
     </div>
-    <p class="text-[11px] text-neutral-400">Antonio Solimene Ceramista — Vietri sul Mare (Salerno)</p>
+  </section>
+
+  <!-- 3. SEZIONE OPERE E COLLEZIONI -->
+  <section id="collezioni" class="py-20 px-6 max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <span class="text-xs uppercase tracking-[0.3em] text-neutral-400 font-semibold block mb-2">Forme & Smalti</span>
+      <h2 class="font-serif text-4xl sm:text-5xl text-neutral-950">Le Creazioni</h2>
+      <p class="text-xs sm:text-sm text-neutral-500 mt-3 font-light">
+        Pezzi unici forgiati al tornio a mano libera e cotti secondo la tradizione ceramica vietrese.
+      </p>
+
+      <!-- Bottoni Filtro / Collezioni -->
+      <div class="mt-8 flex flex-wrap justify-center gap-2.5 text-xs uppercase tracking-widest">
+        <button onclick="setFilter('tutti')" class="px-5 py-2.5 bg-neutral-950 text-white font-medium filter-btn" data-cat="tutti">Tutte le Opere</button>
+        <button onclick="setFilter('azzurro')" class="px-5 py-2.5 bg-white border border-neutral-300 text-neutral-700 hover:border-neutral-950 filter-btn" data-cat="azzurro">Azzurro Mediterraneo</button>
+        <button onclick="setFilter('terre')" class="px-5 py-2.5 bg-white border border-neutral-300 text-neutral-700 hover:border-neutral-950 filter-btn" data-cat="terre">Terre & Cotto Vivo</button>
+        <button onclick="setFilter('tavola')" class="px-5 py-2.5 bg-white border border-neutral-300 text-neutral-700 hover:border-neutral-950 filter-btn" data-cat="tavola">Tavola & Servizio</button>
+      </div>
+    </div>
+
+    <!-- Griglia Opere -->
+    <div id="galleryGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+      <!-- Rendering dinamico via JavaScript -->
+    </div>
+  </section>
+
+  <!-- MODALE DETTAGLIO OPERA (WhatsApp attivo) -->
+  <div id="detailModal" class="fixed inset-0 bg-neutral-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white max-w-lg w-full overflow-hidden shadow-2xl border border-neutral-200 p-6 sm:p-8 relative">
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-neutral-400 hover:text-neutral-950 text-xl font-light">✕</button>
+      
+      <div class="aspect-square bg-neutral-100 mb-6 overflow-hidden border border-neutral-200">
+        <img id="modalImg" src="" alt="" class="w-full h-full object-cover">
+      </div>
+      
+      <div class="flex justify-between items-baseline gap-4">
+        <div>
+          <span id="modalCollection" class="text-[10px] uppercase tracking-[0.25em] text-neutral-400 font-semibold block"></span>
+          <h3 id="modalTitle" class="font-serif text-2xl text-neutral-950"></h3>
+        </div>
+        <span id="modalPrice" class="font-serif text-2xl font-semibold text-neutral-950 whitespace-nowrap"></span>
+      </div>
+
+      <p id="modalDesc" class="text-xs text-neutral-600 mt-4 leading-relaxed font-light"></p>
+      
+      <div class="mt-8 flex flex-col gap-3">
+        <a id="modalWaBtn" href="#" target="_blank" 
+           class="w-full text-center bg-[#25D366] hover:bg-[#1EBE5D] text-white text-xs uppercase tracking-[0.2em] py-4 px-6 font-medium transition-all shadow-sm flex items-center justify-center gap-2">
+          <span>Richiedi su WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANNELLO GESTIONE BOTTEGA (PROTETTO DA PASSWORD) -->
+  <div id="adminModal" class="fixed inset-0 bg-neutral-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white max-w-2xl w-full border border-neutral-300 shadow-2xl p-6 sm:p-8 relative my-8">
+      <button onclick="closeAdmin()" class="absolute top-4 right-4 text-neutral-400 hover:text-neutral-900 text-xl">✕</button>
+
+      <!-- Schermata Password -->
+      <div id="adminLoginSection">
+        <h3 class="font-serif text-2xl text-neutral-900 mb-2">Accesso Gestione Bottega</h3>
+        <p class="text-xs text-neutral-500 mb-6">Inserisci il codice segreto per caricare nuove creazioni o modificare il catalogo.</p>
+        <div class="flex gap-2">
+          <input type="password" id="adminPasswordInput" placeholder="Codice di accesso..." 
+                 class="w-full px-4 py-3 border border-neutral-300 text-sm focus:outline-none focus:border-neutral-900">
+          <button onclick="checkAdminPassword()" class="bg-neutral-900 text-white px-6 text-xs uppercase tracking-wider hover:bg-vietri-cobalto transition">
+            Entra
+          </button>
+        </div>
+        <p id="adminErrorMsg" class="text-red-600 text-xs mt-2 hidden">Codice non corretto. Riprova.</p>
+      </div>
+
+      <!-- Schermata Operativa (Caricamento Pezzo) -->
+      <div id="adminPanelSection" class="hidden">
+        <div class="flex justify-between items-center border-b border-neutral-200 pb-4 mb-6">
+          <div>
+            <h3 class="font-serif text-2xl text-neutral-900">Aggiungi Nuova Creazione</h3>
+            <p class="text-xs text-neutral-500">I nuovi pezzi saranno visibili immediatamente sul sito.</p>
+          </div>
+          <button onclick="resetDefaultCatalog()" class="text-[10px] text-neutral-400 hover:text-red-600 underline">
+            Ripristina Catalogo Base
+          </button>
+        </div>
+
+        <form id="newProductForm" onsubmit="handleCreateProduct(event)" class="space-y-4">
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-neutral-600 mb-1">Titolo dell'opera</label>
+            <input type="text" id="newTitle" required placeholder="Es. Vaso Ovale Blu Cobalto" 
+                   class="w-full px-3 py-2.5 border border-neutral-300 text-xs focus:outline-none focus:border-neutral-900">
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs uppercase tracking-wider text-neutral-600 mb-1">Collezione / Categoria</label>
+              <select id="newCategory" class="w-full px-3 py-2.5 border border-neutral-300 text-xs focus:outline-none focus:border-neutral-900 bg-white">
+                <option value="azzurro">Azzurro Mediterraneo</option>
+                <option value="terre">Terre & Cotto Vivo</option>
+                <option value="tavola">Tavola & Servizio</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs uppercase tracking-wider text-neutral-600 mb-1">Prezzo (€)</label>
+              <input type="text" id="newPrice" required placeholder="Es. 45 €" 
+                     class="w-full px-3 py-2.5 border border-neutral-300 text-xs focus:outline-none focus:border-neutral-900">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-neutral-600 mb-1">Fotografia del pezzo</label>
+            <input type="file" id="newImageFile" accept="image/*" required onchange="previewSelectedImage(event)"
+                   class="w-full text-xs text-neutral-500 file:mr-4 file:py-2 file:px-4 file:border-0 file:text-xs file:bg-neutral-100 file:text-neutral-700 hover:file:bg-neutral-200">
+            <div id="imagePreviewContainer" class="mt-3 aspect-square w-32 border border-neutral-200 rounded overflow-hidden hidden">
+              <img id="previewImg" src="" alt="Anteprima" class="w-full h-full object-cover">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-neutral-600 mb-1">Descrizione & Misure</label>
+            <textarea id="newDesc" rows="3" required placeholder="Argilla impastata al tornio, diametro 22cm, smalto refrattario..." 
+                      class="w-full px-3 py-2 border border-neutral-300 text-xs focus:outline-none focus:border-neutral-900"></textarea>
+          </div>
+
+          <button type="submit" class="w-full bg-neutral-950 hover:bg-vietri-cobalto text-white text-xs uppercase tracking-[0.2em] py-3.5 transition">
+            Pubblica Opera nel Catalogo
+          </button>
+        </form>
+
+        <!-- Elenco Pezzi per Eliminazione Rapida -->
+        <div class="mt-10 pt-6 border-t border-neutral-200">
+          <h4 class="text-xs uppercase tracking-wider text-neutral-700 mb-4 font-semibold">Opere Attualmente Online</h4>
+          <div id="adminProductsList" class="space-y-3 max-h-60 overflow-y-auto pr-2">
+            <!-- Popolato via JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER CON LINK SOCIAL REALI -->
+  <footer id="contatti" class="border-t border-neutral-300 bg-white py-16 px-6 text-center">
+    <div class="max-w-4xl mx-auto">
+      <h3 class="font-serif text-2xl text-neutral-950 mb-2">Antonio Solimene</h3>
+      <p class="text-xs text-neutral-500 font-light mb-8">Bottega Ceramica Artigiana — Vietri sul Mare, Costiera Amalfitana</p>
+
+      <!-- Profili Social e Contatti Reali del Ceramista -->
+      <div class="flex flex-wrap justify-center items-center gap-6 sm:gap-8 text-xs uppercase tracking-[0.25em] text-neutral-800 mb-8 font-medium">
+        <a href="https://www.instagram.com/antoniosolimeneceramista/" target="_blank" rel="noopener noreferrer" 
+           class="hover:text-vietri-cobalto transition flex items-center gap-1.5">
+          <span>Instagram</span>
+        </a>
+        <a href="https://www.facebook.com/100010275308756/" target="_blank" rel="noopener noreferrer" 
+           class="hover:text-vietri-cobalto transition flex items-center gap-1.5">
+          <span>Facebook</span>
+        </a>
+        <a href="mailto:Info@solimene.net" class="hover:text-vietri-cobalto transition flex items-center gap-1.5">
+          <span>Email: Info@solimene.net</span>
+        </a>
+      </div>
+
+      <div class="flex justify-center items-center gap-4 text-[11px] text-neutral-400">
+        <p>© 2026 Antonio Solimene — Ceramiche Vietresi modellate a mano</p>
+        <span>•</span>
+        <!-- Accesso Riservato per Antonio -->
+        <button onclick="openAdmin()" class="text-neutral-400 hover:text-neutral-900 transition flex items-center gap-1" title="Area Bottega Riservata">
+          <span>🔒 Area Bottega</span>
+        </button>
+      </div>
+    </div>
   </footer>
 
+  <!-- PULSANTE FLOATING WHATSAPP ELEGANTE & ARMONIZZATO -->
+  <div class="wabtn fixed bottom-6 right-6 z-50 flex items-center group">
+    <!-- Tooltip discreto all'hover -->
+    <div class="hidden sm:block opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none mr-3 bg-neutral-900 text-white text-[11px] tracking-wide py-2 px-3 rounded shadow-lg border border-neutral-700 whitespace-nowrap">
+      Parla con Antonio Solimene
+    </div>
+
+    <a href="https://wa.me/393899819834?text=Ciao%20Antonio!%20Ti%20contatto%20dal%20tuo%20sito,%20vorrei%20informazioni%20sulle%20tue%20creazioni." 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       aria-label="Contatta Antonio Solimene su WhatsApp"
+       class="relative flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-[0_8px_20px_rgba(37,211,102,0.35)] hover:scale-105 hover:bg-[#1EBE5D] transition-transform duration-300">
+      
+      <!-- Piccolo radar pulsante di stato online -->
+      <span class="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-white rounded-full flex items-center justify-center">
+        <span class="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-ping"></span>
+        <span class="absolute w-2 h-2 bg-emerald-500 rounded-full"></span>
+      </span>
+
+      <!-- Icona Ufficiale WhatsApp -->
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/>
+      </svg>
+    </a>
+  </div>
+
   <script>
+    // -------------------------------------------------------------
+    // CONFIGURAZIONE BOTTEGA & DATI INIZIALI
+    // -------------------------------------------------------------
     const CONFIG = {
-      phone: "393400000000", // Inserire il numero di Antonio
-      enableStripe: false     // Pronto per essere attivato con un click in futuro
+      phone: "393899819834",       // Cellulare reale di Antonio per WhatsApp
+      email: "Info@solimene.net",  // Email ufficiale di bottega
+      adminPasscode: "vietri1876"  // Password segreta per la gestione dei prodotti
     };
 
-    // Catalogo con foto a colori e smalti reali
-    const PRODUCTS = [
-      { 
-        id: 1, 
-        title: "Piatto Piano Cobalto e Cotto", 
-        price: "35 €", 
-        category: "tavola", 
-        colors: ["#0A3B72", "#BA4924"],
-        desc: "Piatto piano in terracotta vietrese invetriata con cerchiatura manuale cobalto intenso.", 
-        img: "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=700&q=80", 
-        stripeUrl: "" 
+    const DEFAULT_CATALOG = [
+      {
+        id: 1,
+        title: "Ciotola Azzurro Profondo",
+        collection: "Azzurro Mediterraneo",
+        category: "azzurro",
+        price: "38 €",
+        desc: "Ispirata agli smalti trasparenti di nonno Ciccio. Smalto cobalto vietrese vetrificato su argilla forgiata a mano libera.",
+        img: "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=700&q=80"
       },
-      { 
-        id: 2, 
-        title: "Vaso Anfora Terracotta Naturale", 
-        price: "60 €", 
-        category: "arredo", 
-        colors: ["#BA4924"],
-        desc: "Tornito a mano libera con argilla refrattaria campana. Finitura naturale opaca.", 
-        img: "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=700&q=80", 
-        stripeUrl: "" 
+      {
+        id: 2,
+        title: "Anfora Terracotta Grezza",
+        collection: "Terre & Cotto Vivo",
+        category: "terre",
+        price: "70 €",
+        desc: "Modellata al tornio con impasto poroso campano, finitura naturale a vista senza smalto, come nelle antiche botteghe.",
+        img: "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=700&q=80"
       },
-      { 
-        id: 3, 
-        title: "Ciotola Smalto Sabbia Satinato", 
-        price: "28 €", 
-        category: "tavola", 
-        colors: ["#EADCC9", "#0A3B72"],
-        desc: "Ciotola multifunzione per la tavola. Bordo morbido irregolare tipico della tornitura artigianale.", 
-        img: "https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=700&q=80", 
-        stripeUrl: "" 
+      {
+        id: 3,
+        title: "Set Piatti Ocra e Sabbia",
+        collection: "Tavola & Servizio",
+        category: "tavola",
+        price: "64 €",
+        desc: "Gres resistente con velatura lucida color limone e sabbia. Bordo sagomato a mano.",
+        img: "https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=700&q=80"
       },
-      { 
-        id: 4, 
-        title: "Svuotatasche Ocra Calda", 
-        price: "50 €", 
-        category: "arredo", 
-        colors: ["#D99B26", "#BA4924"],
-        desc: "Pezzo compatto da piano con fondo invetriato in ocra vietrese brillante.", 
-        img: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=700&q=80", 
-        stripeUrl: "" 
-      },
-      { 
-        id: 5, 
-        title: "Bottiglia Decorativa Bianca", 
-        price: "45 €", 
-        category: "artistico", 
-        colors: ["#F4F1EA"],
-        desc: "Forma sinuosa a collo lungo smaltata in bianco panna opaco.", 
-        img: "https://images.unsplash.com/photo-1581783342308-f792dbdd27c5?auto=format&fit=crop&w=700&q=80", 
-        stripeUrl: "" 
-      },
-      { 
-        id: 6, 
-        title: "Coppetta Blu Notte Profondo", 
-        price: "24 €", 
-        category: "tavola", 
-        colors: ["#0A3B72"],
-        desc: "Piccola tazza senza manico da degustazione o aperitivo in smalto vetroso lucidissimo.", 
-        img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=700&q=80", 
-        stripeUrl: "" 
+      {
+        id: 4,
+        title: "Svuotatasche Ocra Calda",
+        collection: "Terre & Cotto Vivo",
+        category: "terre",
+        price: "50 €",
+        desc: "Pezzo compatto da piano con fondo a smalto materico ocra lucido. Bordo a vivo.",
+        img: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=700&q=80"
       }
     ];
 
-    let currentCategory = 'tutti';
+    // STORAGE ADAPTER (Attualmente LocalStorage per test GitHub, predisposto per Firebase)
+    function loadProducts() {
+      const saved = localStorage.getItem('antonio_catalog');
+      return saved ? JSON.parse(saved) : DEFAULT_CATALOG;
+    }
 
-    function renderProducts() {
-      const grid = document.getElementById('productGrid');
-      const filtered = currentCategory === 'tutti' 
-        ? PRODUCTS 
-        : PRODUCTS.filter(p => p.category === currentCategory);
+    function saveProducts(items) {
+      localStorage.setItem('antonio_catalog', JSON.stringify(items));
+    }
 
-      grid.innerHTML = filtered.map(p => `
+    let CATALOG = loadProducts();
+    let activeFilter = 'tutti';
+    let base64UploadBuffer = null;
+
+    // RENDERING CATALOGO PUBBLICO
+    function renderCatalog() {
+      const grid = document.getElementById('galleryGrid');
+      const items = activeFilter === 'tutti' 
+        ? CATALOG 
+        : CATALOG.filter(item => item.category === activeFilter);
+
+      grid.innerHTML = items.map(p => `
         <div onclick="openModal(${p.id})" class="group cursor-pointer">
-          <!-- Contenitore Quadrato con Bordo Fine -->
-          <div class="aspect-square bg-white border border-neutral-200 overflow-hidden relative shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+          <div class="aspect-square bg-white border border-neutral-200 overflow-hidden relative shadow-sm">
             <img src="${p.img}" alt="${p.title}" 
-                 class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105">
+                 class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105">
           </div>
-          <div class="mt-2.5 text-center">
-            <h2 class="text-xs font-serif text-neutral-900 group-hover:text-vietri-cobalto transition-colors">${p.title}</h2>
-            <p class="text-[11px] text-neutral-500 font-medium mt-0.5">${p.price}</p>
+          <div class="mt-3 text-center">
+            <span class="text-[9px] uppercase tracking-[0.2em] text-neutral-400 block">${p.collection}</span>
+            <h4 class="text-xs font-serif text-neutral-900 group-hover:text-vietri-cobalto transition-colors font-medium mt-0.5">${p.title}</h4>
+            <p class="text-xs font-semibold text-neutral-800 mt-1">${p.price}</p>
           </div>
         </div>
       `).join('');
     }
 
-    function filterCategory(cat) {
-      currentCategory = cat;
-      renderProducts();
+    function setFilter(cat) {
+      activeFilter = cat;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        if(btn.dataset.cat === cat) {
+          btn.className = "px-5 py-2.5 bg-neutral-950 text-white font-medium filter-btn";
+        } else {
+          btn.className = "px-5 py-2.5 bg-white border border-neutral-300 text-neutral-700 hover:border-neutral-950 filter-btn";
+        }
+      });
+      renderCatalog();
     }
 
+    // MODALE DETTAGLIO PUBBLICA
     function openModal(id) {
-      const product = PRODUCTS.find(p => p.id === id);
-      if (!product) return;
+      const p = CATALOG.find(x => x.id === id);
+      if (!p) return;
 
-      document.getElementById('modalImg').src = product.img;
-      document.getElementById('modalTitle').textContent = product.title;
-      document.getElementById('modalPrice').textContent = product.price;
-      document.getElementById('modalDesc').textContent = product.desc;
+      document.getElementById('modalImg').src = p.img;
+      document.getElementById('modalTitle').textContent = p.title;
+      document.getElementById('modalCollection').textContent = p.collection;
+      document.getElementById('modalPrice').textContent = p.price;
+      document.getElementById('modalDesc').textContent = p.desc;
 
-      // Chip colori usati nel manufatto
-      const colorsContainer = document.getElementById('modalColors');
-      colorsContainer.innerHTML = product.colors.map(c => `
-        <span class="w-3.5 h-3.5 rounded-full border border-black/10 inline-block" style="background-color: ${c}"></span>
-      `).join('');
+      const text = encodeURIComponent(`Ciao Antonio, piacere! Sono interessato al pezzo "${p.title}" della collezione "${p.collection}" (${p.price}). È disponibile in bottega?`);
+      document.getElementById('modalWaBtn').href = `https://wa.me/${CONFIG.phone}?text=${text}`;
 
-      // WhatsApp con messaggio formattato
-      const msg = encodeURIComponent(`Ciao Antonio, piacere! Sono interessato al pezzo "${product.title}" (${product.price}). È ancora disponibile in bottega?`);
-      document.getElementById('modalWaBtn').href = `https://wa.me/${CONFIG.phone}?text=${msg}`;
-
-      // Toggle Stripe
-      const stripeBtn = document.getElementById('modalStripeBtn');
-      if (CONFIG.enableStripe && product.stripeUrl) {
-        stripeBtn.href = product.stripeUrl;
-        stripeBtn.classList.remove('hidden');
-      } else {
-        stripeBtn.classList.add('hidden');
-      }
-
-      document.getElementById('productModal').classList.remove('hidden');
+      document.getElementById('detailModal').classList.remove('hidden');
     }
 
     function closeModal() {
-      document.getElementById('productModal').classList.add('hidden');
+      document.getElementById('detailModal').classList.add('hidden');
     }
 
-    // Inizializzazione
-    renderProducts();
+    // -------------------------------------------------------------
+    // GESTIONE PANNELLO AMMINISTRAZIONE BOTTEGA
+    // -------------------------------------------------------------
+    function openAdmin() {
+      document.getElementById('adminModal').classList.remove('hidden');
+    }
+
+    function closeAdmin() {
+      document.getElementById('adminModal').classList.add('hidden');
+    }
+
+    function checkAdminPassword() {
+      const pass = document.getElementById('adminPasswordInput').value;
+      if (pass === CONFIG.adminPasscode) {
+        document.getElementById('adminLoginSection').classList.add('hidden');
+        document.getElementById('adminPanelSection').classList.remove('hidden');
+        renderAdminList();
+      } else {
+        document.getElementById('adminErrorMsg').classList.remove('hidden');
+      }
+    }
+
+    function previewSelectedImage(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          base64UploadBuffer = e.target.result;
+          document.getElementById('previewImg').src = base64UploadBuffer;
+          document.getElementById('imagePreviewContainer').classList.remove('hidden');
+        }
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function handleCreateProduct(e) {
+      e.preventDefault();
+      if (!base64UploadBuffer) {
+        alert("Carica una fotografia per l'opera.");
+        return;
+      }
+
+      const catValue = document.getElementById('newCategory').value;
+      const collectionsMap = {
+        'azzurro': 'Azzurro Mediterraneo',
+        'terre': 'Terre & Cotto Vivo',
+        'tavola': 'Tavola & Servizio'
+      };
+
+      const newProduct = {
+        id: Date.now(),
+        title: document.getElementById('newTitle').value,
+        category: catValue,
+        collection: collectionsMap[catValue],
+        price: document.getElementById('newPrice').value,
+        desc: document.getElementById('newDesc').value,
+        img: base64UploadBuffer
+      };
+
+      CATALOG.unshift(newProduct);
+      saveProducts(CATALOG);
+      renderCatalog();
+      renderAdminList();
+
+      // Reset form
+      document.getElementById('newProductForm').reset();
+      document.getElementById('imagePreviewContainer').classList.add('hidden');
+      base64UploadBuffer = null;
+      alert("Nuovo pezzo pubblicato con successo!");
+    }
+
+    function deleteProduct(id) {
+      if (confirm("Vuoi rimuovere questo pezzo dal catalogo online?")) {
+        CATALOG = CATALOG.filter(p => p.id !== id);
+        saveProducts(CATALOG);
+        renderCatalog();
+        renderAdminList();
+      }
+    }
+
+    function resetDefaultCatalog() {
+      if (confirm("Vuoi ripristinare il catalogo iniziale con i pezzi di esempio?")) {
+        CATALOG = [...DEFAULT_CATALOG];
+        saveProducts(CATALOG);
+        renderCatalog();
+        renderAdminList();
+      }
+    }
+
+    function renderAdminList() {
+      const list = document.getElementById('adminProductsList');
+      list.innerHTML = CATALOG.map(p => `
+        <div class="flex items-center justify-between p-2 border border-neutral-200 bg-neutral-50 rounded">
+          <div class="flex items-center gap-3">
+            <img src="${p.img}" class="w-10 h-10 object-cover rounded">
+            <div>
+              <p class="text-xs font-medium text-neutral-900">${p.title}</p>
+              <p class="text-[10px] text-neutral-500">${p.collection} — ${p.price}</p>
+            </div>
+          </div>
+          <button onclick="deleteProduct(${p.id})" class="text-xs text-red-600 hover:text-red-800 font-medium px-2 py-1">
+            Rimuovi
+          </button>
+        </div>
+      `).join('');
+    }
+
+    // Inizializzazione pagina
+    renderCatalog();
   </script>
 </body>
 </html>
