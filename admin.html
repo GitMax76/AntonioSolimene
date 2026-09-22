@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestione Bottega — Antonio Solimene Ceramista</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            vietri: {
+              cobalto: '#0A3764',
+              cotto: '#BA4924',
+              ocra: '#D89828',
+              ramina: '#1D553F',
+              pietra: '#F8F7F4'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#F4F3EF] text-neutral-900 font-sans antialiased min-h-screen pb-24 selection:bg-vietri-cobalto selection:text-white">
+
+  <!-- BARRA SUPERIORE DI STATO -->
+  <header class="bg-white border-b border-neutral-200 sticky top-0 z-30 shadow-xs">
+    <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <span class="w-9 h-9 rounded-full bg-vietri-cobalto text-white flex items-center justify-center font-serif text-sm font-semibold shadow-xs">AS</span>
+        <div>
+          <h1 class="font-serif text-lg text-neutral-950 font-semibold leading-tight">Bottega Antonio Solimene</h1>
+          <p class="text-[10px] text-neutral-500 uppercase tracking-widest font-medium">Gestione Opere & Vetrina</p>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-2">
+        <a href="index.html" target="_blank" class="text-xs uppercase tracking-wider text-neutral-700 hover:text-vietri-cobalto border border-neutral-300 px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1.5 bg-white shadow-2xs">
+          <span>Vedi Sito</span>
+          <span class="text-[11px]">↗</span>
+        </a>
+        <button id="logoutBtn" onclick="handleLogout()" class="text-xs uppercase tracking-wider text-neutral-400 hover:text-red-600 px-2 py-1.5 transition hidden" title="Esci">
+          Esci
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 1. SCHERMATA LOGIN CON CODICE SEGRETO (PIN DI BOTTEGA) -->
+  <div id="loginScreen" class="max-w-md mx-auto mt-14 px-4">
+    <div class="bg-white p-8 rounded-2xl shadow-sm border border-neutral-200/90 text-center">
+      <div class="w-16 h-16 bg-neutral-100 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl shadow-inner">
+        🏺
+      </div>
+      <h2 class="font-serif text-3xl text-neutral-900 mb-1">Accesso Bottega</h2>
+      <p class="text-xs text-neutral-500 mb-6 leading-relaxed">
+        Inserisci il codice segreto per caricare nuove foto o modificare i prezzi delle ceramiche.
+      </p>
+      
+      <form onsubmit="handleLogin(event)" class="space-y-4">
+        <div>
+          <input type="password" id="passcodeInput" required placeholder="Codice di accesso..." 
+                 class="w-full px-4 py-3.5 rounded-xl border border-neutral-300 text-center text-lg tracking-[0.25em] font-mono focus:outline-none focus:border-vietri-cobalto focus:ring-2 focus:ring-vietri-cobalto/10 transition">
+        </div>
+        <button type="submit" class="w-full bg-neutral-950 hover:bg-vietri-cobalto text-white text-xs uppercase tracking-[0.2em] py-4 rounded-xl transition duration-200 font-medium shadow-sm">
+          Accedi alla Bottega
+        </button>
+      </form>
+      <p id="loginError" class="text-red-600 text-xs mt-3 hidden font-medium">Codice errato. Riprova.</p>
+    </div>
+    <p class="text-center text-[11px] text-neutral-400 mt-6">Codice bottega di default: <code class="font-mono bg-neutral-200/70 px-1.5 py-0.5 rounded">vietri1876</code></p>
+  </div>
+
+  <!-- 2. DASHBOARD PRINCIPALE OPERATIVA (VISIBILE DOPO IL LOGIN) -->
+  <main id="dashboard" class="max-w-4xl mx-auto px-4 pt-6 hidden">
+
+    <!-- Azioni Rapide & Statistiche -->
+    <div class="bg-white p-5 sm:p-6 rounded-2xl border border-neutral-200 shadow-xs mb-6">
+      <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4 border-b border-neutral-100 pb-5 mb-5">
+        <div>
+          <span class="text-[10px] uppercase tracking-[0.25em] text-vietri-cobalto font-bold block mb-1">Catalogo Opere</span>
+          <h2 class="font-serif text-3xl text-neutral-950 font-normal">Creazioni in Vetrina</h2>
+          <p id="statsCounter" class="text-xs text-neutral-500 mt-1">Caricamento opere in corso...</p>
+        </div>
+
+        <button onclick="openCreateModal()" class="w-full sm:w-auto bg-neutral-950 hover:bg-vietri-cobalto text-white text-xs uppercase tracking-[0.15em] px-5 py-3.5 rounded-xl transition duration-200 flex items-center justify-center gap-2 font-medium shadow-sm">
+          <span class="text-base leading-none">+</span>
+          <span>Aggiungi Creazione</span>
+        </button>
+      </div>
+
+      <!-- Barra di Trasmissione Dati & Sincronizzazione -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-neutral-50 p-3.5 rounded-xl border border-neutral-200/80">
+        <div class="text-xs text-neutral-600 flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
+          <span>Hai fatto modifiche? Inviale subito per aggiornare il sito:</span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button onclick="shareCatalogFile()" class="flex-1 sm:flex-initial bg-[#25D366] hover:bg-[#1EBE5D] text-white text-xs uppercase tracking-wider px-4 py-2.5 rounded-lg transition font-medium flex items-center justify-center gap-2 shadow-2xs" title="Invia il catalogo aggiornato su WhatsApp">
+            <span>📲 Invia su WhatsApp</span>
+          </button>
+          
+          <button onclick="openSyncModal()" class="bg-white hover:bg-neutral-100 border border-neutral-300 text-neutral-800 text-xs uppercase tracking-wider px-3.5 py-2.5 rounded-lg transition font-medium flex items-center justify-center gap-1.5 shadow-2xs" title="Opzioni avanzate di pubblicazione e download">
+            <span>⚙️ Sincronizza</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filtri Rapidi Catalogo (Tutti, Disponibili, Venduti) -->
+    <div class="flex justify-between items-center mb-4 px-1">
+      <div class="flex items-center gap-2 text-xs">
+        <button onclick="setAdminFilter('tutti')" class="admin-filter-btn px-3 py-1.5 rounded-lg bg-neutral-900 text-white font-medium" data-filter="tutti">Tutti (<span id="countTutti">0</span>)</button>
+        <button onclick="setAdminFilter('disponibile')" class="admin-filter-btn px-3 py-1.5 rounded-lg bg-white border border-neutral-300 text-neutral-700 hover:border-neutral-900" data-filter="disponibile">Disponibili (<span id="countDisp">0</span>)</button>
+        <button onclick="setAdminFilter('venduto')" class="admin-filter-btn px-3 py-1.5 rounded-lg bg-white border border-neutral-300 text-neutral-700 hover:border-neutral-900" data-filter="venduto">Venduti (<span id="countVend">0</span>)</button>
+      </div>
+
+      <button onclick="confirmResetCatalog()" class="text-[11px] text-neutral-400 hover:text-neutral-700 underline">
+        Ripristina Esempi
+      </button>
+    </div>
+
+    <!-- Lista Opere Registrate -->
+    <div id="productsContainer" class="space-y-3">
+      <!-- Popolato dinamicamente via JS -->
+    </div>
+
+  </main>
+
+  <!-- 3. MODALE AGGIUNTA / MODIFICA PEZZO -->
+  <div id="productFormModal" class="fixed inset-0 bg-neutral-950/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white max-w-lg w-full rounded-2xl shadow-2xl border border-neutral-200 p-6 sm:p-8 relative my-8">
+      <button onclick="closeFormModal()" class="absolute top-4 right-4 text-neutral-400 hover:text-neutral-900 text-2xl leading-none">✕</button>
+
+      <div class="border-b border-neutral-100 pb-3 mb-5">
+        <h3 id="formModalTitle" class="font-serif text-2xl text-neutral-950">Aggiungi Creazione</h3>
+        <p class="text-xs text-neutral-500 mt-0.5">Scatta o seleziona una foto, inserisci il prezzo e la descrizione.</p>
+      </div>
+
+      <form id="productForm" onsubmit="handleSaveProduct(event)" class="space-y-4">
+        <input type="hidden" id="editProductId" value="">
+
+        <!-- Titolo Opera -->
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-neutral-700 mb-1.5 font-semibold">Titolo dell'Opera *</label>
+          <input type="text" id="formTitle" required placeholder="Es. Vaso Ovale Cobalto Vietrese" 
+                 class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-300 text-xs focus:outline-none focus:border-vietri-cobalto focus:ring-1 focus:ring-vietri-cobalto transition">
+        </div>
+
+        <!-- Collezione & Prezzo -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-neutral-700 mb-1.5 font-semibold">Collezione *</label>
+            <select id="formCategory" class="w-full px-3 py-2.5 rounded-xl border border-neutral-300 text-xs focus:outline-none focus:border-vietri-cobalto bg-white">
+              <option value="azzurro">Azzurro Mediterraneo</option>
+              <option value="terre">Terre & Cotto Vivo</option>
+              <option value="tavola">Tavola & Servizio</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-neutral-700 mb-1.5 font-semibold">Prezzo (€) *</label>
+            <input type="text" id="formPrice" required placeholder="Es. 45 €" 
+                   class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-300 text-xs focus:outline-none focus:border-vietri-cobalto focus:ring-1 focus:ring-vietri-cobalto transition">
+          </div>
+        </div>
+
+        <!-- Stato Disponibilità -->
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-neutral-700 mb-1.5 font-semibold">Stato dell'Opera</label>
+          <select id="formStatus" class="w-full px-3 py-2.5 rounded-xl border border-neutral-300 text-xs focus:outline-none focus:border-vietri-cobalto bg-white">
+            <option value="disponibile">🟢 Disponibile in Bottega</option>
+            <option value="venduto">🔴 Pezzo Venduto (Mostrato come Archivio)</option>
+          </select>
+        </div>
+
+        <!-- Fotografia con Compressione Automatica Mobile -->
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-neutral-700 mb-1.5 font-semibold">Fotografia del Pezzo *</label>
+          
+          <div class="border-2 border-dashed border-neutral-300 hover:border-vietri-cobalto rounded-xl p-4 text-center transition bg-neutral-50/60">
+            <input type="file" id="formImageFile" accept="image/*" onchange="handleImageSelection(event)" class="hidden">
+            
+            <div id="imagePlaceholder" class="cursor-pointer" onclick="document.getElementById('formImageFile').click()">
+              <div class="text-3xl mb-1">📸</div>
+              <p class="text-xs font-semibold text-neutral-800">Scatta foto o seleziona dalla galleria</p>
+              <p class="text-[10px] text-neutral-400 mt-0.5">Verrà ottimizzata automaticamente per il web</p>
+            </div>
+
+            <div id="imagePreviewBox" class="hidden flex flex-col items-center">
+              <div class="w-32 h-32 rounded-xl overflow-hidden border border-neutral-300 shadow-xs mb-2">
+                <img id="imagePreviewEl" src="" alt="Anteprima" class="w-full h-full object-cover">
+              </div>
+              <button type="button" onclick="document.getElementById('formImageFile').click()" class="text-xs text-vietri-cobalto hover:underline font-medium">
+                Cambia fotografia
+              </button>
+            </div>
+
+            <p id="compressStatus" class="text-[11px] text-vietri-cobalto font-medium mt-2 hidden animate-pulse">
+              ⏳ Ottimizzazione foto in corso...
+            </p>
+          </div>
+        </div>
+
+        <!-- Descrizione & Dimensioni -->
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-neutral-700 mb-1.5 font-semibold">Descrizione & Misure *</label>
+          <textarea id="formDesc" rows="3" required placeholder="Argilla modellata al tornio, finitura cobalto vietrese lucido, diametro 24 cm..." 
+                    class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-300 text-xs focus:outline-none focus:border-vietri-cobalto focus:ring-1 focus:ring-vietri-cobalto transition"></textarea>
+        </div>
+
+        <!-- Bottoni Azione -->
+        <div class="flex gap-2.5 pt-3 border-t border-neutral-100">
+          <button type="button" onclick="closeFormModal()" class="w-1/2 py-3 border border-neutral-300 text-neutral-700 rounded-xl text-xs uppercase tracking-wider hover:bg-neutral-50 transition font-medium">
+            Annulla
+          </button>
+          <button type="submit" id="saveProductBtn" class="w-1/2 py-3 bg-neutral-950 hover:bg-vietri-cobalto text-white rounded-xl text-xs uppercase tracking-wider font-semibold transition shadow-sm">
+            Salva Opera
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. MODALE SINCRONIZZAZIONE (EXPORT JSON / GITHUB API) -->
+  <div id="syncModal" class="fixed inset-0 bg-neutral-950/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white max-w-lg w-full rounded-2xl shadow-2xl border border-neutral-200 p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeSyncModal()" class="absolute top-4 right-4 text-neutral-400 hover:text-neutral-900 text-2xl leading-none">✕</button>
+      
+      <div class="border-b border-neutral-100 pb-3 mb-5">
+        <h3 class="font-serif text-2xl text-neutral-900">Sincronizzazione Catalogo</h3>
+        <p class="text-xs text-neutral-500 mt-0.5">Scegli come pubblicare o salvare le modifiche del catalogo.</p>
+      </div>
+
+      <div class="space-y-4">
+        <!-- Azione 1: Download File JSON -->
+        <div class="p-4 bg-neutral-50 rounded-xl border border-neutral-200 flex items-center justify-between gap-3">
+          <div>
+            <h4 class="text-xs font-bold text-neutral-900">Scarica File catalogo.json</h4>
+            <p class="text-[11px] text-neutral-500">Salva il file sul dispositivo da caricare su GitHub o inviare via mail.</p>
+          </div>
+          <button onclick="downloadCatalogJSON()" class="shrink-0 px-4 py-2.5 bg-neutral-900 hover:bg-vietri-cobalto text-white text-xs uppercase tracking-wider rounded-lg transition font-medium">
+            Scarica
+          </button>
+        </div>
+
+        <!-- Azione 2: Pubblicazione Automatica GitHub via Token -->
+        <div class="p-4 bg-neutral-50 rounded-xl border border-neutral-200">
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <h4 class="text-xs font-bold text-neutral-900">Pubblicazione Automatica (GitHub API)</h4>
+              <p class="text-[11px] text-neutral-500">Aggiorna direttamente il repository GitHub con un solo clic.</p>
+            </div>
+            <button onclick="publishToGitHub()" id="btnGithubSync" class="shrink-0 px-4 py-2.5 bg-vietri-cobalto hover:bg-neutral-900 text-white text-xs uppercase tracking-wider rounded-lg transition font-medium">
+              🚀 Pubblica
+            </button>
+          </div>
+
+          <div class="space-y-2.5 pt-3 border-t border-neutral-200">
+            <div>
+              <label class="block text-[10px] uppercase font-semibold text-neutral-600 mb-1">Repository GitHub (es. nomeutente/nomerepo)</label>
+              <input type="text" id="ghRepo" placeholder="es. massimiliano/antonio-solimene" class="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg font-mono focus:outline-none focus:border-vietri-cobalto">
+            </div>
+            <div>
+              <label class="block text-[10px] uppercase font-semibold text-neutral-600 mb-1">GitHub Personal Access Token</label>
+              <input type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxx" class="w-full px-3 py-2 text-xs border border-neutral-300 rounded-lg font-mono focus:outline-none focus:border-vietri-cobalto">
+            </div>
+            <button onclick="saveGitHubSettings()" class="text-[11px] text-vietri-cobalto hover:underline font-medium">
+              💾 Salva credenziali GitHub in memoria
+            </button>
+          </div>
+        </div>
+
+        <!-- Azione 3: Copia Testo JSON Manuale -->
+        <div>
+          <label class="block text-[11px] font-semibold text-neutral-700 mb-1">Codice JSON (copia e incolla manuale):</label>
+          <textarea id="exportTextarea" rows="3" readonly class="w-full p-2.5 font-mono text-[10px] bg-neutral-100 border border-neutral-300 rounded-xl text-neutral-700 select-all focus:outline-none"></textarea>
+          <button onclick="copyExportedData()" class="mt-2 w-full py-2.5 bg-neutral-200 hover:bg-neutral-300 text-neutral-800 rounded-xl text-xs uppercase tracking-wider font-semibold transition">
+            📋 Copia Tutto negli Appunti
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. MODALE DI CONFERMA ELIMINAZIONE OPERA (ZERO POPUP NATIVI) -->
+  <div id="confirmDeleteModal" class="fixed inset-0 bg-neutral-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white max-w-sm w-full rounded-2xl shadow-2xl p-6 text-center border border-neutral-200">
+      <div class="w-14 h-14 bg-red-50 text-red-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl">
+        🗑️
+      </div>
+      <h4 class="font-serif text-2xl text-neutral-950 mb-1">Eliminare quest'opera?</h4>
+      <p id="deleteItemTitle" class="text-xs text-neutral-500 mb-6">L'opera verrà rimossa dal catalogo della bottega.</p>
+      
+      <div class="flex gap-2">
+        <button onclick="closeConfirmDelete()" class="w-1/2 py-3 border border-neutral-300 text-neutral-700 rounded-xl text-xs uppercase tracking-wider hover:bg-neutral-50 font-medium">
+          Annulla
+        </button>
+        <button id="confirmDeleteBtn" class="w-1/2 py-3 bg-red-600 hover:bg-red-700 text-white rounded-xl text-xs uppercase tracking-wider font-semibold">
+          Elimina
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTIFICA TOAST (Sostitutivo pulito di alert()) -->
+  <div id="toastNotification" class="fixed bottom-6 right-6 z-50 bg-neutral-950 text-white text-xs px-4 py-3.5 rounded-xl shadow-2xl border border-neutral-700 transition-opacity duration-300 opacity-0 pointer-events-none flex items-center gap-2">
+    <span id="toastIcon">✨</span>
+    <span id="toastMessage">Messaggio</span>
+  </div>
+
+  <script>
+    // -------------------------------------------------------------
+    // CONFIGURAZIONE & CATALOGO DI BASE
+    // -------------------------------------------------------------
+    const CONFIG = {
+      passcode: "vietri1876",
+      storageKey: "antonio_catalog"
+    };
+
+    const COLLECTIONS_MAP = {
+      'azzurro': 'Azzurro Mediterraneo',
+      'terre': 'Terre & Cotto Vivo',
+      'tavola': 'Tavola & Servizio'
+    };
+
+    const DEFAULT_CATALOG = [
+      {
+        id: 1,
+        title: "Ciotola Azzurro Profondo",
+        collection: "Azzurro Mediterraneo",
+        category: "azzurro",
+        status: "disponibile",
+        price: "38 €",
+        desc: "Ispirata agli smalti trasparenti di nonno Ciccio. Smalto cobalto vietrese vetrificato su argilla forgiata a mano libera.",
+        img: "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 2,
+        title: "Anfora Terracotta Grezza",
+        collection: "Terre & Cotto Vivo",
+        category: "terre",
+        status: "disponibile",
+        price: "70 €",
+        desc: "Modellata al tornio con impasto poroso campano, finitura naturale a vista senza smalto, come nelle antiche botteghe.",
+        img: "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 3,
+        title: "Set Piatti Ocra e Sabbia",
+        collection: "Tavola & Servizio",
+        category: "tavola",
+        status: "disponibile",
+        price: "64 €",
+        desc: "Gres resistente con velatura lucida color limone e sabbia. Bordo sagomato a mano.",
+        img: "https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 4,
+        title: "Svuotatasche Ocra Calda",
+        collection: "Terre & Cotto Vivo",
+        category: "terre",
+        status: "disponibile",
+        price: "50 €",
+        desc: "Pezzo compatto da piano con fondo a smalto materico ocra lucido. Bordo a vivo.",
+        img: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=700&q=80"
+      }
+    ];
+
+    let CATALOG = [];
+    let currentAdminFilter = 'tutti';
+    let currentImageBase64 = null;
+    let pendingDeleteId = null;
+
+    function showToast(message, icon = "✨") {
+      const toast = document.getElementById('toastNotification');
+      document.getElementById('toastMessage').textContent = message;
+      document.getElementById('toastIcon').textContent = icon;
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 3500);
+    }
+
+    async function initAdmin() {
+      const isAuth = sessionStorage.getItem('bottega_auth') === 'true';
+      if (isAuth) {
+        document.getElementById('loginScreen').classList.add('hidden');
+        document.getElementById('dashboard').classList.remove('hidden');
+        document.getElementById('logoutBtn').classList.remove('hidden');
+        await loadCatalogData();
+      }
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      const code = document.getElementById('passcodeInput').value.trim();
+      if (code === CONFIG.passcode) {
+        sessionStorage.setItem('bottega_auth', 'true');
+        document.getElementById('loginScreen').classList.add('hidden');
+        document.getElementById('dashboard').classList.remove('hidden');
+        document.getElementById('logoutBtn').classList.remove('hidden');
+        loadCatalogData();
+      } else {
+        document.getElementById('loginError').classList.remove('hidden');
+      }
+    }
+
+    function handleLogout() {
+      sessionStorage.removeItem('bottega_auth');
+      window.location.reload();
+    }
+
+    // Caricamento Dati (Tenta prima da catalog.json, poi da LocalStorage)
+    async function loadCatalogData() {
+      try {
+        const res = await fetch('catalog.json?t=' + Date.now());
+        if (res.ok) {
+          const remoteItems = await res.json();
+          if (Array.isArray(remoteItems) && remoteItems.length > 0) {
+            CATALOG = remoteItems;
+            localStorage.setItem(CONFIG.storageKey, JSON.stringify(CATALOG));
+            renderProductsList();
+            return;
+          }
+        }
+      } catch (err) {
+        // Nessun file remoto o esecuzione locale
+      }
+
+      const stored = localStorage.getItem(CONFIG.storageKey);
+      CATALOG = stored ? JSON.parse(stored) : [...DEFAULT_CATALOG];
+      renderProductsList();
+    }
+
+    function saveCatalogData() {
+      localStorage.setItem(CONFIG.storageKey, JSON.stringify(CATALOG));
+      renderProductsList();
+    }
+
+    function renderProductsList() {
+      const container = document.getElementById('productsContainer');
+      const counter = document.getElementById('statsCounter');
+
+      // Calcolo contatori
+      const countDisp = CATALOG.filter(p => p.status !== 'venduto').length;
+      const countVend = CATALOG.filter(p => p.status === 'venduto').length;
+      document.getElementById('countTutti').textContent = CATALOG.length;
+      document.getElementById('countDisp').textContent = countDisp;
+      document.getElementById('countVend').textContent = countVend;
+
+      counter.textContent = `${CATALOG.length} opere nel catalogo (${countDisp} disponibili, ${countVend} vendute)`;
+
+      const filtered = currentAdminFilter === 'tutti' 
+        ? CATALOG 
+        : (currentAdminFilter === 'venduto' ? CATALOG.filter(p => p.status === 'venduto') : CATALOG.filter(p => p.status !== 'venduto'));
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="bg-white p-8 rounded-2xl text-center border border-neutral-200">
+            <p class="text-sm text-neutral-500">Nessuna opera trovata in questa sezione.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(item => `
+        <div class="bg-white p-4 rounded-2xl border border-neutral-200/90 shadow-2xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition hover:border-neutral-300">
+          <div class="flex items-center gap-4 w-full sm:w-auto">
+            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden border border-neutral-200 shrink-0 bg-neutral-100">
+              <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover">
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-[9px] uppercase tracking-wider font-bold px-2 py-0.5 rounded ${item.status === 'venduto' ? 'bg-red-100 text-red-700' : 'bg-emerald-100 text-emerald-800'}">
+                  ${item.status === 'venduto' ? 'Venduto' : 'Disponibile'}
+                </span>
+                <span class="text-[10px] text-neutral-400 uppercase tracking-widest font-medium">${item.collection}</span>
+              </div>
+              <h3 class="font-serif text-lg text-neutral-950 font-medium truncate">${item.title}</h3>
+              <p class="text-xs font-semibold text-neutral-900 mt-0.5">${item.price}</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 w-full sm:w-auto justify-end pt-2 sm:pt-0 border-t sm:border-0 border-neutral-100">
+            <button onclick="openEditModal(${item.id})" class="px-3.5 py-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-xs font-semibold rounded-xl transition flex items-center gap-1.5">
+              <span>✏️</span>
+              <span>Modifica</span>
+            </button>
+            <button onclick="requestDelete(${item.id})" class="px-3.5 py-2 text-red-600 hover:bg-red-50 text-xs font-semibold rounded-xl transition">
+              Rimuovi
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function setAdminFilter(filter) {
+      currentAdminFilter = filter;
+      document.querySelectorAll('.admin-filter-btn').forEach(btn => {
+        if (btn.dataset.filter === filter) {
+          btn.className = "admin-filter-btn px-3 py-1.5 rounded-lg bg-neutral-900 text-white font-medium";
+        } else {
+          btn.className = "admin-filter-btn px-3 py-1.5 rounded-lg bg-white border border-neutral-300 text-neutral-700 hover:border-neutral-900";
+        }
+      });
+      renderProductsList();
+    }
+
+    function openCreateModal() {
+      document.getElementById('editProductId').value = '';
+      document.getElementById('formModalTitle').textContent = 'Nuova Creazione';
+      document.getElementById('productForm').reset();
+      document.getElementById('imagePlaceholder').classList.remove('hidden');
+      document.getElementById('imagePreviewBox').classList.add('hidden');
+      currentImageBase64 = null;
+      document.getElementById('productFormModal').classList.remove('hidden');
+    }
+
+    function openEditModal(id) {
+      const item = CATALOG.find(p => p.id === id);
+      if (!item) return;
+
+      document.getElementById('editProductId').value = item.id;
+      document.getElementById('formModalTitle').textContent = 'Modifica Creazione';
+      document.getElementById('formTitle').value = item.title;
+      document.getElementById('formCategory').value = item.category || 'azzurro';
+      document.getElementById('formPrice').value = item.price;
+      document.getElementById('formStatus').value = item.status || 'disponibile';
+      document.getElementById('formDesc').value = item.desc;
+      
+      currentImageBase64 = item.img;
+      document.getElementById('imagePreviewEl').src = item.img;
+      document.getElementById('imagePlaceholder').classList.add('hidden');
+      document.getElementById('imagePreviewBox').classList.remove('hidden');
+
+      document.getElementById('productFormModal').classList.remove('hidden');
+    }
+
+    function closeFormModal() {
+      document.getElementById('productFormModal').classList.add('hidden');
+    }
+
+    // Compressione automatica delle foto scattate con smartphone (Canvas Resize)
+    function handleImageSelection(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const statusEl = document.getElementById('compressStatus');
+      statusEl.classList.remove('hidden');
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+          const canvas = document.createElement('canvas');
+          let width = img.width;
+          let height = img.height;
+          const maxDim = 900; // Ottimizzato per display retina e leggerezza estrema
+
+          if (width > height && width > maxDim) {
+            height = Math.round((height * maxDim) / width);
+            width = maxDim;
+          } else if (height > maxDim) {
+            width = Math.round((width * maxDim) / height);
+            height = maxDim;
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+
+          // Compressione JPEG a 0.78 di qualità (dimensione media ~100-150KB)
+          currentImageBase64 = canvas.toDataURL('image/jpeg', 0.78);
+          document.getElementById('imagePreviewEl').src = currentImageBase64;
+          document.getElementById('imagePlaceholder').classList.add('hidden');
+          document.getElementById('imagePreviewBox').classList.remove('hidden');
+          statusEl.classList.add('hidden');
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function handleSaveProduct(e) {
+      e.preventDefault();
+      if (!currentImageBase64) {
+        showToast("Carica una fotografia per completare l'opera", "⚠️");
+        return;
+      }
+
+      const editId = document.getElementById('editProductId').value;
+      const catVal = document.getElementById('formCategory').value;
+
+      if (editId) {
+        // Modifica Pezzo Esistente
+        const idNum = Number(editId);
+        const index = CATALOG.findIndex(p => p.id === idNum);
+        if (index !== -1) {
+          CATALOG[index] = {
+            ...CATALOG[index],
+            title: document.getElementById('formTitle').value.trim(),
+            category: catVal,
+            collection: COLLECTIONS_MAP[catVal],
+            price: document.getElementById('formPrice').value.trim(),
+            status: document.getElementById('formStatus').value,
+            desc: document.getElementById('formDesc').value.trim(),
+            img: currentImageBase64
+          };
+          showToast("Creazione modificata con successo!");
+        }
+      } else {
+        // Nuova Creazione
+        const newEntry = {
+          id: Date.now(),
+          title: document.getElementById('formTitle').value.trim(),
+          category: catVal,
+          collection: COLLECTIONS_MAP[catVal],
+          price: document.getElementById('formPrice').value.trim(),
+          status: document.getElementById('formStatus').value,
+          desc: document.getElementById('formDesc').value.trim(),
+          img: currentImageBase64
+        };
+        CATALOG.unshift(newEntry);
+        showToast("Nuovo pezzo aggiunto alla bottega!");
+      }
+
+      saveCatalogData();
+      closeFormModal();
+    }
+
+    function requestDelete(id) {
+      const item = CATALOG.find(p => p.id === id);
+      if (!item) return;
+      pendingDeleteId = id;
+      document.getElementById('deleteItemTitle').textContent = `Vuoi davvero rimuovere "${item.title}" dal catalogo?`;
+      document.getElementById('confirmDeleteModal').classList.remove('hidden');
+    }
+
+    function closeConfirmDelete() {
+      pendingDeleteId = null;
+      document.getElementById('confirmDeleteModal').classList.add('hidden');
+    }
+
+    document.getElementById('confirmDeleteBtn').addEventListener('click', () => {
+      if (pendingDeleteId !== null) {
+        CATALOG = CATALOG.filter(p => p.id !== pendingDeleteId);
+        saveCatalogData();
+        closeConfirmDelete();
+        showToast("Opera rimossa dal catalogo", "🗑️");
+      }
+    });
+
+    function confirmResetCatalog() {
+      CATALOG = [...DEFAULT_CATALOG];
+      saveCatalogData();
+      showToast("Catalogo ripristinato con i pezzi di esempio!");
+    }
+
+    async function shareCatalogFile() {
+      const jsonContent = JSON.stringify(CATALOG, null, 2);
+      const blob = new Blob([jsonContent], { type: 'application/json' });
+      const file = new File([blob], 'catalog.json', { type: 'application/json' });
+
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        try {
+          await navigator.share({
+            title: 'Catalogo Bottega Antonio Solimene',
+            text: 'Ecco il catalogo aggiornato con le nuove foto e i prezzi della bottega.',
+            files: [file]
+          });
+          showToast("File inviato con successo!");
+          return;
+        } catch (err) {
+          if (err.name !== 'AbortError') {
+            console.warn('Share fallito, procedo con download:', err);
+          }
+        }
+      }
+
+      downloadCatalogJSON();
+      showToast("File catalog.json scaricato! Invialo su WhatsApp", "💾");
+    }
+
+    function downloadCatalogJSON() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(CATALOG, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", "catalog.json");
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+    }
+
+    function openSyncModal() {
+      const code = JSON.stringify(CATALOG, null, 2);
+      document.getElementById('exportTextarea').value = code;
+      document.getElementById('ghRepo').value = localStorage.getItem('gh_repo') || '';
+      document.getElementById('ghToken').value = localStorage.getItem('gh_token') || '';
+      document.getElementById('syncModal').classList.remove('hidden');
+    }
+
+    function closeSyncModal() {
+      document.getElementById('syncModal').classList.add('hidden');
+    }
+
+    function copyExportedData() {
+      const text = document.getElementById('exportTextarea').value;
+      const el = document.createElement('textarea');
+      el.value = text;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      showToast("Codice JSON copiato negli appunti!", "📋");
+    }
+
+    function saveGitHubSettings() {
+      const repo = document.getElementById('ghRepo').value.trim();
+      const token = document.getElementById('ghToken').value.trim();
+      localStorage.setItem('gh_repo', repo);
+      localStorage.setItem('gh_token', token);
+      showToast("Credenziali GitHub salvate su questo dispositivo!");
+    }
+
+    // Pubblicazione automatica diretta su GitHub tramite REST API
+    async function publishToGitHub() {
+      const repo = document.getElementById('ghRepo').value.trim() || localStorage.getItem('gh_repo');
+      const token = document.getElementById('ghToken').value.trim() || localStorage.getItem('gh_token');
+      const btn = document.getElementById('btnGithubSync');
+
+      if (!repo || !token) {
+        showToast("Inserisci repository (es. utente/repo) e Token GitHub", "⚠️");
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = "Pubblicazione...";
+
+      try {
+        const filePath = "catalog.json";
+        const apiUrl = `https://api.github.com/repos/${repo}/contents/${filePath}`;
+
+        // 1. Recupero eventuale SHA del file esistente
+        let sha = null;
+        const getRes = await fetch(apiUrl, {
+          headers: { "Authorization": `token ${token}` }
+        });
+        if (getRes.ok) {
+          const fileData = await getRes.json();
+          sha = fileData.sha;
+        }
+
+        // 2. Prepara il payload codificato in base64 UTF-8
+        const jsonContent = JSON.stringify(CATALOG, null, 2);
+        const encodedContent = btoa(unescape(encodeURIComponent(jsonContent)));
+
+        const payload = {
+          message: "Aggiornamento catalogo ceramiche da pannello bottega",
+          content: encodedContent
+        };
+        if (sha) payload.sha = sha;
+
+        // 3. Esegui il commit PUT su GitHub
+        const putRes = await fetch(apiUrl, {
+          method: "PUT",
+          headers: {
+            "Authorization": `token ${token}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (putRes.ok) {
+          showToast("Pubblicato con successo su GitHub!", "🚀");
+          closeSyncModal();
+        } else {
+          const errData = await putRes.json();
+          showToast("Errore GitHub: " + (errData.message || "Verifica permessi token"), "❌");
+        }
+      } catch (err) {
+        showToast("Errore di connessione a GitHub", "❌");
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "🚀 Pubblica";
+      }
+    }
+
+    // Avvio dell'applicazione
+    initAdmin();
+  </script>
+</body>
+</html>
