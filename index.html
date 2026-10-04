@@ -587,47 +587,60 @@
     </div>
   </section>
 
-  <!-- MODALE DETTAGLIO OPERA (WhatsApp attivo) -->
+  <!-- MODALE DETTAGLIO OPERA (Stile Galleria d'Arte & WhatsApp Discreto) -->
   <div id="detailModal" onclick="if(event.target === this) closeModal()" class="fixed inset-0 bg-neutral-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
     <div class="bg-white max-w-3xl w-full rounded-2xl shadow-2xl border border-neutral-200 p-5 sm:p-7 relative my-auto max-h-[92vh] flex flex-col justify-between overflow-hidden">
-      <button onclick="closeModal()" class="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 z-20 w-9 h-9 bg-white/90 hover:bg-neutral-950 hover:text-white rounded-full flex items-center justify-center text-neutral-600 shadow-md border border-neutral-200 transition-colors text-lg" title="Chiudi finestra">✕</button>
+      <!-- Pulsante Chiudi -->
+      <button onclick="closeModal()" class="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 z-30 w-8 h-8 sm:w-9 sm:h-9 bg-white/95 hover:bg-neutral-950 hover:text-white rounded-full flex items-center justify-center text-neutral-600 shadow-md border border-neutral-200 transition-colors text-base sm:text-lg" title="Chiudi finestra" aria-label="Chiudi">✕</button>
 
       <div class="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-7 items-center overflow-y-auto pr-1">
         <!-- Immagine dell'opera: responsive, ad altezza controllata -->
-        <div class="md:col-span-6 bg-neutral-50 rounded-xl overflow-hidden border border-neutral-200/80 flex items-center justify-center max-h-[42vh] sm:max-h-[52vh] min-h-[220px]">
-          <img id="modalImg" src="" alt="Opera Antonio Solimene" class="w-full h-full max-h-[42vh] sm:max-h-[52vh] object-contain p-2">
+        <div class="md:col-span-6 bg-neutral-50 rounded-xl overflow-hidden border border-neutral-200/80 flex items-center justify-center max-h-[40vh] sm:max-h-[50vh] min-h-[200px]">
+          <img id="modalImg" src="" alt="Opera Antonio Solimene" class="w-full h-full max-h-[40vh] sm:max-h-[50vh] object-contain p-2">
         </div>
 
-        <!-- Dettagli e Azione WhatsApp -->
-        <div class="md:col-span-6 flex flex-col justify-between space-y-4">
+        <!-- Dettagli, Autori e Azione WhatsApp -->
+        <div class="md:col-span-6 flex flex-col justify-between space-y-3.5">
           <div>
             <div class="flex items-center justify-between gap-2 mb-1.5">
               <span id="modalCollection" class="text-[10px] uppercase tracking-[0.25em] text-vietri-cobalto font-bold block"></span>
               <span id="modalStatusBadge" class="text-[9px] uppercase tracking-wider font-bold px-2.5 py-0.5 rounded bg-emerald-100 text-emerald-800">Disponibile</span>
             </div>
             
-            <h3 id="modalTitle" class="font-serif text-2xl sm:text-3xl text-neutral-950 leading-tight"></h3>
+            <!-- Titolo dell'Opera in Primo Piano -->
+            <h3 id="modalTitle" class="font-serif text-2xl sm:text-3xl lg:text-4xl text-neutral-950 font-medium tracking-tight leading-snug"></h3>
             
-            <div class="mt-2 text-xl sm:text-2xl font-semibold text-neutral-950 font-serif">
+            <div class="mt-2 text-xl sm:text-2xl font-semibold text-neutral-900 font-serif">
               <span id="modalPrice"></span>
             </div>
           </div>
 
-          <div class="border-t border-neutral-100 pt-3">
-            <h4 class="text-[10px] uppercase tracking-widest text-neutral-400 font-semibold mb-1" data-i18n="modal_work_details">Dettagli & Lavorazione</h4>
-            <p id="modalDesc" class="text-xs sm:text-sm text-neutral-600 leading-relaxed font-light max-h-32 sm:max-h-40 overflow-y-auto"></p>
+          <!-- Maestri d'Arte / Autori (Separato di Default) -->
+          <div class="border-t border-neutral-100 pt-2.5">
+            <h4 class="text-[9px] uppercase tracking-widest text-neutral-400 font-semibold mb-0.5 flex items-center gap-1.5" data-i18n="modal_artists_label">
+              <span>🎨</span> <span>Maestri d'Arte / Autori</span>
+            </h4>
+            <p id="modalArtists" class="text-xs sm:text-sm font-serif font-medium text-neutral-900">
+              Antonio Solimene · Maria Denise Scafuro
+            </p>
           </div>
 
-          <!-- Pulsante WhatsApp con citazione esatta dell'oggetto -->
-          <div class="pt-2">
+          <!-- Dettagli & Lavorazione -->
+          <div class="border-t border-neutral-100 pt-2.5">
+            <h4 class="text-[9px] uppercase tracking-widest text-neutral-400 font-semibold mb-0.5" data-i18n="modal_work_details">Dettagli & Lavorazione</h4>
+            <p id="modalDesc" class="text-xs text-neutral-600 leading-relaxed font-light max-h-24 sm:max-h-32 overflow-y-auto"></p>
+          </div>
+
+          <!-- Pulsante WhatsApp Più Discreto ed Elegante -->
+          <div class="pt-1">
             <a id="modalWaBtn" href="#" target="_blank" rel="noopener noreferrer"
-               class="w-full text-center bg-[#25D366] hover:bg-[#1EBE5D] text-white text-xs sm:text-sm uppercase tracking-[0.15em] py-3.5 sm:py-4 px-5 font-semibold rounded-xl transition-all duration-200 shadow-md flex items-center justify-center gap-2 group hover:shadow-lg">
-              <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24">
+               class="w-full text-center bg-emerald-600 hover:bg-emerald-700 active:scale-[0.99] text-white text-xs sm:text-sm font-semibold tracking-wider py-2.5 sm:py-3 px-4 rounded-xl transition-all duration-200 shadow-xs hover:shadow-md flex items-center justify-center gap-2 group">
+              <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/>
               </svg>
               <span data-i18n="modal_buy_wa">Richiedi / Acquista su WhatsApp</span>
             </a>
-            <p class="text-[10px] text-center text-neutral-400 mt-1.5 font-light" data-i18n="modal_contact_direct">Contatto diretto con il maestro Antonio Solimene</p>
+            <p class="text-[10px] text-center text-neutral-400 mt-1 font-light" data-i18n="modal_contact_direct">Contatto diretto con la bottega artigiana</p>
           </div>
         </div>
       </div>
@@ -906,11 +919,12 @@
         faq_box_title: "Hai una richiesta specifica o vuoi un consiglio?",
         faq_box_desc: "Contatta direttamente Antonio Solimene per verificare la disponibilità di un pezzo o commissionare una creazione su misura.",
         faq_box_btn: "💬 Parla con Antonio su WhatsApp",
+        modal_artists_label: "Maestri d'Arte / Autori",
         modal_work_details: "Dettagli & Lavorazione",
         modal_avail: "Disponibile in Bottega",
         modal_sold: "Opera Venduta (Archivio)",
         modal_buy_wa: "Richiedi / Acquista su WhatsApp",
-        modal_contact_direct: "Contatto diretto con il maestro Antonio Solimene",
+        modal_contact_direct: "Contatto diretto con la bottega artigiana",
         footer_sub: "Bottega Ceramica Artigiana — Tradizione centenaria a Vietri sul Mare, Costiera Amalfitana",
         footer_copy: "© 2026 Antonio Solimene — Ceramiche Vietresi modellate a mano",
         footer_admin: "🔒 Gestione Bottega",
@@ -997,11 +1011,12 @@
         faq_box_title: "Have a specific request or looking for advice?",
         faq_box_desc: "Contact master Antonio Solimene directly on WhatsApp to check availability or commission a custom bespoke piece.",
         faq_box_btn: "💬 Chat with Antonio on WhatsApp",
+        modal_artists_label: "Master Potters / Artists",
         modal_work_details: "Details & Craftsmanship",
         modal_avail: "Available in Workshop",
         modal_sold: "Sold Piece (Archive)",
         modal_buy_wa: "Inquire / Purchase on WhatsApp",
-        modal_contact_direct: "Direct contact with master potter Antonio Solimene",
+        modal_contact_direct: "Direct contact with the artisanal workshop",
         footer_sub: "Artisanal Ceramic Workshop — Centenary tradition in Vietri sul Mare, Amalfi Coast",
         footer_copy: "© 2026 Antonio Solimene — Handmade Vietri Ceramics",
         footer_admin: "🔒 Workshop Admin",
@@ -1088,11 +1103,12 @@
         faq_box_title: "Vous avez une demande particulière?",
         faq_box_desc: "Contactez directement le maître Antonio Solimene sur WhatsApp pour vérifier la disponibilité ou créer une pièce sur mesure.",
         faq_box_btn: "💬 Parler avec Antonio sur WhatsApp",
+        modal_artists_label: "Maîtres Céramistes / Auteurs",
         modal_work_details: "Détails & Façonnage",
         modal_avail: "Disponible en Atelier",
         modal_sold: "Œuvre Vendue (Archive)",
         modal_buy_wa: "Demander / Acheter sur WhatsApp",
-        modal_contact_direct: "Contact direct avec le maître Antonio Solimene",
+        modal_contact_direct: "Contact direct avec l'atelier artisanal",
         footer_sub: "Atelier Céramique Artisanal — Tradition séculaire à Vietri sul Mare, Côte Amalfitaine",
         footer_copy: "© 2026 Antonio Solimene — Céramiques de Vietri faites main",
         footer_admin: "🔒 Gestion Atelier",
@@ -1179,11 +1195,12 @@
         faq_box_title: "Haben Sie eine spezielle Anfrage?",
         faq_box_desc: "Kontaktieren Sie Töpfermeister Antonio Solimene direkt auf WhatsApp für Verfügbarkeit und Maßanfertigungen.",
         faq_box_btn: "💬 Mit Antonio auf WhatsApp sprechen",
+        modal_artists_label: "Töpfermeister / Künstler",
         modal_work_details: "Details & Handwerk",
         modal_avail: "In der Werkstatt verfügbar",
         modal_sold: "Verkauftes Werk (Archiv)",
         modal_buy_wa: "Über WhatsApp anfragen / kaufen",
-        modal_contact_direct: "Direkter Kontakt mit Meister Antonio Solimene",
+        modal_contact_direct: "Direkter Kontakt mit der Kunstkeramik-Werkstatt",
         footer_sub: "Kunstkeramik-Werkstatt — Hundertjährige Tradition in Vietri sul Mare, Amalfiküste",
         footer_copy: "© 2026 Antonio Solimene — Handgemachte Vietri-Keramik",
         footer_admin: "🔒 Werkstatt-Verwaltung",
@@ -1270,11 +1287,12 @@
         faq_box_title: "¿Tienes una consulta o encargo especial?",
         faq_box_desc: "Contacta directamente con el maestro Antonio Solimene por WhatsApp para consultar disponibilidad o encargar tu pieza.",
         faq_box_btn: "💬 Hablar con Antonio por WhatsApp",
+        modal_artists_label: "Maestros Ceramistas / Autores",
         modal_work_details: "Detalles & Elaboración",
         modal_avail: "Disponible en el Taller",
         modal_sold: "Obra Vendida (Archivo)",
         modal_buy_wa: "Consultar / Comprar por WhatsApp",
-        modal_contact_direct: "Contacto directo con el maestro Antonio Solimene",
+        modal_contact_direct: "Contacto directo con el taller artesanal",
         footer_sub: "Taller Cerámico Artesanal — Tradición centenaria en Vietri sul Mare, Costa Amalfitana",
         footer_copy: "© 2026 Antonio Solimene — Cerámica de Vietri hecha a mano",
         footer_admin: "🔒 Gestión Taller",
@@ -1522,6 +1540,7 @@
         title: "Ciotola Azzurro Profondo",
         collection: "Azzurro Mediterraneo",
         category: "azzurro",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
         price: "38 €",
         desc: "Ispirata agli smalti trasparenti di nonno Ciccio. Smalto cobalto vietrese vetrificato su argilla forgiata a mano libera.",
         img: "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=700&q=80"
@@ -1531,6 +1550,7 @@
         title: "Anfora Terracotta Grezza",
         collection: "Terre & Cotto Vivo",
         category: "terre",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
         price: "70 €",
         desc: "Modellata al tornio con impasto poroso campano, finitura naturale a vista senza smalto, come nelle antiche botteghe.",
         img: "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=700&q=80"
@@ -1540,6 +1560,7 @@
         title: "Set Piatti Ocra e Sabbia",
         collection: "Tavola & Servizio",
         category: "tavola",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
         price: "64 €",
         desc: "Gres resistente con velatura lucida color limone e sabbia. Bordo sagomato a mano.",
         img: "https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=700&q=80"
@@ -1549,6 +1570,7 @@
         title: "Svuotatasche Ocra Calda",
         collection: "Terre & Cotto Vivo",
         category: "terre",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
         price: "50 €",
         desc: "Pezzo compatto da piano con fondo a smalto materico ocra lucido. Bordo a vivo.",
         img: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=700&q=80"
@@ -1663,6 +1685,11 @@
       document.getElementById('modalCollection').textContent = p.collection || 'Bottega Antonio Solimene';
       document.getElementById('modalPrice').textContent = p.price;
       document.getElementById('modalDesc').textContent = p.desc;
+
+      const artistsEl = document.getElementById('modalArtists');
+      if (artistsEl) {
+        artistsEl.textContent = p.artists || 'Antonio Solimene · Maria Denise Scafuro';
+      }
 
       const badge = document.getElementById('modalStatusBadge');
       if (badge) {

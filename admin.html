@@ -254,10 +254,21 @@
           </div>
         </div>
 
-        <!-- PASSO 4: DESCRIZIONE & MISURE -->
+        <!-- PASSO 4: MAESTRI D'ARTE / AUTORI -->
         <div class="bg-neutral-50/70 p-4 rounded-xl border border-neutral-200/80">
           <label class="block text-xs uppercase tracking-wider text-neutral-900 font-bold mb-2 flex items-center gap-1.5">
             <span class="w-5 h-5 rounded-full bg-vietri-cobalto text-white text-[11px] inline-flex items-center justify-center font-mono">4</span>
+            <span>Maestri d'Arte / Autori</span>
+          </label>
+          <input type="text" id="formArtists" value="Antonio Solimene · Maria Denise Scafuro" placeholder="Es. Antonio Solimene · Maria Denise Scafuro" 
+                 class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-300 text-xs focus:outline-none focus:border-vietri-cobalto focus:ring-1 focus:ring-vietri-cobalto bg-white transition">
+          <p class="text-[10px] text-neutral-400 mt-1">Impostato di default su "Antonio Solimene · Maria Denise Scafuro".</p>
+        </div>
+
+        <!-- PASSO 5: DESCRIZIONE & MISURE -->
+        <div class="bg-neutral-50/70 p-4 rounded-xl border border-neutral-200/80">
+          <label class="block text-xs uppercase tracking-wider text-neutral-900 font-bold mb-2 flex items-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-vietri-cobalto text-white text-[11px] inline-flex items-center justify-center font-mono">5</span>
             <span>Descrizione & Misure *</span>
           </label>
           <textarea id="formDesc" rows="3" required placeholder="Es. Modellata al tornio con impasto ceramico campano, smalto cobalto lucido. Diametro 24 cm..." 
@@ -497,6 +508,7 @@
         title: "Ciotola Azzurro Profondo",
         collection: "Azzurro Mediterraneo",
         category: "azzurro",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
         status: "disponibile",
         price: "38 €",
         desc: "Ispirata agli smalti trasparenti di nonno Ciccio. Smalto cobalto vietrese vetrificato su argilla forgiata a mano libera.",
@@ -507,6 +519,7 @@
         title: "Anfora Terracotta Grezza",
         collection: "Terre & Cotto Vivo",
         category: "terre",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
         status: "disponibile",
         price: "70 €",
         desc: "Modellata al tornio con impasto poroso campano, finitura naturale a vista senza smalto, come nelle antiche botteghe.",
@@ -517,6 +530,7 @@
         title: "Set Piatti Ocra e Sabbia",
         collection: "Tavola & Servizio",
         category: "tavola",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
         status: "disponibile",
         price: "64 €",
         desc: "Gres resistente con velatura lucida color limone e sabbia. Bordo sagomato a mano.",
@@ -527,6 +541,7 @@
         title: "Svuotatasche Ocra Calda",
         collection: "Terre & Cotto Vivo",
         category: "terre",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
         status: "disponibile",
         price: "50 €",
         desc: "Pezzo compatto da piano con fondo a smalto materico ocra lucido. Bordo a vivo.",
@@ -836,6 +851,7 @@
       document.getElementById('productForm').reset();
       populateCategoryDropdown();
       toggleNewCategoryInput(false);
+      document.getElementById('formArtists').value = 'Antonio Solimene · Maria Denise Scafuro';
       document.getElementById('imagePlaceholder').classList.remove('hidden');
       document.getElementById('imagePreviewBox').classList.add('hidden');
       currentImageBase64 = null;
@@ -853,6 +869,7 @@
       toggleNewCategoryInput(false);
       document.getElementById('formPrice').value = item.price;
       document.getElementById('formStatus').value = item.status || 'disponibile';
+      document.getElementById('formArtists').value = item.artists || 'Antonio Solimene · Maria Denise Scafuro';
       document.getElementById('formDesc').value = item.desc;
       
       currentImageBase64 = item.img;
@@ -944,6 +961,8 @@
         priceVal = priceVal + ' €';
       }
 
+      const artistsVal = (document.getElementById('formArtists').value || '').trim() || 'Antonio Solimene · Maria Denise Scafuro';
+
       const saveBtn = document.getElementById('saveProductBtn');
       const originalText = saveBtn.innerHTML;
       saveBtn.disabled = true;
@@ -961,6 +980,7 @@
             title: document.getElementById('formTitle').value.trim(),
             category: catVal,
             collection: collectionName,
+            artists: artistsVal,
             price: priceVal,
             status: document.getElementById('formStatus').value,
             desc: document.getElementById('formDesc').value.trim(),
@@ -974,6 +994,7 @@
           title: document.getElementById('formTitle').value.trim(),
           category: catVal,
           collection: collectionName,
+          artists: artistsVal,
           price: priceVal,
           status: document.getElementById('formStatus').value,
           desc: document.getElementById('formDesc').value.trim(),
