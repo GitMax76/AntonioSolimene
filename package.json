@@ -1,0 +1,24 @@
+{
+  "name": "antonio-solimene-vetrina",
+  "version": "1.0.0",
+  "description": "Sito vetrina per il maestro ceramista Antonio Solimene (solimene.net)",
+  "main": "deploy.js",
+  "scripts": {
+    "deploy": "node deploy.js",
+    "backup": "node backup.js"
+  },
+  "dependencies": {
+    "basic-ftp": "^5.0.5",
+    "dotenv": "^16.4.7"
+  },
+  "keywords": [
+    "solimene",
+    "ceramica",
+    "vietri",
+    "deploy",
+    "ftp",
+    "aruba"
+  ],
+  "author": "Antonio Solimene",
+  "license": "ISC"
+}
