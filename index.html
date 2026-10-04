@@ -155,21 +155,39 @@
 </head>
 <body class="bg-vietri-pietra text-neutral-900 font-sans selection:bg-vietri-cobalto selection:text-white antialiased">
 
-  <!-- BANNER DI CONTATTO & ASSISTENZA DIRETTA -->
-  <div class="bg-neutral-950 text-white px-4 py-2.5 text-xs text-center border-b border-neutral-800 shadow-xs">
-    <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
-      <span class="inline-flex items-center gap-1.5 font-semibold text-vietri-ocra tracking-wider uppercase text-[10px] sm:text-[11px]">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-        Bottega Aperta a Vietri sul Mare
-      </span>
-      <span class="text-neutral-300 font-light hidden sm:inline text-xs">
-        — Pezzi unici forgiati a mano al tornio & creazioni su misura.
-      </span>
-      <a href="https://wa.me/393899819834?text=Ciao%20Antonio!%20Ti%20scrivo%20dal%20tuo%20sito%20web%20solimene.net." 
-         target="_blank" rel="noopener noreferrer" 
-         class="inline-flex items-center gap-1 text-emerald-400 hover:text-emerald-300 font-medium underline text-[11px] uppercase tracking-wider transition-colors">
-        <span>Scrivi su WhatsApp (+39 389 981 9834)</span> ↗
-      </a>
+  <!-- BANNER DI CONTATTO & ASSISTENZA DIRETTA + SELETTORE LINGUA -->
+  <div class="bg-neutral-950 text-white px-4 py-2 text-xs border-b border-neutral-800 shadow-xs">
+    <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+      
+      <!-- Stato Bottega & WhatsApp -->
+      <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+        <span class="inline-flex items-center gap-1.5 font-semibold text-vietri-ocra tracking-wider uppercase text-[10px] sm:text-[11px]">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span data-i18n="top_badge">Bottega Aperta a Vietri sul Mare</span>
+        </span>
+        <span class="text-neutral-400 font-light hidden sm:inline text-xs" data-i18n="top_subtitle">
+          — Pezzi unici forgiati a mano al tornio & creazioni su misura.
+        </span>
+        <a id="topWaLink" href="https://wa.me/393899819834?text=Ciao%20Antonio!%20Ti%20scrivo%20dal%20tuo%20sito%20web%20solimene.net." 
+           target="_blank" rel="noopener noreferrer" 
+           class="inline-flex items-center gap-1 text-emerald-400 hover:text-emerald-300 font-medium underline text-[11px] uppercase tracking-wider transition-colors">
+          <span data-i18n="top_wa">Scrivi su WhatsApp (+39 389 981 9834)</span> ↗
+        </a>
+      </div>
+
+      <!-- SELETTORE LINGUA DISCRETO (IT, EN, FR, DE, ES) -->
+      <div class="flex items-center gap-1 bg-neutral-900 border border-neutral-800 rounded-full px-2.5 py-0.5 text-[11px]">
+        <button onclick="changeSiteLanguage('it')" class="lang-btn px-1.5 py-0.5 rounded font-medium transition text-white hover:text-vietri-ocra" data-lang="it" title="Italiano">🇮🇹 IT</button>
+        <span class="text-neutral-700 text-[9px]">•</span>
+        <button onclick="changeSiteLanguage('en')" class="lang-btn px-1.5 py-0.5 rounded font-medium transition text-neutral-400 hover:text-white" data-lang="en" title="English">🇬🇧 EN</button>
+        <span class="text-neutral-700 text-[9px]">•</span>
+        <button onclick="changeSiteLanguage('fr')" class="lang-btn px-1.5 py-0.5 rounded font-medium transition text-neutral-400 hover:text-white" data-lang="fr" title="Français">🇫🇷 FR</button>
+        <span class="text-neutral-700 text-[9px]">•</span>
+        <button onclick="changeSiteLanguage('de')" class="lang-btn px-1.5 py-0.5 rounded font-medium transition text-neutral-400 hover:text-white" data-lang="de" title="Deutsch">🇩🇪 DE</button>
+        <span class="text-neutral-700 text-[9px]">•</span>
+        <button onclick="changeSiteLanguage('es')" class="lang-btn px-1.5 py-0.5 rounded font-medium transition text-neutral-400 hover:text-white" data-lang="es" title="Español">🇪🇸 ES</button>
+      </div>
+
     </div>
   </div>
 
@@ -179,15 +197,15 @@
       <div class="flex items-center gap-2">
         <span class="font-bold text-neutral-900">Vietri sul Mare</span>
         <span>•</span>
-        <span class="hidden sm:inline">Costiera Amalfitana</span>
+        <span class="hidden sm:inline" data-i18n="nav_coast">Costiera Amalfitana</span>
       </div>
       <nav class="flex items-center flex-wrap gap-4 sm:gap-6 text-[11px] font-medium text-neutral-700">
-        <a href="#collezioni" class="hover:text-vietri-cobalto transition">Opere</a>
-        <a href="#storia" class="hover:text-vietri-cobalto transition">Storia</a>
-        <a href="#su-misura" class="hover:text-vietri-cobalto transition">Su Misura</a>
-        <a href="#dove-siamo" class="hover:text-vietri-cobalto transition">Dove Siamo</a>
-        <a href="#faq" class="hover:text-vietri-cobalto transition">FAQ</a>
-        <a href="#contatti" class="text-neutral-950 font-semibold hover:text-vietri-cobalto border-b border-neutral-900 pb-0.5 transition">
+        <a href="#collezioni" class="hover:text-vietri-cobalto transition" data-i18n="nav_works">Opere</a>
+        <a href="#storia" class="hover:text-vietri-cobalto transition" data-i18n="nav_story">Storia</a>
+        <a href="#su-misura" class="hover:text-vietri-cobalto transition" data-i18n="nav_bespoke">Su Misura</a>
+        <a href="#dove-siamo" class="hover:text-vietri-cobalto transition" data-i18n="nav_location_link">Dove Siamo</a>
+        <a href="#faq" class="hover:text-vietri-cobalto transition" data-i18n="nav_faq">FAQ</a>
+        <a href="#contatti" class="text-neutral-950 font-semibold hover:text-vietri-cobalto border-b border-neutral-900 pb-0.5 transition" data-i18n="nav_contacts">
           Contatti ↗
         </a>
       </nav>
@@ -205,31 +223,31 @@
         <span class="absolute bottom-1 right-2 w-4 h-4 rounded-full bg-vietri-cobalto border-2 border-white shadow-sm" title="Smalto Cobalto Vietrese"></span>
       </div>
 
-      <span class="text-xs uppercase tracking-[0.35em] text-vietri-cobalto font-medium block mb-3">Arte e Maestria del Tornio</span>
-      <h1 class="font-serif text-5xl sm:text-7xl lg:text-8xl tracking-tight text-neutral-950 font-normal leading-[0.95]">
+      <span class="text-xs uppercase tracking-[0.35em] text-vietri-cobalto font-medium block mb-3" data-i18n="hero_badge">Arte e Maestria del Tornio</span>
+      <h1 class="font-serif text-5xl sm:text-7xl lg:text-8xl tracking-tight text-neutral-950 font-normal leading-[0.95]" data-i18n="hero_title">
         Antonio Solimene
       </h1>
-      <p class="font-serif italic text-xl sm:text-2xl text-neutral-600 mt-6 max-w-2xl mx-auto leading-relaxed">
+      <p class="font-serif italic text-xl sm:text-2xl text-neutral-600 mt-6 max-w-2xl mx-auto leading-relaxed" data-i18n="hero_quote">
         «Alla fine, chi sceglie le nostre opere non acquista solo una ceramica: resta invischiato nell’argilla, nel mare e nella nostra storia.»
       </p>
       
       <div class="mt-10 flex flex-wrap justify-center gap-5 text-xs uppercase tracking-[0.2em]">
-        <a href="#collezioni" class="bg-neutral-950 text-white px-8 py-4 hover:bg-vietri-cobalto transition-all duration-300">
+        <a href="#collezioni" class="bg-neutral-950 text-white px-8 py-4 hover:bg-vietri-cobalto transition-all duration-300 font-medium" data-i18n="hero_explore">
           Esplora le Opere
         </a>
-        <a href="#storia" class="border border-neutral-400 px-8 py-4 text-neutral-800 hover:border-neutral-950 transition-all">
+        <a href="#storia" class="border border-neutral-400 px-8 py-4 text-neutral-800 hover:border-neutral-950 transition-all font-medium" data-i18n="hero_story_btn">
           La Stirpe dei Tornianti
         </a>
-        <a href="https://wa.me/393899819834?text=Ciao%20Antonio!%20Ti%20scrivo%20dal%20tuo%20sito%20web,%20vorrei%20informazioni%20sulle%20tue%20ceramiche." 
+        <a id="heroWaLink" href="https://wa.me/393899819834?text=Ciao%20Antonio!%20Ti%20scrivo%20dal%20tuo%20sito%20web,%20vorrei%20informazioni%20sulle%20tue%20ceramiche." 
            target="_blank" rel="noopener noreferrer"
-           class="border border-[#25D366] text-neutral-900 px-7 py-4 hover:bg-[#25D366] hover:text-white transition-all flex items-center gap-2">
+           class="border border-[#25D366] text-neutral-900 px-7 py-4 hover:bg-[#25D366] hover:text-white transition-all flex items-center gap-2 font-medium">
           <span class="w-2 h-2 rounded-full bg-[#25D366] inline-block animate-pulse"></span>
-          <span>Scrivi su WhatsApp</span>
+          <span data-i18n="hero_wa_btn">Scrivi su WhatsApp</span>
         </a>
       </div>
     </div>
 
-    <div class="text-center text-[11px] uppercase tracking-[0.3em] text-neutral-400">
+    <div class="text-center text-[11px] uppercase tracking-[0.3em] text-neutral-400" data-i18n="hero_scroll">
       Scorri per entrare in bottega ↓
     </div>
   </section>
@@ -247,20 +265,20 @@
                  class="w-full h-full object-cover object-top rounded-full filter grayscale contrast-105">
           </div>
           <p class="font-serif text-lg text-neutral-900 mt-4">Antonio Solimene</p>
-          <p class="text-xs uppercase tracking-widest text-neutral-500">Torniante in Vietri sul Mare</p>
+          <p class="text-xs uppercase tracking-widest text-neutral-500" data-i18n="story_author_role">Torniante in Vietri sul Mare</p>
         </div>
 
         <div class="md:col-span-7 space-y-5 text-neutral-700">
-          <span class="text-xs uppercase tracking-[0.3em] text-neutral-400 font-semibold block">Quattro Generazioni</span>
-          <h2 class="font-serif text-3xl sm:text-4xl text-neutral-950 font-normal leading-tight">
+          <span class="text-xs uppercase tracking-[0.3em] text-neutral-400 font-semibold block" data-i18n="story_badge">Quattro Generazioni</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-neutral-950 font-normal leading-tight" data-i18n="story_title">
             Dal bisnonno Vincenzo a Nonno Ciccio: l'anima dell'argilla viva.
           </h2>
           
-          <p class="text-sm leading-relaxed font-light">
+          <p class="text-sm leading-relaxed font-light" data-i18n="story_p1">
             La nostra storia inizia con il bisnonno <strong>Vincenzo</strong> (1876-1958), detto <em>“cupaiuolo”</em>, così rapido e instancabile al tornio a pedali che a fine giornata pareva una scultura d'argilla. Un testimone raccolto da nonno <strong>Francesco</strong> (detto <em>Ciccio</em>), che trasformò il mestiere in pura arte, portando i suoi riflessi vitrei e i suoi smalti materici fino alla prestigiosa manifattura fiorentina “Cantagalli” al fianco di Max Malamerson.
           </p>
 
-          <p class="text-sm leading-relaxed font-light">
+          <p class="text-sm leading-relaxed font-light" data-i18n="story_p2">
             Soprannominato il <em>“torniante dell’opaco e trasparente azzurro mediterraneo”</em>, Ciccio continuò a forgiare al tornio anche quando la malattia gli faceva tremare le mani, con una precisione che lasciava tutti sbalorditi. Oggi, noi nipoti continuiamo questo gesto: nessun pezzo seriale, nessuna scorciatoia. Solo terra, tornio, acqua e fuoco.
           </p>
         </div>
@@ -272,9 +290,9 @@
   <!-- 3. SEZIONE OPERE E COLLEZIONI -->
   <section id="collezioni" class="py-20 px-6 max-w-6xl mx-auto">
     <div class="text-center max-w-2xl mx-auto mb-14">
-      <span class="text-xs uppercase tracking-[0.3em] text-neutral-400 font-semibold block mb-2">Forme & Smalti</span>
-      <h2 class="font-serif text-4xl sm:text-5xl text-neutral-950">Le Creazioni</h2>
-      <p class="text-xs sm:text-sm text-neutral-500 mt-3 font-light">
+      <span class="text-xs uppercase tracking-[0.3em] text-neutral-400 font-semibold block mb-2" data-i18n="works_badge">Forme & Smalti</span>
+      <h2 class="font-serif text-4xl sm:text-5xl text-neutral-950" data-i18n="works_title">Le Creazioni</h2>
+      <p class="text-xs sm:text-sm text-neutral-500 mt-3 font-light" data-i18n="works_subtitle">
         Pezzi unici forgiati al tornio a mano libera e cotti secondo la tradizione ceramica vietrese.
       </p>
 
@@ -294,9 +312,9 @@
   <section id="su-misura" class="py-20 px-6 bg-white border-y border-neutral-300/80">
     <div class="max-w-6xl mx-auto">
       <div class="text-center max-w-2xl mx-auto mb-16">
-        <span class="text-xs uppercase tracking-[0.3em] text-vietri-cobalto font-semibold block mb-2">Artigianato su Commissione</span>
-        <h2 class="font-serif text-3xl sm:text-5xl text-neutral-950">Creazioni su Misura</h2>
-        <p class="text-xs sm:text-sm text-neutral-500 mt-3 font-light leading-relaxed">
+        <span class="text-xs uppercase tracking-[0.3em] text-vietri-cobalto font-semibold block mb-2" data-i18n="bespoke_badge">Artigianato su Commissione</span>
+        <h2 class="font-serif text-3xl sm:text-5xl text-neutral-950" data-i18n="bespoke_title">Creazioni su Misura</h2>
+        <p class="text-xs sm:text-sm text-neutral-500 mt-3 font-light leading-relaxed" data-i18n="bespoke_subtitle">
           Dalla singola opera per collezionisti ai servizi per l'alta ristorazione e bomboniere nuziali per eventi in Costiera Amalfitana.
         </p>
       </div>
@@ -306,16 +324,15 @@
         <div class="bg-vietri-pietra/60 p-8 rounded-2xl border border-neutral-200/80 flex flex-col justify-between hover:border-vietri-cobalto/40 transition-colors">
           <div>
             <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-2xl shadow-2xs mb-6">🍽️</div>
-            <span class="text-[10px] uppercase tracking-widest text-vietri-cobalto font-bold block mb-1">Tavola & Hospitality</span>
-            <h3 class="font-serif text-2xl text-neutral-900 mb-3">Servizi per Case & Ristoranti</h3>
-            <p class="text-xs text-neutral-600 font-light leading-relaxed mb-6">
+            <span class="text-[10px] uppercase tracking-widest text-vietri-cobalto font-bold block mb-1" data-i18n="bespoke_c1_badge">Tavola & Hospitality</span>
+            <h3 class="font-serif text-2xl text-neutral-900 mb-3" data-i18n="bespoke_c1_title">Servizi per Case & Ristoranti</h3>
+            <p class="text-xs text-neutral-600 font-light leading-relaxed mb-6" data-i18n="bespoke_c1_desc">
               Piatti piani, fondine a cappello, vassoi e alzate forgiati al tornio con diametri e smalti personalizzati (cobalto, cotto vivo, ramina o smalti neutri). Atossici e lavabili.
             </p>
           </div>
-          <a href="https://wa.me/393899819834?text=Ciao%20Antonio!%20Vorrei%20informazioni%20per%20un%20servizio%20di%20piatti%20o%20stoviglie%20su%20misura." target="_blank" rel="noopener noreferrer" 
+          <a id="bespokeWaLink1" href="https://wa.me/393899819834?text=Ciao%20Antonio!%20Vorrei%20informazioni%20per%20un%20servizio%20di%20piatti%20o%20stoviglie%20su%20misura." target="_blank" rel="noopener noreferrer" 
              class="inline-flex items-center gap-2 text-xs font-semibold text-neutral-900 hover:text-vietri-cobalto transition">
-            <span>Richiedi Proposta Tavola</span>
-            <span>→</span>
+            <span data-i18n="bespoke_c1_btn">Richiedi Proposta Tavola →</span>
           </a>
         </div>
 
@@ -323,16 +340,15 @@
         <div class="bg-vietri-pietra/60 p-8 rounded-2xl border border-neutral-200/80 flex flex-col justify-between hover:border-vietri-cobalto/40 transition-colors">
           <div>
             <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-2xl shadow-2xs mb-6">💍</div>
-            <span class="text-[10px] uppercase tracking-widest text-vietri-cotto font-bold block mb-1">Eventi & Cerimonie</span>
-            <h3 class="font-serif text-2xl text-neutral-900 mb-3">Bomboniere & Ricordi di Nozze</h3>
-            <p class="text-xs text-neutral-600 font-light leading-relaxed mb-6">
+            <span class="text-[10px] uppercase tracking-widest text-vietri-cotto font-bold block mb-1" data-i18n="bespoke_c2_badge">Eventi & Cerimonie</span>
+            <h3 class="font-serif text-2xl text-neutral-900 mb-3" data-i18n="bespoke_c2_title">Bomboniere & Ricordi di Nozze</h3>
+            <p class="text-xs text-neutral-600 font-light leading-relaxed mb-6" data-i18n="bespoke_c2_desc">
               Piccoli vasi d'autore, svuotatasche e ciotoline smaltate a mano, personalizzabili con iniziali incise a crudo, date e confezione con certificato di autenticità artigianale vietrese.
             </p>
           </div>
-          <a href="https://wa.me/393899819834?text=Ciao%20Antonio!%20Vorrei%20informazioni%20e%20un%20preventivo%20per%20bomboniere%20in%20ceramica%20per%20un%20evento." target="_blank" rel="noopener noreferrer" 
+          <a id="bespokeWaLink2" href="https://wa.me/393899819834?text=Ciao%20Antonio!%20Vorrei%20informazioni%20e%20un%20preventivo%20per%20bomboniere%20in%20ceramica%20per%20un%20evento." target="_blank" rel="noopener noreferrer" 
              class="inline-flex items-center gap-2 text-xs font-semibold text-neutral-900 hover:text-vietri-cobalto transition">
-            <span>Preventivo Bomboniere</span>
-            <span>→</span>
+            <span data-i18n="bespoke_c2_btn">Preventivo Bomboniere →</span>
           </a>
         </div>
 
@@ -340,16 +356,15 @@
         <div class="bg-vietri-pietra/60 p-8 rounded-2xl border border-neutral-200/80 flex flex-col justify-between hover:border-vietri-cobalto/40 transition-colors">
           <div>
             <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-2xl shadow-2xs mb-6">🏺</div>
-            <span class="text-[10px] uppercase tracking-widest text-vietri-ocra font-bold block mb-1">Interior Design</span>
-            <h3 class="font-serif text-2xl text-neutral-900 mb-3">Grandi Vasi, Lampade & Arredo</h3>
-            <p class="text-xs text-neutral-600 font-light leading-relaxed mb-6">
+            <span class="text-[10px] uppercase tracking-widest text-vietri-ocra font-bold block mb-1" data-i18n="bespoke_c3_badge">Interior Design</span>
+            <h3 class="font-serif text-2xl text-neutral-900 mb-3" data-i18n="bespoke_c3_title">Grandi Vasi, Lampade & Arredo</h3>
+            <p class="text-xs text-neutral-600 font-light leading-relaxed mb-6" data-i18n="bespoke_c3_desc">
               Elementi d'arredo scultorei per interni, giardini e terrazze in Costiera: anfore materiche in terracotta naturale, basi lampada al tornio e cachepot smaltati a fuoco.
             </p>
           </div>
-          <a href="https://wa.me/393899819834?text=Ciao%20Antonio!%20Vorrei%20concordare%20la%20creazione%20di%20un%20vaso%20o%20pezzo%20d%27arredo%20su%20misura." target="_blank" rel="noopener noreferrer" 
+          <a id="bespokeWaLink3" href="https://wa.me/393899819834?text=Ciao%20Antonio!%20Vorrei%20concordare%20la%20creazione%20di%20un%20vaso%20o%20pezzo%20d%27arredo%20su%20misura." target="_blank" rel="noopener noreferrer" 
              class="inline-flex items-center gap-2 text-xs font-semibold text-neutral-900 hover:text-vietri-cobalto transition">
-            <span>Progetta con Antonio</span>
-            <span>→</span>
+            <span data-i18n="bespoke_c3_btn">Progetta con Antonio →</span>
           </a>
         </div>
       </div>
@@ -363,14 +378,14 @@
       <!-- Informazioni Bottega & Come Raggiungerci -->
       <div class="lg:col-span-5 space-y-6">
         <div>
-          <span class="text-xs uppercase tracking-[0.3em] text-vietri-cobalto font-semibold block mb-2">Visita la Bottega</span>
+          <span class="text-xs uppercase tracking-[0.3em] text-vietri-cobalto font-semibold block mb-2" data-i18n="loc_badge">Visita la Bottega</span>
           <h2 class="font-serif text-3xl sm:text-4xl text-neutral-950 font-normal leading-tight">
-            Antonio Solimene<br>Arte E Tradizione
+            Antonio Solimene<br><span data-i18n="loc_tradition_subtitle">Arte E Tradizione</span>
           </h2>
-          <p class="text-xs uppercase tracking-widest text-neutral-500 mt-1">Vietri sul Mare — Porta della Costiera Amalfitana</p>
+          <p class="text-xs uppercase tracking-widest text-neutral-500 mt-1" data-i18n="loc_sub">Vietri sul Mare — Porta della Costiera Amalfitana</p>
         </div>
 
-        <p class="text-sm leading-relaxed text-neutral-600 font-light">
+        <p class="text-sm leading-relaxed text-neutral-600 font-light" data-i18n="loc_p">
           La nostra bottega è il luogo dove argilla, acqua e fuoco prendono forma ogni giorno. Accogliamo visitatori, collezionisti e appassionati per mostrare le creazioni dal vivo e condividere l'arte del tornio.
         </p>
 
@@ -379,32 +394,32 @@
           <div class="flex items-start gap-3">
             <span class="text-lg shrink-0">📍</span>
             <div>
-              <strong class="font-semibold text-neutral-900 block">Indirizzo:</strong>
-              <span>Vietri sul Mare (SA), 84019 — Costiera Amalfitana, Campania</span>
+              <strong class="font-semibold text-neutral-900 block" data-i18n="loc_addr_lbl">Indirizzo:</strong>
+              <span data-i18n="loc_addr_val">Vietri sul Mare (SA), 84019 — Costiera Amalfitana, Campania</span>
             </div>
           </div>
 
           <div class="flex items-start gap-3">
             <span class="text-lg shrink-0">🚗</span>
             <div>
-              <strong class="font-semibold text-neutral-900 block">In Auto:</strong>
-              <span>Autostrada A3 Napoli-Salerno, uscita <em>Vietri sul Mare</em> (a 3 minuti dallo svincolo).</span>
+              <strong class="font-semibold text-neutral-900 block" data-i18n="loc_car_lbl">In Auto:</strong>
+              <span data-i18n="loc_car_val">Autostrada A3 Napoli-Salerno, uscita Vietri sul Mare (a 3 minuti dallo svincolo).</span>
             </div>
           </div>
 
           <div class="flex items-start gap-3">
             <span class="text-lg shrink-0">🚆</span>
             <div>
-              <strong class="font-semibold text-neutral-900 block">In Treno o Traghetto:</strong>
-              <span>Stazione FS Vietri sul Mare o Stazione Centrale di Salerno + traghetto/bus per la Costiera.</span>
+              <strong class="font-semibold text-neutral-900 block" data-i18n="loc_train_lbl">In Treno o Traghetto:</strong>
+              <span data-i18n="loc_train_val">Stazione FS Vietri sul Mare o Stazione Centrale di Salerno + traghetto/bus per la Costiera.</span>
             </div>
           </div>
 
           <div class="flex items-start gap-3">
             <span class="text-lg shrink-0">⏰</span>
             <div>
-              <strong class="font-semibold text-neutral-900 block">Orari Bottega:</strong>
-              <span>Lun - Sab: 09:00 - 19:30 (Si consiglia un contatto preventivo WhatsApp)</span>
+              <strong class="font-semibold text-neutral-900 block" data-i18n="loc_hours_lbl">Orari Bottega:</strong>
+              <span data-i18n="loc_hours_val">Lun - Sab: 09:00 - 19:30 (Si consiglia un contatto preventivo WhatsApp)</span>
             </div>
           </div>
         </div>
@@ -412,12 +427,11 @@
         <div class="flex flex-wrap gap-3 pt-2">
           <a href="https://maps.google.com/?cid=5097967923761742636" target="_blank" rel="noopener noreferrer"
              class="px-5 py-3 rounded-xl bg-neutral-950 hover:bg-vietri-cobalto text-white text-xs uppercase tracking-wider font-semibold transition flex items-center gap-2 shadow-xs">
-            <span>🗺️ Apri su Google Maps</span>
-            <span class="text-[11px]">↗</span>
+            <span data-i18n="loc_map_btn">🗺️ Apri su Google Maps ↗</span>
           </a>
-          <a href="https://wa.me/393899819834?text=Ciao%20Antonio!%20Vorrei%20visitare%20la%20tua%20bottega%20a%20Vietri%20sul%20Mare." target="_blank" rel="noopener noreferrer"
+          <a id="visitWaLink" href="https://wa.me/393899819834?text=Ciao%20Antonio!%20Vorrei%20visitare%20la%20tua%20bottega%20a%20Vietri%20sul%20Mare." target="_blank" rel="noopener noreferrer"
              class="px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs uppercase tracking-wider font-semibold transition flex items-center gap-2 shadow-xs">
-            <span>💬 Prenota Visita su WhatsApp</span>
+            <span data-i18n="loc_visit_btn">💬 Prenota Visita su WhatsApp</span>
           </a>
         </div>
       </div>
@@ -443,19 +457,19 @@
   <section id="faq" class="py-20 px-6 bg-white border-t border-neutral-300/80">
     <div class="max-w-4xl mx-auto">
       <div class="text-center max-w-2xl mx-auto mb-14">
-        <span class="text-xs uppercase tracking-[0.3em] text-neutral-400 font-semibold block mb-2">Informazioni Utili</span>
-        <h2 class="font-serif text-3xl sm:text-5xl text-neutral-950">Domande Frequenti</h2>
-        <p class="text-xs sm:text-sm text-neutral-500 mt-2 font-light">Tutto quello che c'è da sapere su spedizioni, lavorazioni e acquisti.</p>
+        <span class="text-xs uppercase tracking-[0.3em] text-neutral-400 font-semibold block mb-2" data-i18n="faq_badge">Informazioni Utili</span>
+        <h2 class="font-serif text-3xl sm:text-5xl text-neutral-950" data-i18n="faq_title">Domande Frequenti</h2>
+        <p class="text-xs sm:text-sm text-neutral-500 mt-2 font-light" data-i18n="faq_subtitle">Tutto quello che c'è da sapere su spedizioni, lavorazioni e acquisti.</p>
       </div>
 
       <div class="space-y-4">
         <!-- FAQ 1 -->
         <details class="group bg-vietri-pietra/60 rounded-2xl border border-neutral-200 p-5 sm:p-6 transition-all duration-200 open:bg-white open:border-vietri-cobalto/40 open:shadow-xs">
           <summary class="flex justify-between items-center cursor-pointer list-none font-serif text-lg sm:text-xl text-neutral-950 font-medium select-none">
-            <span>Come vengono realizzate le ceramiche di Antonio Solimene?</span>
+            <span data-i18n="faq_q1">Come vengono realizzate le ceramiche di Antonio Solimene?</span>
             <span class="text-neutral-400 group-open:rotate-180 transition-transform text-sm">▼</span>
           </summary>
-          <div class="mt-3 text-xs sm:text-sm text-neutral-600 font-light leading-relaxed border-t border-neutral-100 pt-3">
+          <div class="mt-3 text-xs sm:text-sm text-neutral-600 font-light leading-relaxed border-t border-neutral-100 pt-3" data-i18n="faq_a1">
             Ogni singola opera viene forgiata a mano libera al tornio a pedali con argilla campana selezionata. Dopo una lenta asciugatura naturale, il pezzo subisce la prima cottura a 980°C (biscotto), viene smaltato a mano con formulazioni tradizionali di famiglia e ricotto per fissare la vetrificazione e la brillantezza dei colori vietresi.
           </div>
         </details>
@@ -463,11 +477,10 @@
         <!-- FAQ 2 -->
         <details class="group bg-vietri-pietra/60 rounded-2xl border border-neutral-200 p-5 sm:p-6 transition-all duration-200 open:bg-white open:border-vietri-cobalto/40 open:shadow-xs">
           <summary class="flex justify-between items-center cursor-pointer list-none font-serif text-lg sm:text-xl text-neutral-950 font-medium select-none">
-            <span>Posso richiedere un'opera o un set di piatti personalizzato?</span>
-            <summary-text></summary-text>
+            <span data-i18n="faq_q2">Posso richiedere un'opera o un set di piatti personalizzato?</span>
             <span class="text-neutral-400 group-open:rotate-180 transition-transform text-sm">▼</span>
           </summary>
-          <div class="mt-3 text-xs sm:text-sm text-neutral-600 font-light leading-relaxed border-t border-neutral-100 pt-3">
+          <div class="mt-3 text-xs sm:text-sm text-neutral-600 font-light leading-relaxed border-t border-neutral-100 pt-3" data-i18n="faq_a2">
             Certamente. Realizziamo su commissione servizi di piatti per la tavola, vasi da collezione, lampade e bomboniere nuziali. È possibile personalizzare dimensioni, cromie degli smalti e aggiungere incisioni o dediche. Basta scriverci su WhatsApp con le tue preferenze.
           </div>
         </details>
@@ -475,10 +488,10 @@
         <!-- FAQ 3 -->
         <details class="group bg-vietri-pietra/60 rounded-2xl border border-neutral-200 p-5 sm:p-6 transition-all duration-200 open:bg-white open:border-vietri-cobalto/40 open:shadow-xs">
           <summary class="flex justify-between items-center cursor-pointer list-none font-serif text-lg sm:text-xl text-neutral-950 font-medium select-none">
-            <span>Le stoviglie sono sicure per uso alimentare e lavabili?</span>
+            <span data-i18n="faq_q3">Le stoviglie sono sicure per uso alimentare e lavabili?</span>
             <span class="text-neutral-400 group-open:rotate-180 transition-transform text-sm">▼</span>
           </summary>
-          <div class="mt-3 text-xs sm:text-sm text-neutral-600 font-light leading-relaxed border-t border-neutral-100 pt-3">
+          <div class="mt-3 text-xs sm:text-sm text-neutral-600 font-light leading-relaxed border-t border-neutral-100 pt-3" data-i18n="faq_a3">
             Sì. Tutte le nostre creazioni per la tavola utilizzano smalti certificati per contatto alimentare (100% apiombici e atossici). Sono resistenti e possono essere lavate a mano o in lavastoviglie a ciclo delicato.
           </div>
         </details>
@@ -486,10 +499,10 @@
         <!-- FAQ 4 -->
         <details class="group bg-vietri-pietra/60 rounded-2xl border border-neutral-200 p-5 sm:p-6 transition-all duration-200 open:bg-white open:border-vietri-cobalto/40 open:shadow-xs">
           <summary class="flex justify-between items-center cursor-pointer list-none font-serif text-lg sm:text-xl text-neutral-950 font-medium select-none">
-            <span>Come vengono spedite le opere fragili in Italia e all'estero?</span>
+            <span data-i18n="faq_q4">Come vengono spedite le opere fragili in Italia e all'estero?</span>
             <span class="text-neutral-400 group-open:rotate-180 transition-transform text-sm">▼</span>
           </summary>
-          <div class="mt-3 text-xs sm:text-sm text-neutral-600 font-light leading-relaxed border-t border-neutral-100 pt-3">
+          <div class="mt-3 text-xs sm:text-sm text-neutral-600 font-light leading-relaxed border-t border-neutral-100 pt-3" data-i18n="faq_a4">
             Imballiamo ogni ceramica con pluriball ad alta densità, scatole a doppia onda e protezioni antiurto studiate appositamente per la ceramica d'arte. Le spedizioni sono tracciate con corriere espresso con consegna in 24/48h in Italia e in pochi giorni in Europa e nel mondo.
           </div>
         </details>
@@ -497,14 +510,14 @@
 
       <!-- Box Contatto Diretto Rapido -->
       <div class="mt-12 bg-neutral-950 text-white p-8 rounded-2xl text-center space-y-3">
-        <h3 class="font-serif text-2xl">Hai una richiesta specifica o vuoi un consiglio?</h3>
-        <p class="text-xs text-neutral-400 max-w-lg mx-auto font-light">
+        <h3 class="font-serif text-2xl" data-i18n="faq_box_title">Hai una richiesta specifica o vuoi un consiglio?</h3>
+        <p class="text-xs text-neutral-400 max-w-lg mx-auto font-light" data-i18n="faq_box_desc">
           Contatta direttamente Antonio Solimene per verificare la disponibilità di un pezzo o commissionare una creazione su misura.
         </p>
         <div class="pt-2">
-          <a href="https://wa.me/393899819834?text=Ciao%20Antonio!%20Ti%20scrivo%20dal%20sito%20solimene.net%20per%20chiederti%20un%20informazione." target="_blank" rel="noopener noreferrer"
+          <a id="faqBoxWaLink" href="https://wa.me/393899819834?text=Ciao%20Antonio!%20Ti%20scrivo%20dal%20sito%20solimene.net%20per%20chiederti%20un%20informazione." target="_blank" rel="noopener noreferrer"
              class="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1EBE5D] text-white text-xs uppercase tracking-wider px-6 py-3.5 rounded-xl font-semibold transition shadow-md">
-            <span>💬 Parla con Antonio su WhatsApp</span>
+            <span data-i18n="faq_box_btn">💬 Parla con Antonio su WhatsApp</span>
           </a>
         </div>
       </div>
@@ -538,7 +551,7 @@
           </div>
 
           <div class="border-t border-neutral-100 pt-3">
-            <h4 class="text-[10px] uppercase tracking-widest text-neutral-400 font-semibold mb-1">Dettagli & Lavorazione</h4>
+            <h4 class="text-[10px] uppercase tracking-widest text-neutral-400 font-semibold mb-1" data-i18n="modal_work_details">Dettagli & Lavorazione</h4>
             <p id="modalDesc" class="text-xs sm:text-sm text-neutral-600 leading-relaxed font-light max-h-32 sm:max-h-40 overflow-y-auto"></p>
           </div>
 
@@ -549,9 +562,9 @@
               <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/>
               </svg>
-              <span>Richiedi / Acquista su WhatsApp</span>
+              <span data-i18n="modal_buy_wa">Richiedi / Acquista su WhatsApp</span>
             </a>
-            <p class="text-[10px] text-center text-neutral-400 mt-1.5 font-light">Contatto diretto con il maestro Antonio Solimene</p>
+            <p class="text-[10px] text-center text-neutral-400 mt-1.5 font-light" data-i18n="modal_contact_direct">Contatto diretto con il maestro Antonio Solimene</p>
           </div>
         </div>
       </div>
@@ -656,12 +669,12 @@
         <span class="text-xl">🏺</span>
       </div>
       <h3 class="font-serif text-2xl sm:text-3xl text-neutral-950 mb-2">Antonio Solimene Ceramiche</h3>
-      <p class="text-xs text-neutral-500 font-light mb-8 max-w-md mx-auto">Bottega Ceramica Artigiana — Tradizione centenaria a Vietri sul Mare, Costiera Amalfitana</p>
+      <p class="text-xs text-neutral-500 font-light mb-8 max-w-md mx-auto" data-i18n="footer_sub">Bottega Ceramica Artigiana — Tradizione centenaria a Vietri sul Mare, Costiera Amalfitana</p>
 
       <!-- Profili Social e Canali di Contatto con Icone Coerenti -->
       <div class="flex flex-wrap justify-center items-center gap-3 sm:gap-4 mb-10">
         <!-- WhatsApp -->
-        <a href="https://wa.me/393899819834?text=Ciao%20Antonio!%20Ti%20contatto%20dal%20tuo%20sito%20solimene.net." target="_blank" rel="noopener noreferrer" 
+        <a id="footerWaLink" href="https://wa.me/393899819834?text=Ciao%20Antonio!%20Ti%20contatto%20dal%20tuo%20sito%20solimene.net." target="_blank" rel="noopener noreferrer" 
            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white border border-neutral-200 text-neutral-800 hover:border-[#25D366] hover:text-[#25D366] transition-all shadow-xs text-xs font-medium">
           <svg class="w-4 h-4 fill-current text-[#25D366]" viewBox="0 0 24 24">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/>
@@ -717,11 +730,11 @@
       </div>
 
       <div class="flex flex-wrap justify-center items-center gap-4 text-[11px] text-neutral-400">
-        <p>© 2026 Antonio Solimene — Ceramiche Vietresi modellate a mano</p>
+        <p data-i18n="footer_copy">© 2026 Antonio Solimene — Ceramiche Vietresi modellate a mano</p>
         <span>•</span>
         <!-- Accesso Riservato per Antonio -->
         <a href="admin.html" class="text-neutral-500 hover:text-neutral-900 transition flex items-center gap-1 font-medium" title="Area Bottega Riservata">
-          <span>🔒 Gestione Bottega</span>
+          <span data-i18n="footer_admin">🔒 Gestione Bottega</span>
         </a>
       </div>
     </div>
@@ -729,7 +742,7 @@
 
   <!-- PULSANTE FLOATING WHATSAPP ELEGANTE & ARMONIZZATO -->
   <aside id="floatingWhatsAppBtn" class="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 flex items-center transition-opacity duration-300">
-    <a href="https://wa.me/393899819834?text=Ciao%20Antonio!%20Ti%20contatto%20dal%20tuo%20sito%20solimene.net,%20vorrei%20informazioni%20sulle%20tue%20creazioni." 
+    <a id="floatingWaLink" href="https://wa.me/393899819834?text=Ciao%20Antonio!%20Ti%20contatto%20dal%20tuo%20sito%20solimene.net,%20vorrei%20informazioni%20sulle%20tue%20creazioni." 
        target="_blank" 
        rel="noopener noreferrer" 
        aria-label="Contatta Antonio Solimene su WhatsApp (+39 389 981 9834)"
@@ -746,11 +759,525 @@
         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/>
       </svg>
 
-      <span class="font-medium text-xs tracking-wide">Scrivi su WhatsApp</span>
+      <span class="font-medium text-xs tracking-wide" data-i18n="float_wa">Scrivi su WhatsApp</span>
     </a>
   </aside>
 
   <script>
+    // -------------------------------------------------------------
+    // DIZIONARIO MULTILINGUA INTERNAZIONALE (IT, EN, FR, DE, ES)
+    // -------------------------------------------------------------
+    const TRANSLATIONS = {
+      it: {
+        top_badge: "Bottega Aperta a Vietri sul Mare",
+        top_subtitle: "— Pezzi unici forgiati a mano al tornio & creazioni su misura.",
+        top_wa: "Scrivi su WhatsApp (+39 389 981 9834)",
+        nav_coast: "Costiera Amalfitana",
+        nav_works: "Opere",
+        nav_story: "Storia",
+        nav_bespoke: "Su Misura",
+        nav_location_link: "Dove Siamo",
+        nav_faq: "FAQ",
+        nav_contacts: "Contatti ↗",
+        hero_badge: "Arte e Maestria del Tornio",
+        hero_title: "Antonio Solimene",
+        hero_quote: "«Alla fine, chi sceglie le nostre opere non acquista solo una ceramica: resta invischiato nell’argilla, nel mare e nella nostra storia.»",
+        hero_explore: "Esplora le Opere",
+        hero_story_btn: "La Stirpe dei Tornianti",
+        hero_wa_btn: "Scrivi su WhatsApp",
+        hero_scroll: "Scorri per entrare in bottega ↓",
+        story_author_role: "Torniante in Vietri sul Mare",
+        story_badge: "Quattro Generazioni",
+        story_title: "Dal bisnonno Vincenzo a Nonno Ciccio: l'anima dell'argilla viva.",
+        story_p1: "La nostra storia inizia con il bisnonno <strong>Vincenzo</strong> (1876-1958), detto <em>“cupaiuolo”</em>, così rapido e instancabile al tornio a pedali che a fine giornata pareva una scultura d'argilla. Un testimone raccolto da nonno <strong>Francesco</strong> (detto <em>Ciccio</em>), che trasformò il mestiere in pura arte, portando i suoi riflessi vitrei e i suoi smalti materici fino alla prestigiosa manifattura fiorentina “Cantagalli” al fianco di Max Malamerson.",
+        story_p2: "Soprannominato il <em>“torniante dell’opaco e trasparente azzurro mediterraneo”</em>, Ciccio continuò a forgiare al tornio anche quando la malattia gli faceva tremare le mani, con una precisione che lasciava tutti sbalorditi. Oggi, noi nipoti continuiamo questo gesto: nessun pezzo seriale, nessuna scorciatoia. Solo terra, tornio, acqua e fuoco.",
+        works_badge: "Forme & Smalti",
+        works_title: "Le Creazioni",
+        works_subtitle: "Pezzi unici forgiati al tornio a mano libera e cotti secondo la tradizione ceramica vietrese.",
+        filter_all: "Tutte le Opere",
+        bespoke_badge: "Artigianato su Commissione",
+        bespoke_title: "Creazioni su Misura",
+        bespoke_subtitle: "Dalla singola opera per collezionisti ai servizi per l'alta ristorazione e bomboniere nuziali per eventi in Costiera Amalfitana.",
+        bespoke_c1_badge: "Tavola & Hospitality",
+        bespoke_c1_title: "Servizi per Case & Ristoranti",
+        bespoke_c1_desc: "Piatti piani, fondine a cappello, vassoi e alzate forgiati al tornio con diametri e smalti personalizzati (cobalto, cotto vivo, ramina o smalti neutri). Atossici e lavabili.",
+        bespoke_c1_btn: "Richiedi Proposta Tavola →",
+        bespoke_c2_badge: "Eventi & Cerimonie",
+        bespoke_c2_title: "Bomboniere & Ricordi di Nozze",
+        bespoke_c2_desc: "Piccoli vasi d'autore, svuotatasche e ciotoline smaltate a mano, personalizzabili con iniziali incise a crudo, date e confezione con certificato di autenticità artigianale vietrese.",
+        bespoke_c2_btn: "Preventivo Bomboniere →",
+        bespoke_c3_badge: "Interior Design",
+        bespoke_c3_title: "Grandi Vasi, Lampade & Arredo",
+        bespoke_c3_desc: "Elementi d'arredo scultorei per interni, giardini e terrazze in Costiera: anfore materiche in terracotta naturale, basi lampada al tornio e cachepot smaltati a fuoco.",
+        bespoke_c3_btn: "Progetta con Antonio →",
+        loc_badge: "Visita la Bottega",
+        loc_tradition_subtitle: "Arte E Tradizione",
+        loc_sub: "Vietri sul Mare — Porta della Costiera Amalfitana",
+        loc_p: "La nostra bottega è il luogo dove argilla, acqua e fuoco prendono forma ogni giorno. Accogliamo visitatori, collezionisti e appassionati per mostrare le creazioni dal vivo e condividere l'arte del tornio.",
+        loc_addr_lbl: "Indirizzo:",
+        loc_addr_val: "Vietri sul Mare (SA), 84019 — Costiera Amalfitana, Campania",
+        loc_car_lbl: "In Auto:",
+        loc_car_val: "Autostrada A3 Napoli-Salerno, uscita Vietri sul Mare (a 3 minuti dallo svincolo).",
+        loc_train_lbl: "In Treno o Traghetto:",
+        loc_train_val: "Stazione FS Vietri sul Mare o Stazione Centrale di Salerno + traghetto/bus per la Costiera.",
+        loc_hours_lbl: "Orari Bottega:",
+        loc_hours_val: "Lun - Sab: 09:00 - 19:30 (Si consiglia un contatto preventivo WhatsApp)",
+        loc_map_btn: "🗺️ Apri su Google Maps ↗",
+        loc_visit_btn: "💬 Prenota Visita su WhatsApp",
+        faq_badge: "Informazioni Utili",
+        faq_title: "Domande Frequenti",
+        faq_subtitle: "Tutto quello che c'è da sapere su spedizioni, lavorazioni e acquisti.",
+        faq_q1: "Come vengono realizzate le ceramiche di Antonio Solimene?",
+        faq_a1: "Ogni singola opera viene forgiata a mano libera al tornio a pedali con argilla campana selezionata. Dopo una lenta asciugatura naturale, il pezzo subisce la prima cottura a 980°C (biscotto), viene smaltato a mano con formulazioni tradizionali di famiglia e ricotto per fissare la vetrificazione e la brillantezza dei colori vietresi.",
+        faq_q2: "Posso richiedere un'opera o un set di piatti personalizzato?",
+        faq_a2: "Certamente. Realizziamo su commissione servizi di piatti per la tavola, vasi da collezione, lampade e bomboniere nuziali. È possibile personalizzare dimensioni, cromie degli smalti e aggiungere incisioni o dediche. Basta scriverci su WhatsApp con le tue preferenze.",
+        faq_q3: "Le stoviglie sono sicure per uso alimentare e lavabili?",
+        faq_a3: "Sì. Tutte le nostre creazioni per la tavola utilizzano smalti certificati per contatto alimentare (100% apiombici e atossici). Sono resistenti e possono essere lavate a mano o in lavastoviglie a ciclo delicato.",
+        faq_q4: "Come vengono spedite le opere fragili in Italia e all'estero?",
+        faq_a4: "Imballiamo ogni ceramica con pluriball ad alta densità, scatole a doppia onda e protezioni antiurto studiate appositamente per la ceramica d'arte. Le spedizioni sono tracciate con corriere espresso con consegna in 24/48h in Italia e in pochi giorni in Europa e nel mondo.",
+        faq_box_title: "Hai una richiesta specifica o vuoi un consiglio?",
+        faq_box_desc: "Contatta direttamente Antonio Solimene per verificare la disponibilità di un pezzo o commissionare una creazione su misura.",
+        faq_box_btn: "💬 Parla con Antonio su WhatsApp",
+        modal_work_details: "Dettagli & Lavorazione",
+        modal_avail: "Disponibile in Bottega",
+        modal_sold: "Opera Venduta (Archivio)",
+        modal_buy_wa: "Richiedi / Acquista su WhatsApp",
+        modal_contact_direct: "Contatto diretto con il maestro Antonio Solimene",
+        footer_sub: "Bottega Ceramica Artigiana — Tradizione centenaria a Vietri sul Mare, Costiera Amalfitana",
+        footer_copy: "© 2026 Antonio Solimene — Ceramiche Vietresi modellate a mano",
+        footer_admin: "🔒 Gestione Bottega",
+        float_wa: "Scrivi su WhatsApp",
+        wa_product_msg: "Ciao Antonio! Ti scrivo dal tuo sito web solimene.net. Sono interessato all'opera \"{title}\" (prezzo: {price}). Vorrei acquistarla o avere maggiori informazioni per la consegna.",
+        wa_general_msg: "Ciao Antonio! Ti contatto dal tuo sito solimene.net, vorrei informazioni sulle tue creazioni.",
+        wa_visit_msg: "Ciao Antonio! Vorrei visitare la tua bottega a Vietri sul Mare.",
+        wa_bespoke1_msg: "Ciao Antonio! Vorrei informazioni per un servizio di piatti o stoviglie su misura.",
+        wa_bespoke2_msg: "Ciao Antonio! Vorrei informazioni e un preventivo per bomboniere in ceramica per un evento.",
+        wa_bespoke3_msg: "Ciao Antonio! Vorrei concordare la creazione di un vaso o pezzo d'arredo su misura."
+      },
+      en: {
+        top_badge: "Workshop Open in Vietri sul Mare",
+        top_subtitle: "— Unique hand-thrown pottery & custom bespoke ceramics.",
+        top_wa: "Chat on WhatsApp (+39 389 981 9834)",
+        nav_coast: "Amalfi Coast",
+        nav_works: "Creations",
+        nav_story: "Heritage",
+        nav_bespoke: "Bespoke Craft",
+        nav_location_link: "Find Us",
+        nav_faq: "FAQ",
+        nav_contacts: "Contacts ↗",
+        hero_badge: "Art and Mastery of the Wheel",
+        hero_title: "Antonio Solimene",
+        hero_quote: "«In the end, those who choose our works do not simply purchase a ceramic: they become entangled in clay, the sea, and our heritage.»",
+        hero_explore: "Explore the Creations",
+        hero_story_btn: "Generations of Potters",
+        hero_wa_btn: "Chat on WhatsApp",
+        hero_scroll: "Scroll to enter the workshop ↓",
+        story_author_role: "Master Potter in Vietri sul Mare",
+        story_badge: "Four Generations",
+        story_title: "From Great-Grandfather Vincenzo to Grandpa Ciccio: the living clay.",
+        story_p1: "Our history begins with great-grandfather <strong>Vincenzo</strong> (1876-1958), nicknamed <em>“cupaiuolo”</em>, so swift and tireless at the pedal wheel that by day's end he looked like a clay sculpture. A legacy passed to grandfather <strong>Francesco</strong> (known as <em>Ciccio</em>), who turned the craft into pure fine art, bringing his glassy glazes and textured surfaces to the renowned Florentine 'Cantagalli' atelier alongside Max Malamerson.",
+        story_p2: "Renowned as the <em>“master potter of opaque and crystal Mediterranean blues”</em>, Ciccio forged on the wheel even when illness made his hands tremble, with a precision that astonished all. Today, we carry on this gesture: no mass production, no shortcuts. Just earth, water, wheel, and fire.",
+        works_badge: "Shapes & Glazes",
+        works_title: "The Creations",
+        works_subtitle: "Unique pieces forged on the freehand potter's wheel and fired in authentic Vietri ceramic tradition.",
+        filter_all: "All Artworks",
+        bespoke_badge: "Custom Commissions",
+        bespoke_title: "Bespoke Ceramics",
+        bespoke_subtitle: "From collector centerpiece vases to luxury tableware for villas, restaurants, and Amalfi Coast wedding favors.",
+        bespoke_c1_badge: "Tableware & Hospitality",
+        bespoke_c1_title: "Dinnerware for Homes & Restaurants",
+        bespoke_c1_desc: "Dinner plates, wide-brim soup bowls, platters and cake stands thrown on the wheel with custom diameters and glazes (cobalt, raw cotto, ramina green or neutral glazes). Food-grade and washable.",
+        bespoke_c1_btn: "Request Tableware Quote →",
+        bespoke_c2_badge: "Events & Weddings",
+        bespoke_c2_title: "Wedding Favors & Keepsakes",
+        bespoke_c2_desc: "Handcrafted miniature vases, catchalls and glazed bowls, customized with hand-carved initials, wedding dates and authenticity certificate.",
+        bespoke_c2_btn: "Wedding Favors Quote →",
+        bespoke_c3_badge: "Interior Design",
+        bespoke_c3_title: "Vases, Lamps & Decor",
+        bespoke_c3_desc: "Sculptural terracotta decor for Amalfi Coast villas and gardens: raw earthen amphorae, wheel-thrown lamp bases and fire-glazed planters.",
+        bespoke_c3_btn: "Commission with Antonio →",
+        loc_badge: "Visit the Workshop",
+        loc_tradition_subtitle: "Art & Tradition",
+        loc_sub: "Vietri sul Mare — Gateway to the Amalfi Coast",
+        loc_p: "Our studio is where clay, water, and fire come alive every day. We warmly welcome visitors, collectors, and art lovers to view our creations in person and witness freehand wheel throwing.",
+        loc_addr_lbl: "Address:",
+        loc_addr_val: "Vietri sul Mare (SA), 84019 — Amalfi Coast, Campania, Italy",
+        loc_car_lbl: "By Car:",
+        loc_car_val: "A3 Naples-Salerno highway, exit 'Vietri sul Mare' (3 minutes from the junction).",
+        loc_train_lbl: "By Train / Ferry:",
+        loc_train_val: "Vietri sul Mare Train Station or Salerno Central + ferry/bus along the Amalfi Coast.",
+        loc_hours_lbl: "Opening Hours:",
+        loc_hours_val: "Mon - Sat: 09:00 AM - 07:30 PM (Advance WhatsApp contact recommended)",
+        loc_map_btn: "🗺️ Open in Google Maps ↗",
+        loc_visit_btn: "💬 Book Visit on WhatsApp",
+        faq_badge: "Helpful Information",
+        faq_title: "Frequently Asked Questions",
+        faq_subtitle: "Everything you need to know about worldwide shipping, bespoke orders and authenticity.",
+        faq_q1: "How are Antonio Solimene ceramics made?",
+        faq_a1: "Each piece is hand-thrown on the pedal wheel using selected local clay. After slow natural drying, it undergoes a first 980°C firing (bisque), is hand-glazed with four-generation secret family recipes, and re-fired to achieve vibrant crystal glassy finishes.",
+        faq_q2: "Can I commission custom tableware or wedding favors?",
+        faq_a2: "Yes, we craft bespoke dinnerware sets, collector vases, lamps, and wedding favors. Dimensions, colors, and hand-carved inscriptions can be agreed directly with master Antonio on WhatsApp.",
+        faq_q3: "Is the tableware safe for food and dishwashers?",
+        faq_a3: "Yes. All our dinnerware and tableware use certified food-safe, 100% lead-free, non-toxic glazes. They are durable and suitable for delicate dishwasher cycles.",
+        faq_q4: "How are fragile ceramics shipped worldwide?",
+        faq_a4: "We wrap every piece with multi-layer high-density bubble wrap, reinforced double-wall boxes, and impact-absorbing protections. Shipments are fully tracked via express courier (24/48h in Italy, 3-5 days across Europe and USA).",
+        faq_box_title: "Have a specific request or looking for advice?",
+        faq_box_desc: "Contact master Antonio Solimene directly on WhatsApp to check availability or commission a custom bespoke piece.",
+        faq_box_btn: "💬 Chat with Antonio on WhatsApp",
+        modal_work_details: "Details & Craftsmanship",
+        modal_avail: "Available in Workshop",
+        modal_sold: "Sold Piece (Archive)",
+        modal_buy_wa: "Inquire / Purchase on WhatsApp",
+        modal_contact_direct: "Direct contact with master potter Antonio Solimene",
+        footer_sub: "Artisanal Ceramic Workshop — Centenary tradition in Vietri sul Mare, Amalfi Coast",
+        footer_copy: "© 2026 Antonio Solimene — Handmade Vietri Ceramics",
+        footer_admin: "🔒 Workshop Admin",
+        float_wa: "Chat on WhatsApp",
+        wa_product_msg: "Hello Antonio! I am contacting you from your website solimene.net. I am interested in the artwork \"{title}\" (price: {price}). I would like to purchase it or get shipping details.",
+        wa_general_msg: "Hello Antonio! I am contacting you from your website solimene.net regarding your ceramic creations.",
+        wa_visit_msg: "Hello Antonio! I would like to visit your ceramic workshop in Vietri sul Mare.",
+        wa_bespoke1_msg: "Hello Antonio! I would like information regarding custom bespoke tableware sets.",
+        wa_bespoke2_msg: "Hello Antonio! I would like a quote for handcrafted ceramic wedding favors.",
+        wa_bespoke3_msg: "Hello Antonio! I would like to commission a custom vase or interior decor piece."
+      },
+      fr: {
+        top_badge: "Atelier Ouvert à Vietri sul Mare",
+        top_subtitle: "— Céramiques d'art faites main au tour & créations sur mesure.",
+        top_wa: "Écrivez sur WhatsApp (+39 389 981 9834)",
+        nav_coast: "Côte Amalfitaine",
+        nav_works: "Créations",
+        nav_story: "Histoire",
+        nav_bespoke: "Sur Mesure",
+        nav_location_link: "Où Sommes-Nous",
+        nav_faq: "FAQ",
+        nav_contacts: "Contacts ↗",
+        hero_badge: "Art et Maîtrise du Tour",
+        hero_title: "Antonio Solimene",
+        hero_quote: "«En fin de compte, ceux qui choisissent nos œuvres n'achètent pas seulement une céramique: ils s'imprègnent d'argile, de mer et de notre histoire.»",
+        hero_explore: "Explorer les Œuvres",
+        hero_story_btn: "Quatre Générations de Potiers",
+        hero_wa_btn: "Écrire sur WhatsApp",
+        hero_scroll: "Faites défiler pour entrer ↓",
+        story_author_role: "Maître Potier à Vietri sul Mare",
+        story_badge: "Quatre Générations",
+        story_title: "De l'arrière-grand-père Vincenzo à Nonno Ciccio: l'âme de l'argile vivante.",
+        story_p1: "Notre histoire débute avec l'arrière-grand-père <strong>Vincenzo</strong> (1876-1958), dit <em>«cupaiuolo»</em>, si rapide et infatigable au tour à pédales qu'à la fin du jour il ressemblait à une statue d'argile. Un flambeau repris par grand-père <strong>Francesco</strong> (dit <em>Ciccio</em>), qui éleva le métier au rang d'art pur, apportant ses émaux vitreux jusqu'à la prestigieuse manufacture florentine «Cantagalli».",
+        story_p2: "Surnommé le <em>«potier du bleu méditerranéen opaque et transparent»</em>, Ciccio continua à façonner au tour avec une précision stupéfiante. Aujourd'hui, nous perpétuons ce geste: aucune production de masse, que de la terre, de l'eau, du tour et du feu.",
+        works_badge: "Formes & Émaux",
+        works_title: "Les Créations",
+        works_subtitle: "Pièces uniques forgées à main levée au tour selon la tradition séculaire de Vietri.",
+        filter_all: "Toutes les Œuvres",
+        bespoke_badge: "Commandes Personnalisées",
+        bespoke_title: "Créations sur Mesure",
+        bespoke_subtitle: "Des pièces de collection uniques aux services pour restaurants et cadeaux d'invités pour mariages sur la Côte Amalfitaine.",
+        bespoke_c1_badge: "Arts de la Table",
+        bespoke_c1_title: "Services de Table & Restaurants",
+        bespoke_c1_desc: "Assiettes, plats et coupes forgés au tour avec émaux personnalisés (cobalt, terre cuite brute, vert ramina). Certifiés alimentaires et lavables.",
+        bespoke_c1_btn: "Demander un Devis Table →",
+        bespoke_c2_badge: "Mariages & Célébrations",
+        bespoke_c2_title: "Cadeaux de Mariage & Souvenirs",
+        bespoke_c2_desc: "Vases miniatures, coupelles et céramiques personnalisées avec initiales gravées à la main, dates et certificat d'authenticité.",
+        bespoke_c2_btn: "Devis Cadeaux d'Invités →",
+        bespoke_c3_badge: "Décoration d'Intérieur",
+        bespoke_c3_title: "Grands Vases, Lampes & Mobilier",
+        bespoke_c3_desc: "Éléments décoratifs sculpturaux pour villas et jardins: amphores en terre cuite naturelle, pieds de lampe au tour et cache-pots émaillés.",
+        bespoke_c3_btn: "Concevoir avec Antonio →",
+        loc_badge: "Visitez l'Atelier",
+        loc_tradition_subtitle: "Art & Tradition",
+        loc_sub: "Vietri sul Mare — Porte de la Côte Amalfitaine",
+        loc_p: "Notre atelier est l'endroit où l'argile, l'eau et le feu prennent vie. Nous accueillons avec plaisir visiteurs et passionnés pour découvrir les œuvres et le travail au tour en direct.",
+        loc_addr_lbl: "Adresse:",
+        loc_addr_val: "Vietri sul Mare (SA), 84019 — Côte Amalfitaine, Italie",
+        loc_car_lbl: "En Voiture:",
+        loc_car_val: "Autoroute A3 Naples-Salerne, sortie Vietri sul Mare (à 3 min).",
+        loc_train_lbl: "En Train ou Ferry:",
+        loc_train_val: "Gare de Vietri sul Mare ou Gare Centrale de Salerne + ferry.",
+        loc_hours_lbl: "Horaires:",
+        loc_hours_val: "Lun - Sam: 09h00 - 19h30 (Contact WhatsApp préalable conseillé)",
+        loc_map_btn: "🗺️ Ouvrir sur Google Maps ↗",
+        loc_visit_btn: "💬 Réserver Visite sur WhatsApp",
+        faq_badge: "Informations Utiles",
+        faq_title: "Questions Fréquentes",
+        faq_subtitle: "Tout savoir sur les expéditions sécurisées, les pièces sur mesure et l'authenticité.",
+        faq_q1: "Comment sont fabriquées les céramiques d'Antonio Solimene?",
+        faq_a1: "Chaque pièce est façonnée à la main au tour à pédale avec de l'argile locale. Après séchage naturel, elle cuit à 980°C, est émaillée à la main selon les recettes familiales, puis recuite pour fixer sa brillance.",
+        faq_q2: "Puis-je commander un service ou une œuvre personnalisée?",
+        faq_a2: "Oui, nous réalisons sur mesure services d'assiettes, vases, lampes et cadeaux de mariage. Écrivez-nous directement sur WhatsApp pour convenir des formes et émaux.",
+        faq_q3: "Les céramiques sont-elles adaptées à un usage alimentaire?",
+        faq_a3: "Absolument. Toutes nos pièces pour la table utilisent des émaux sans plomb 100% certifiés alimentaires et supportent le lave-vaisselle délicat.",
+        faq_q4: "Comment sont expédiées les céramiques fragiles?",
+        faq_a4: "Chaque création est emballée avec du papier bulle renforcé et des cartons double cannelure anti-chocs. Expédition express suivie en Italie et partout dans le monde.",
+        faq_box_title: "Vous avez une demande particulière?",
+        faq_box_desc: "Contactez directement le maître Antonio Solimene sur WhatsApp pour vérifier la disponibilité ou créer une pièce sur mesure.",
+        faq_box_btn: "💬 Parler avec Antonio sur WhatsApp",
+        modal_work_details: "Détails & Façonnage",
+        modal_avail: "Disponible en Atelier",
+        modal_sold: "Œuvre Vendue (Archive)",
+        modal_buy_wa: "Demander / Acheter sur WhatsApp",
+        modal_contact_direct: "Contact direct avec le maître Antonio Solimene",
+        footer_sub: "Atelier Céramique Artisanal — Tradition séculaire à Vietri sul Mare, Côte Amalfitaine",
+        footer_copy: "© 2026 Antonio Solimene — Céramiques de Vietri faites main",
+        footer_admin: "🔒 Gestion Atelier",
+        float_wa: "Écrire sur WhatsApp",
+        wa_product_msg: "Bonjour Antonio! Je vous contacte depuis votre site solimene.net. Je suis intéressé(e) par l'œuvre \"{title}\" (prix: {price}). Je souhaiterais l'acheter ou avoir des informations pour la livraison.",
+        wa_general_msg: "Bonjour Antonio! Je vous contacte depuis votre site solimene.net au sujet de vos créations céramiques.",
+        wa_visit_msg: "Bonjour Antonio! Je souhaiterais visiter votre atelier à Vietri sul Mare.",
+        wa_bespoke1_msg: "Bonjour Antonio! J'aimerais des informations pour un service de vaisselle sur mesure.",
+        wa_bespoke2_msg: "Bonjour Antonio! Je souhaiterais un devis pour des cadeaux de mariage en céramique.",
+        wa_bespoke3_msg: "Bonjour Antonio! J'aimerais concevoir un grand vase ou élément de décoration sur mesure."
+      },
+      de: {
+        top_badge: "Werkstatt Geöffnet in Vietri sul Mare",
+        top_subtitle: "— Handgedrehte Unikate & maßgefertigte Keramik von der Amalfiküste.",
+        top_wa: "WhatsApp Kontakt (+39 389 981 9834)",
+        nav_coast: "Amalfiküste",
+        nav_works: "Werke",
+        nav_story: "Geschichte",
+        nav_bespoke: "Maßanfertigung",
+        nav_location_link: "Standort",
+        nav_faq: "FAQ",
+        nav_contacts: "Kontakt ↗",
+        hero_badge: "Kunst und Meisterschaft an der Töpferscheibe",
+        hero_title: "Antonio Solimene",
+        hero_quote: "«Wer unsere Werke wählt, kauft nicht bloß eine Keramik: Er verbindet sich mit dem Ton, dem Meer und unserer Geschichte.»",
+        hero_explore: "Werke Entdecken",
+        hero_story_btn: "Vier Generationen Töpfer",
+        hero_wa_btn: "Auf WhatsApp Schreiben",
+        hero_scroll: "Nach unten scrollen ↓",
+        story_author_role: "Töpfermeister in Vietri sul Mare",
+        story_badge: "Vier Generationen",
+        story_title: "Vom Urgroßvater Vincenzo zu Großvater Ciccio: die lebendige Tonerde.",
+        story_p1: "Unsere Geschichte beginnt mit Urgroßvater <strong>Vincenzo</strong> (1876-1958), der an der Fußtöpferscheibe unermüdlich wirkte. Sein Erbe führte Großvater <strong>Francesco</strong> (genannt <em>Ciccio</em>) zur reinen Meisterschaft, der seine gläsernen Glasuren bis zur Florentiner Manufaktur 'Cantagalli' trug.",
+        story_p2: "Als <em>'Meister des mediterranen Azurblaus'</em> bekannt, töpferte Ciccio mit erstaunlicher Präzision. Heute führen wir diese Geste fort: Keine Massenware, nur Ton, Drehscheibe, Wasser und Feuer.",
+        works_badge: "Formen & Glasuren",
+        works_title: "Die Schöpfungen",
+        works_subtitle: "Handgedrehte Einzelstücke nach jahrhundertealter Keramiktradition aus Vietri sul Mare.",
+        filter_all: "Alle Kunstwerke",
+        bespoke_badge: "Maßanfertigung",
+        bespoke_title: "Individuelle Keramik",
+        bespoke_subtitle: "Von Sammlervasen bis zu edlem Tischgeschirr für Restaurants und Hochzeitsgeschenke an der Amalfiküste.",
+        bespoke_c1_badge: "Tischkultur & Gastronomie",
+        bespoke_c1_title: "Geschirr für Häuser & Restaurants",
+        bespoke_c1_desc: "Teller, Schalen und Platten an der Scheibe geformt mit individuellen Glasuren (Kobaltblau, Terrakotta, Raminagrün). Lebensmittelecht und spülmaschinengeeignet.",
+        bespoke_c1_btn: "Geschirr-Angebot anfragen →",
+        bespoke_c2_badge: "Feste & Hochzeiten",
+        bespoke_c2_title: "Gastgeschenke & Erinnerungen",
+        bespoke_c2_desc: "Kleine Vasen, Schälchen und Unikate mit handgravierten Initialen, Hochzeitsdatum und Echtheitszertifikat.",
+        bespoke_c2_btn: "Gastgeschenke-Angebot →",
+        bespoke_c3_badge: "Interior Design",
+        bespoke_c3_title: "Große Vasen, Lampen & Deko",
+        bespoke_c3_desc: "Skulpturale Terrakotta-Elemente für Villen und Gärten: natürliche Amphoren, handgedrehte Lampenfüße und Pflanzgefäße.",
+        bespoke_c3_btn: "Mit Antonio entwerfen →",
+        loc_badge: "Besuchen Sie die Werkstatt",
+        loc_tradition_subtitle: "Kunst & Tradition",
+        loc_sub: "Vietri sul Mare — Tor zur Amalfiküste",
+        loc_p: "In unserer Werkstatt erwachen Ton, Wasser und Feuer täglich zum Leben. Wir empfangen Besucher und Kunstliebhaber herzlich zu Live-Vorführungen an der Töpferscheibe.",
+        loc_addr_lbl: "Adresse:",
+        loc_addr_val: "Vietri sul Mare (SA), 84019 — Amalfiküste, Italien",
+        loc_car_lbl: "Mit dem Auto:",
+        loc_car_val: "Autobahn A3 Neapel-Salerno, Ausfahrt Vietri sul Mare (3 Minuten).",
+        loc_train_lbl: "Mit Bahn / Fähre:",
+        loc_train_val: "Bahnhof Vietri sul Mare oder Salerno Hbf + Fähre/Bus.",
+        loc_hours_lbl: "Öffnungszeiten:",
+        loc_hours_val: "Mo - Sa: 09:00 - 19:30 Uhr (Vorherige WhatsApp-Meldung empfohlen)",
+        loc_map_btn: "🗺️ Auf Google Maps öffnen ↗",
+        loc_visit_btn: "💬 Besuch per WhatsApp anfragen",
+        faq_badge: "Wichtige Informationen",
+        faq_title: "Häufig Gestellte Fragen",
+        faq_subtitle: "Alles Wissenswerte über sicheren weltweiten Versand, Maßanfertigungen und Pflege.",
+        faq_q1: "Wie entstehen die Keramiken von Antonio Solimene?",
+        faq_a1: "Jedes Stück wird freihändig an der Töpferscheibe geformt. Nach natürlicher Trocknung folgt der erste Brand bei 980°C, die Handglasur nach Familienrezept und der finale Glanzbrand.",
+        faq_q2: "Kann ich individuelles Geschirr oder Geschenke bestellen?",
+        faq_a2: "Ja, wir fertigen Teller-Sets, Vasen, Lampen und Hochzeitspräsente auf Maß an. Schreiben Sie uns einfach Ihre Wünsche per WhatsApp.",
+        faq_q3: "Sind die Geschirrteile lebensmittelecht?",
+        faq_a3: "Ja. Alle unsere Glasuren sind 100% bleifrei und lebensmittelzertifiziert. Sie sind robust und im Schonprogramm spülmaschinenfest.",
+        faq_q4: "Wie werden zerbrechliche Keramiken sicher versendet?",
+        faq_a4: "Wir verpacken jedes Stück mit dickem Polstermaterial und doppelwelligen Spezialkartons. Der Versand erfolgt versichert und mit Sendungsverfolgung weltweit.",
+        faq_box_title: "Haben Sie eine spezielle Anfrage?",
+        faq_box_desc: "Kontaktieren Sie Töpfermeister Antonio Solimene direkt auf WhatsApp für Verfügbarkeit und Maßanfertigungen.",
+        faq_box_btn: "💬 Mit Antonio auf WhatsApp sprechen",
+        modal_work_details: "Details & Handwerk",
+        modal_avail: "In der Werkstatt verfügbar",
+        modal_sold: "Verkauftes Werk (Archiv)",
+        modal_buy_wa: "Über WhatsApp anfragen / kaufen",
+        modal_contact_direct: "Direkter Kontakt mit Meister Antonio Solimene",
+        footer_sub: "Kunstkeramik-Werkstatt — Hundertjährige Tradition in Vietri sul Mare, Amalfiküste",
+        footer_copy: "© 2026 Antonio Solimene — Handgemachte Vietri-Keramik",
+        footer_admin: "🔒 Werkstatt-Verwaltung",
+        float_wa: "Auf WhatsApp schreiben",
+        wa_product_msg: "Hallo Antonio! Ich kontaktiere Sie über Ihre Website solimene.net. Ich interessiere mich für das Werk \"{title}\" (Preis: {price}). Ich möchte es erwerben oder Versanddetails anfragen.",
+        wa_general_msg: "Hallo Antonio! Ich kontaktiere Sie über Ihre Website solimene.net bezüglich Ihrer Keramikwerke.",
+        wa_visit_msg: "Hallo Antonio! Ich möchte Ihre Töpferwerkstatt in Vietri sul Mare besuchen.",
+        wa_bespoke1_msg: "Hallo Antonio! Ich interessiere mich für ein maßgefertigtes Geschirrset.",
+        wa_bespoke2_msg: "Hallo Antonio! Ich hätte gerne ein Angebot für handgefertigte Hochzeits-Gastgeschenke.",
+        wa_bespoke3_msg: "Hallo Antonio! Ich möchte eine maßgefertigte Vase oder Terrassenkeramik in Auftrag geben."
+      },
+      es: {
+        top_badge: "Taller Abierto en Vietri sul Mare",
+        top_subtitle: "— Cerámica artística hecha a mano en el torno y creaciones a medida.",
+        top_wa: "Escribir por WhatsApp (+39 389 981 9834)",
+        nav_coast: "Costa Amalfitana",
+        nav_works: "Obras",
+        nav_story: "Historia",
+        nav_bespoke: "A Medida",
+        nav_location_link: "Dónde Estamos",
+        nav_faq: "FAQ",
+        nav_contacts: "Contactos ↗",
+        hero_badge: "Arte y Maestría del Torno",
+        hero_title: "Antonio Solimene",
+        hero_quote: "«Al final, quien elige nuestras obras no compra solo una cerámica: queda atrapado en la arcilla, en el mar y en nuestra historia.»",
+        hero_explore: "Explorar las Obras",
+        hero_story_btn: "Cuatro Generaciones",
+        hero_wa_btn: "Escribir por WhatsApp",
+        hero_scroll: "Desplaza para entrar al taller ↓",
+        story_author_role: "Maestro Tornero en Vietri sul Mare",
+        story_badge: "Cuatro Generaciones",
+        story_title: "Del bisabuelo Vincenzo al abuelo Ciccio: el alma de la arcilla viva.",
+        story_p1: "Nuestra historia comienza con el bisabuelo <strong>Vincenzo</strong> (1876-1958), apodado <em>«cupaiuolo»</em>, incansable en el torno de pedal. Un legado recogido por el abuelo <strong>Francesco</strong> (llamado <em>Ciccio</em>), quien convirtió el oficio en arte puro, llevando sus esmaltes vítreos hasta la prestigiosa manufactura florentina «Cantagalli».",
+        story_p2: "Conocido como el <em>«maestro del azul mediterráneo opaco y transparente»</em>, Ciccio continuó torneando con asombrosa precisión. Hoy continuamos este gesto: sin atajos ni piezas en serie. Solo tierra, torno, agua y fuego.",
+        works_badge: "Formas & Esmaltes",
+        works_title: "Las Creaciones",
+        works_subtitle: "Piezas únicas forjadas en torno a mano libre según la auténtica tradición de Vietri.",
+        filter_all: "Todas las Obras",
+        bespoke_badge: "Encargos a Medida",
+        bespoke_title: "Creaciones Personalizadas",
+        bespoke_subtitle: "Desde piezas de colección hasta vajillas para restaurantes y recuerdos de boda en la Costa Amalfitana.",
+        bespoke_c1_badge: "Mesa & Hostelería",
+        bespoke_c1_title: "Vajillas para Casas y Restaurantes",
+        bespoke_c1_desc: "Platos, fuentes y ensaladeras torneadas con esmaltes personalizados (cobalto, barro cocido, ramina). Aptos para alimentos y lavavajillas.",
+        bespoke_c1_btn: "Pedir Presupuesto Vajilla →",
+        bespoke_c2_badge: "Eventos & Bodas",
+        bespoke_c2_title: "Recuerdos de Boda & Eventos",
+        bespoke_c2_desc: "Pequeños jarrones y cuencos esmaltados a mano, personalizados con iniciales grabadas, fechas y certificado de autenticidad.",
+        bespoke_c2_btn: "Presupuesto Recuerdos →",
+        bespoke_c3_badge: "Decoración de Interiores",
+        bespoke_c3_title: "Grandes Jarrones, Lámparas & Decoración",
+        bespoke_c3_desc: "Elementos escultóricos en barro natural y esmaltado para villas y terrazas frente al mar.",
+        bespoke_c3_btn: "Diseñar con Antonio →",
+        loc_badge: "Visita el Taller",
+        loc_tradition_subtitle: "Arte y Tradición",
+        loc_sub: "Vietri sul Mare — Puerta de la Costa Amalfitana",
+        loc_p: "Nuestro taller es donde la arcilla, el agua y el fuego cobran vida cada día. Recibimos con entusiasmo a visitantes y coleccionistas para demostraciones en vivo al torno.",
+        loc_addr_lbl: "Dirección:",
+        loc_addr_val: "Vietri sul Mare (SA), 84019 — Costa Amalfitana, Campania, Italia",
+        loc_car_lbl: "En Coche:",
+        loc_car_val: "Autopista A3 Nápoles-Salerno, salida Vietri sul Mare (a 3 min).",
+        loc_train_lbl: "En Tren o Ferry:",
+        loc_train_val: "Estación de Vietri sul Mare o Salerno Central + ferry.",
+        loc_hours_lbl: "Horarios:",
+        loc_hours_val: "Lun - Sáb: 09:00 - 19:30 h (Se aconseja contacto previo por WhatsApp)",
+        loc_map_btn: "🗺️ Abrir en Google Maps ↗",
+        loc_visit_btn: "💬 Reservar Visita por WhatsApp",
+        faq_badge: "Información Útil",
+        faq_title: "Preguntas Frecuentes",
+        faq_subtitle: "Todo sobre envíos protegidos internacionales, piezas a medida y autenticidad.",
+        faq_q1: "¿Cómo se elaboran las cerámicas de Antonio Solimene?",
+        faq_a1: "Cada obra es torneada a mano con arcilla seleccionada. Tras secarse naturalmente, se hornea a 980°C, se esmalta a mano con fórmulas tradicionales y se cuece de nuevo para fijar su brillo.",
+        faq_q2: "¿Puedo solicitar vajillas o recuerdos personalizados?",
+        faq_a2: "Sí, realizamos vajillas a medida, jarrones y recuerdos de boda. Puedes acordar dimensiones y esmaltes directamente con Antonio por WhatsApp.",
+        faq_q3: "¿Las vajillas son aptas para uso alimentario?",
+        faq_a3: "Sí. Todos nuestros esmaltes están certificados 100% sin plomo ni tóxicos. Son resistentes y aptos para lavavajillas en ciclo suave.",
+        faq_q4: "¿Cómo se envían las cerámicas frágiles al extranjero?",
+        faq_a4: "Embalamos cada pieza con burbujas de alta densidad y cajas reforzadas antichoque. Envíos con seguimiento exprés a todo el mundo.",
+        faq_box_title: "¿Tienes una consulta o encargo especial?",
+        faq_box_desc: "Contacta directamente con el maestro Antonio Solimene por WhatsApp para consultar disponibilidad o encargar tu pieza.",
+        faq_box_btn: "💬 Hablar con Antonio por WhatsApp",
+        modal_work_details: "Detalles & Elaboración",
+        modal_avail: "Disponible en el Taller",
+        modal_sold: "Obra Vendida (Archivo)",
+        modal_buy_wa: "Consultar / Comprar por WhatsApp",
+        modal_contact_direct: "Contacto directo con el maestro Antonio Solimene",
+        footer_sub: "Taller Cerámico Artesanal — Tradición centenaria en Vietri sul Mare, Costa Amalfitana",
+        footer_copy: "© 2026 Antonio Solimene — Cerámica de Vietri hecha a mano",
+        footer_admin: "🔒 Gestión Taller",
+        float_wa: "Escribir por WhatsApp",
+        wa_product_msg: "¡Hola Antonio! Te contacto desde tu sitio web solimene.net. Me interesa la obra \"{title}\" (precio: {price}). Desearía comprarla o recibir detalles de envío.",
+        wa_general_msg: "¡Hola Antonio! Te contacto desde tu sitio web solimene.net sobre tus creaciones cerámicas.",
+        wa_visit_msg: "¡Hola Antonio! Me gustaría visitar tu taller en Vietri sul Mare.",
+        wa_bespoke1_msg: "¡Hola Antonio! Quisiera información para una vajilla personalizada.",
+        wa_bespoke2_msg: "¡Hola Antonio! Quisiera presupuesto para recuerdos de boda en cerámica.",
+        wa_bespoke3_msg: "¡Hola Antonio! Quisiera encargar un jarrón o pieza de decoración a medida."
+      }
+    };
+
+    let currentLang = 'it';
+
+    function detectUserLanguage() {
+      const saved = localStorage.getItem('solimene_lang');
+      if (saved && TRANSLATIONS[saved]) return saved;
+
+      const browserLangs = navigator.languages || [navigator.language || navigator.userLanguage || 'it'];
+      for (const lang of browserLangs) {
+        const code = lang.toLowerCase().split('-')[0];
+        if (TRANSLATIONS[code]) return code;
+      }
+      return 'it';
+    }
+
+    function changeSiteLanguage(lang) {
+      if (!TRANSLATIONS[lang]) lang = 'it';
+      currentLang = lang;
+      localStorage.setItem('solimene_lang', lang);
+      document.documentElement.lang = lang;
+
+      // Aggiorna pulsanti lingua attivi
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        if (btn.dataset.lang === lang) {
+          btn.className = "lang-btn px-1.5 py-0.5 rounded font-bold transition text-white bg-vietri-cobalto shadow-2xs";
+        } else {
+          btn.className = "lang-btn px-1.5 py-0.5 rounded font-medium transition text-neutral-400 hover:text-white";
+        }
+      });
+
+      const t = TRANSLATIONS[lang];
+
+      // Aggiorna tutti i testi con data-i18n
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) {
+          el.innerHTML = t[key];
+        }
+      });
+
+      // Aggiorna link WhatsApp generici con lingua corrente
+      updateGeneralWhatsAppLinks();
+
+      // Rinfresca filtri catalogo e catalogo
+      renderCategoryFilters();
+    }
+
+    function updateGeneralWhatsAppLinks() {
+      const t = TRANSLATIONS[currentLang] || TRANSLATIONS['it'];
+      const phone = CONFIG.phone;
+
+      const topWa = document.getElementById('topWaLink');
+      if (topWa) topWa.href = `https://wa.me/${phone}?text=${encodeURIComponent(t.wa_general_msg)}`;
+
+      const heroWa = document.getElementById('heroWaLink');
+      if (heroWa) heroWa.href = `https://wa.me/${phone}?text=${encodeURIComponent(t.wa_general_msg)}`;
+
+      const floatWa = document.getElementById('floatingWaLink');
+      if (floatWa) floatWa.href = `https://wa.me/${phone}?text=${encodeURIComponent(t.wa_general_msg)}`;
+
+      const visitWa = document.getElementById('visitWaLink');
+      if (visitWa) visitWa.href = `https://wa.me/${phone}?text=${encodeURIComponent(t.wa_visit_msg)}`;
+
+      const bespoke1 = document.getElementById('bespokeWaLink1');
+      if (bespoke1) bespoke1.href = `https://wa.me/${phone}?text=${encodeURIComponent(t.wa_bespoke1_msg)}`;
+
+      const bespoke2 = document.getElementById('bespokeWaLink2');
+      if (bespoke2) bespoke2.href = `https://wa.me/${phone}?text=${encodeURIComponent(t.wa_bespoke2_msg)}`;
+
+      const bespoke3 = document.getElementById('bespokeWaLink3');
+      if (bespoke3) bespoke3.href = `https://wa.me/${phone}?text=${encodeURIComponent(t.wa_bespoke3_msg)}`;
+
+      const faqBoxWa = document.getElementById('faqBoxWaLink');
+      if (faqBoxWa) faqBoxWa.href = `https://wa.me/${phone}?text=${encodeURIComponent(t.wa_general_msg)}`;
+
+      const footerWa = document.getElementById('footerWaLink');
+      if (footerWa) footerWa.href = `https://wa.me/${phone}?text=${encodeURIComponent(t.wa_general_msg)}`;
+    }
+
     // -------------------------------------------------------------
     // CONFIGURAZIONE BOTTEGA & DATI INIZIALI
     // -------------------------------------------------------------
@@ -860,6 +1387,9 @@
       const container = document.getElementById('categoryFilterContainer');
       if (!container) return;
 
+      const t = TRANSLATIONS[currentLang] || TRANSLATIONS['it'];
+      const allLabel = t.filter_all || "Tutte le Opere";
+
       const categoriesMap = new Map();
       CATALOG.forEach(p => {
         if (p.category && p.collection) {
@@ -869,7 +1399,7 @@
 
       let html = `
         <button onclick="setFilter('tutti')" class="${activeFilter === 'tutti' ? 'px-5 py-2.5 bg-neutral-950 text-white font-medium filter-btn' : 'px-5 py-2.5 bg-white border border-neutral-300 text-neutral-700 hover:border-neutral-950 filter-btn'}" data-cat="tutti">
-          Tutte le Opere (${CATALOG.length})
+          ${allLabel} (${CATALOG.length})
         </button>
       `;
 
@@ -897,6 +1427,8 @@
       const p = CATALOG.find(x => x.id === id);
       if (!p) return;
 
+      const t = TRANSLATIONS[currentLang] || TRANSLATIONS['it'];
+
       document.getElementById('modalImg').src = p.img;
       document.getElementById('modalTitle').textContent = p.title;
       document.getElementById('modalCollection').textContent = p.collection || 'Bottega Antonio Solimene';
@@ -907,15 +1439,17 @@
       if (badge) {
         if (p.status === 'venduto') {
           badge.className = "text-[9px] uppercase tracking-wider font-bold px-2.5 py-0.5 rounded bg-red-100 text-red-700";
-          badge.textContent = "Opera Venduta (Archivio)";
+          badge.textContent = t.modal_sold || "Opera Venduta (Archivio)";
         } else {
           badge.className = "text-[9px] uppercase tracking-wider font-bold px-2.5 py-0.5 rounded bg-emerald-100 text-emerald-800";
-          badge.textContent = "Disponibile in Bottega";
+          badge.textContent = t.modal_avail || "Disponibile in Bottega";
         }
       }
 
-      const text = encodeURIComponent(`Ciao Antonio! Ti scrivo dal tuo sito web solimene.net. Sono interessato all'opera "${p.title}" della collezione "${p.collection || ''}" (prezzo: ${p.price}). Vorrei acquistarla o avere maggiori informazioni per la consegna.`);
-      document.getElementById('modalWaBtn').href = `https://wa.me/${CONFIG.phone}?text=${text}`;
+      const msgTemplate = t.wa_product_msg || "Ciao Antonio! Ti scrivo dal tuo sito web solimene.net. Sono interessato all'opera \"{title}\" (prezzo: {price}). Vorrei acquistarla o avere maggiori informazioni per la consegna.";
+      const filledMsg = msgTemplate.replace('{title}', p.title).replace('{price}', p.price);
+      
+      document.getElementById('modalWaBtn').href = `https://wa.me/${CONFIG.phone}?text=${encodeURIComponent(filledMsg)}`;
 
       // Nasconde il pulsante fluttuante generico durante la visualizzazione dei dettagli
       const floatBtn = document.getElementById('floatingWhatsAppBtn');

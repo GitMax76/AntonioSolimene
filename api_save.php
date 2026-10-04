@@ -140,6 +140,103 @@ function validateToken($token, $secretSalt) {
     return ($token === $todayToken || $token === $yesterdayToken);
 }
 
+// -------------------------------------------------------------
+// FUNZIONI LOGGING, BACKUP & NOTIFICHE EMAIL
+// -------------------------------------------------------------
+function logActivity($action, $details = '') {
+    $logDir = __DIR__ . '/public';
+    if (!is_dir($logDir)) {
+        @mkdir($logDir, 0777, true);
+    }
+    $logFile = $logDir . '/activity_log.txt';
+    $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+    $time = date('Y-m-d H:i:s');
+    $logLine = "[{$time}] [IP: {$ip}] [{$action}] {$details}\n";
+    @file_put_contents($logFile, $logLine, FILE_APPEND | LOCK_EX);
+}
+
+function createRollingBackup($jsonContent) {
+    $backupDir = __DIR__ . '/public/backups';
+    if (!is_dir($backupDir)) {
+        @mkdir($backupDir, 0777, true);
+    }
+    
+    // Salva file timestampato
+    $filename = 'catalog_backup_' . date('Y-m-d_His') . '.json';
+    $target = $backupDir . '/' . $filename;
+    @file_put_contents($target, $jsonContent, LOCK_EX);
+
+    // Mantiene solo gli ultimi 30 backup per ottimizzare lo spazio
+    $files = glob($backupDir . '/catalog_backup_*.json');
+    if ($files && count($files) > 30) {
+        usort($files, function($a, $b) {
+            return filemtime($a) - filemtime($b);
+        });
+        while (count($files) > 30) {
+            $oldest = array_shift($files);
+            @unlink($oldest);
+        }
+    }
+    return $filename;
+}
+
+function sendBackupEmailNotification($catalog, $toEmail = 'Info@solimene.net') {
+    $count = count($catalog);
+    $subject = "=?UTF-8?B?" . base64_encode("🏺 [solimene.net] Backup Automatico Catalogo ({$count} opere)") . "?=";
+    $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+    $time = date('d/m/Y H:i:s');
+
+    $listHtml = "";
+    foreach (array_slice($catalog, 0, 15) as $item) {
+        $title = htmlspecialchars($item['title'] ?? 'Senza titolo');
+        $price = htmlspecialchars($item['price'] ?? '-');
+        $col = htmlspecialchars($item['collection'] ?? '-');
+        $status = ($item['status'] ?? '') === 'venduto' ? '🔴 Venduto' : '🟢 Disponibile';
+        $listHtml .= "<tr><td style='padding:6px 10px;border-bottom:1px solid #eee;'><strong>{$title}</strong> ({$col})</td><td style='padding:6px 10px;border-bottom:1px solid #eee;'>{$price}</td><td style='padding:6px 10px;border-bottom:1px solid #eee;'>{$status}</td></tr>";
+    }
+
+    $message = "
+    <html>
+    <head><meta charset='UTF-8'></head>
+    <body style='font-family:Arial,sans-serif;color:#333;line-height:1.6;'>
+      <div style='max-width:600px;margin:0 auto;border:1px solid #e0e0e0;border-radius:12px;overflow:hidden;'>
+        <div style='background:#0A3764;color:#fff;padding:20px;text-align:center;'>
+          <h2 style='margin:0;font-size:22px;'>Bottega Antonio Solimene</h2>
+          <p style='margin:5px 0 0;font-size:12px;opacity:0.8;'>Aggiornamento & Backup Catalogo solimene.net</p>
+        </div>
+        <div style='padding:20px;'>
+          <p>Ciao Antonio,</p>
+          <p>È stato eseguito un salvataggio delle creazioni sul sito <strong>solimene.net</strong> in data <strong>{$time}</strong> (IP: {$ip}).</p>
+          <h3 style='color:#0A3764;font-size:16px;border-bottom:2px solid #0A3764;padding-bottom:5px;'>Riepilogo Opere Online ({$count} totali):</h3>
+          <table style='width:100%;border-collapse:collapse;font-size:13px;'>
+            <thead>
+              <tr style='background:#f8f9fa;text-align:left;'>
+                <th style='padding:8px 10px;'>Opera</th>
+                <th style='padding:8px 10px;'>Prezzo</th>
+                <th style='padding:8px 10px;'>Stato</th>
+              </tr>
+            </thead>
+            <tbody>
+              {$listHtml}
+            </tbody>
+          </table>
+          <p style='margin-top:20px;font-size:12px;color:#777;'>Questo messaggio è generato automaticamente dal sistema di gestione bottega di solimene.net.</p>
+        </div>
+      </div>
+    </body>
+    </html>";
+
+    $headers = [
+        'MIME-Version: 1.0',
+        'Content-type: text/html; charset=UTF-8',
+        'From: Bottega Solimene <Info@solimene.net>',
+        'Reply-To: Info@solimene.net',
+        'X-Mailer: PHP/' . phpversion()
+    ];
+
+    @mail($toEmail, $subject, $message, implode("\r\n", $headers));
+}
+
 // Lettura del payload JSON
 $rawInput = file_get_contents('php://input');
 $data = json_decode($rawInput, true);
@@ -175,6 +272,7 @@ if ($action === 'login') {
     if ($inputPin === $currentPin) {
         clearRateLimit($rateLimitFile, $clientIp);
         $token = generateToken($secretSalt);
+        logActivity('LOGIN_OK', 'Accesso autorizzato alla gestione bottega');
         http_response_code(200);
         echo json_encode([
             'success' => true,
@@ -184,6 +282,7 @@ if ($action === 'login') {
         exit;
     } else {
         recordFailedAttempt($rateLimitFile, $clientIp);
+        logActivity('LOGIN_FAILED', 'Tentativo di accesso con PIN non valido: ' . substr($inputPin, 0, 2) . '***');
         usleep(300000); // Ritardo di 300ms anti brute-force
         http_response_code(401);
         echo json_encode([
@@ -203,6 +302,7 @@ if ($action === 'change_pin') {
     $isAuthorized = validateToken($token, $secretSalt) || ($oldPin === $currentPin);
 
     if (!$isAuthorized || $oldPin !== $currentPin) {
+        logActivity('PIN_CHANGE_FAIL', 'Tentativo cambio PIN non autorizzato');
         http_response_code(401);
         echo json_encode([
             'success' => false,
@@ -223,6 +323,7 @@ if ($action === 'change_pin') {
     $saved = @file_put_contents($pinFile, json_encode(['pin' => $newPin, 'updated_at' => date('c')]), LOCK_EX);
     if ($saved !== false) {
         $newToken = generateToken($secretSalt);
+        logActivity('PIN_CHANGED', 'Codice segreto di accesso aggiornato con successo');
         http_response_code(200);
         echo json_encode([
             'success' => true,
@@ -248,6 +349,7 @@ if ($action === 'save') {
     $isAuth = validateToken($providedToken, $secretSalt) || ($providedPin === $currentPin);
 
     if (!$isAuth) {
+        logActivity('SAVE_UNAUTHORIZED', 'Tentativo di salvataggio senza autorizzazione valida');
         http_response_code(401);
         echo json_encode([
             'success' => false,
@@ -298,6 +400,7 @@ if ($action === 'save') {
     }
 
     if (!$saved) {
+        logActivity('SAVE_ERROR', 'Impossibile scrivere il file catalog.json sul server');
         http_response_code(500);
         echo json_encode([
             'success' => false,
@@ -306,12 +409,23 @@ if ($action === 'save') {
         exit;
     }
 
+    // 1. Crea Backup Storico Timestampato (Rotazione 30 copie)
+    $backupFile = createRollingBackup($jsonContent);
+
+    // 2. Registra Log di Attività
+    $itemsCount = count($data['catalog']);
+    logActivity('CATALOG_SAVED', "Catalogo aggiornato con {$itemsCount} opere. Backup creato: {$backupFile}");
+
+    // 3. Invia Notifica Email di Backup ad Antonio (Info@solimene.net)
+    @sendBackupEmailNotification($data['catalog'], 'Info@solimene.net');
+
     http_response_code(200);
     echo json_encode([
         'success' => true,
         'message' => 'Catalogo aggiornato con successo!',
         'saved_to' => $savedPath,
-        'items_count' => count($data['catalog']),
+        'backup_file' => $backupFile,
+        'items_count' => $itemsCount,
         'updated_at' => date('c')
     ]);
     exit;
@@ -319,3 +433,4 @@ if ($action === 'save') {
 
 http_response_code(400);
 echo json_encode(['success' => false, 'message' => 'Azione non riconosciuta.']);
+
