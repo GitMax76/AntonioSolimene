@@ -67,9 +67,39 @@
         "openingHoursSpecification": [
           {
             "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
             "opens": "09:00",
+            "closes": "13:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "16:00",
             "closes": "19:30"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Saturday"],
+            "opens": "09:00",
+            "closes": "13:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Saturday"],
+            "opens": "16:00",
+            "closes": "20:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Sunday"],
+            "opens": "09:00",
+            "closes": "13:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Sunday"],
+            "opens": "16:30",
+            "closes": "20:00"
           }
         ]
       },
@@ -159,11 +189,16 @@
   <div class="bg-neutral-950 text-white px-4 py-2 text-xs border-b border-neutral-800 shadow-xs">
     <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
       
-      <!-- Stato Bottega & WhatsApp -->
+      <!-- Stato Bottega Dinamico & WhatsApp -->
       <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
-        <span class="inline-flex items-center gap-1.5 font-semibold text-vietri-ocra tracking-wider uppercase text-[10px] sm:text-[11px]">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-          <span data-i18n="top_badge">Bottega Aperta a Vietri sul Mare</span>
+        <span id="shopStatusBadge" class="inline-flex items-center gap-2 font-semibold text-emerald-400 tracking-wider uppercase text-[10px] sm:text-[11px] transition-colors">
+          <span id="shopStatusDot" class="inline-flex items-center justify-center">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+          </span>
+          <span id="shopStatusText">Bottega Aperta</span>
         </span>
         <span class="text-neutral-400 font-light hidden sm:inline text-xs" data-i18n="top_subtitle">
           — Pezzi unici forgiati a mano al tornio & creazioni su misura.
@@ -849,7 +884,12 @@
         loc_train_lbl: "In Treno o Traghetto:",
         loc_train_val: "Stazione FS Vietri sul Mare o Stazione Centrale di Salerno + traghetto/bus per la Costiera.",
         loc_hours_lbl: "Orari Bottega:",
-        loc_hours_val: "Lun - Sab: 09:00 - 19:30 (Si consiglia un contatto preventivo WhatsApp)",
+        loc_hours_val: "Dom: 09–13, 16:30–20 | Lun–Ven: 09–13, 16–19:30 | Sab: 09–13, 16–20",
+        status_open: "Bottega Aperta (fino alle {time})",
+        status_closing: "La Bottega chiude tra poco (alle {time})",
+        status_closed_today: "Bottega Chiusa · Riapre oggi alle {time}",
+        status_closed_tomorrow: "Bottega Chiusa · Riapre domani alle {time}",
+        status_closed_day: "Bottega Chiusa · Riapre {day} alle {time}",
         loc_map_btn: "🗺️ Apri su Google Maps ↗",
         loc_visit_btn: "💬 Prenota Visita su WhatsApp",
         faq_badge: "Informazioni Utili",
@@ -935,7 +975,12 @@
         loc_train_lbl: "By Train / Ferry:",
         loc_train_val: "Vietri sul Mare Train Station or Salerno Central + ferry/bus along the Amalfi Coast.",
         loc_hours_lbl: "Opening Hours:",
-        loc_hours_val: "Mon - Sat: 09:00 AM - 07:30 PM (Advance WhatsApp contact recommended)",
+        loc_hours_val: "Sun: 09–13, 16:30–20 | Mon–Fri: 09–13, 16–19:30 | Sat: 09–13, 16–20",
+        status_open: "Workshop Open (until {time})",
+        status_closing: "Workshop closing soon (at {time})",
+        status_closed_today: "Workshop Closed · Reopens today at {time}",
+        status_closed_tomorrow: "Workshop Closed · Reopens tomorrow at {time}",
+        status_closed_day: "Workshop Closed · Reopens {day} at {time}",
         loc_map_btn: "🗺️ Open in Google Maps ↗",
         loc_visit_btn: "💬 Book Visit on WhatsApp",
         faq_badge: "Helpful Information",
@@ -1021,7 +1066,12 @@
         loc_train_lbl: "En Train ou Ferry:",
         loc_train_val: "Gare de Vietri sul Mare ou Gare Centrale de Salerne + ferry.",
         loc_hours_lbl: "Horaires:",
-        loc_hours_val: "Lun - Sam: 09h00 - 19h30 (Contact WhatsApp préalable conseillé)",
+        loc_hours_val: "Dim: 09–13, 16:30–20 | Lun–Ven: 09–13, 16–19:30 | Sam: 09–13, 16–20",
+        status_open: "Atelier Ouvert (jusqu'à {time})",
+        status_closing: "L'atelier ferme bientôt (à {time})",
+        status_closed_today: "Atelier Fermé · Réouverture aujourd'hui à {time}",
+        status_closed_tomorrow: "Atelier Fermé · Réouverture demain à {time}",
+        status_closed_day: "Atelier Fermé · Réouverture {day} à {time}",
         loc_map_btn: "🗺️ Ouvrir sur Google Maps ↗",
         loc_visit_btn: "💬 Réserver Visite sur WhatsApp",
         faq_badge: "Informations Utiles",
@@ -1107,7 +1157,12 @@
         loc_train_lbl: "Mit Bahn / Fähre:",
         loc_train_val: "Bahnhof Vietri sul Mare oder Salerno Hbf + Fähre/Bus.",
         loc_hours_lbl: "Öffnungszeiten:",
-        loc_hours_val: "Mo - Sa: 09:00 - 19:30 Uhr (Vorherige WhatsApp-Meldung empfohlen)",
+        loc_hours_val: "So: 09–13, 16:30–20 | Mo–Fr: 09–13, 16–19:30 | Sa: 09–13, 16–20",
+        status_open: "Werkstatt Geöffnet (bis {time})",
+        status_closing: "Werkstatt schließt bald (um {time})",
+        status_closed_today: "Werkstatt Geschlossen · Öffnet heute um {time}",
+        status_closed_tomorrow: "Werkstatt Geschlossen · Öffnet morgen um {time}",
+        status_closed_day: "Werkstatt Geschlossen · Öffnet {day} um {time}",
         loc_map_btn: "🗺️ Auf Google Maps öffnen ↗",
         loc_visit_btn: "💬 Besuch per WhatsApp anfragen",
         faq_badge: "Wichtige Informationen",
@@ -1193,7 +1248,12 @@
         loc_train_lbl: "En Tren o Ferry:",
         loc_train_val: "Estación de Vietri sul Mare o Salerno Central + ferry.",
         loc_hours_lbl: "Horarios:",
-        loc_hours_val: "Lun - Sáb: 09:00 - 19:30 h (Se aconseja contacto previo por WhatsApp)",
+        loc_hours_val: "Dom: 09–13, 16:30–20 | Lun–Vie: 09–13, 16–19:30 | Sáb: 09–13, 16–20",
+        status_open: "Taller Abierto (hasta las {time})",
+        status_closing: "El taller cierra pronto (a las {time})",
+        status_closed_today: "Taller Cerrado · Reabre hoy a las {time}",
+        status_closed_tomorrow: "Taller Cerrado · Reabre mañana a las {time}",
+        status_closed_day: "Taller Cerrado · Reabre {day} a las {time}",
         loc_map_btn: "🗺️ Abrir en Google Maps ↗",
         loc_visit_btn: "💬 Reservar Visita por WhatsApp",
         faq_badge: "Información Útil",
@@ -1242,6 +1302,144 @@
       return 'it';
     }
 
+    const SHOP_HOURS = {
+      0: [ { open: 9*60, close: 13*60 }, { open: 16*60 + 30, close: 20*60 } ], // Dom: 09–13, 16:30–20
+      1: [ { open: 9*60, close: 13*60 }, { open: 16*60, close: 19*60 + 30 } ], // Lun: 09–13, 16–19:30
+      2: [ { open: 9*60, close: 13*60 }, { open: 16*60, close: 19*60 + 30 } ], // Mar: 09–13, 16–19:30
+      3: [ { open: 9*60, close: 13*60 }, { open: 16*60, close: 19*60 + 30 } ], // Mer: 09–13, 16–19:30
+      4: [ { open: 9*60, close: 13*60 }, { open: 16*60, close: 19*60 + 30 } ], // Gio: 09–13, 16–19:30
+      5: [ { open: 9*60, close: 13*60 }, { open: 16*60, close: 19*60 + 30 } ], // Ven: 09–13, 16–19:30
+      6: [ { open: 9*60, close: 13*60 }, { open: 16*60, close: 20*60 } ]        // Sab: 09–13, 16–20
+    };
+
+    const DAY_NAMES = {
+      it: ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'],
+      en: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      fr: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+      de: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+      es: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']
+    };
+
+    function getShopLiveStatus() {
+      const now = new Date();
+      // Calcolo orario effettivo fuso orario di Roma (Italia)
+      const romeDate = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Rome" }));
+      const day = romeDate.getDay();
+      const currentMinutes = romeDate.getHours() * 60 + romeDate.getMinutes();
+      const todaySlots = SHOP_HOURS[day] || [];
+
+      // 1. Controllo se attualmente in orario di apertura
+      for (const slot of todaySlots) {
+        if (currentMinutes >= slot.open && currentMinutes < slot.close) {
+          const minutesToClose = slot.close - currentMinutes;
+          const closeH = Math.floor(slot.close / 60).toString().padStart(2, '0');
+          const closeM = (slot.close % 60).toString().padStart(2, '0');
+          const closeTimeStr = `${closeH}:${closeM}`;
+
+          // Se mancano 45 minuti o meno alla chiusura: LUCE GIALLA LAMPEGGIANTE
+          if (minutesToClose <= 45) {
+            return {
+              state: 'CLOSING_SOON',
+              closeTime: closeTimeStr,
+              minutesLeft: minutesToClose
+            };
+          } else {
+            // LUCE VERDE LAMPEGGIANTE
+            return {
+              state: 'OPEN',
+              closeTime: closeTimeStr
+            };
+          }
+        }
+      }
+
+      // 2. Se attualmente chiusa: calcola prossima riapertura
+      // 2a. Secondo turno odierno (pomeridiano)
+      for (const slot of todaySlots) {
+        if (slot.open > currentMinutes) {
+          const openH = Math.floor(slot.open / 60).toString().padStart(2, '0');
+          const openM = (slot.open % 60).toString().padStart(2, '0');
+          return {
+            state: 'CLOSED',
+            nextDayType: 'today',
+            nextOpenTime: `${openH}:${openM}`
+          };
+        }
+      }
+
+      // 2b. Turno di domani o giorni successivi
+      for (let offset = 1; offset <= 7; offset++) {
+        const nextDayIdx = (day + offset) % 7;
+        const nextDaySlots = SHOP_HOURS[nextDayIdx] || [];
+        if (nextDaySlots.length > 0) {
+          const firstSlot = nextDaySlots[0];
+          const openH = Math.floor(firstSlot.open / 60).toString().padStart(2, '0');
+          const openM = (firstSlot.open % 60).toString().padStart(2, '0');
+          return {
+            state: 'CLOSED',
+            nextDayType: offset === 1 ? 'tomorrow' : 'other_day',
+            nextDayIdx: nextDayIdx,
+            nextOpenTime: `${openH}:${openM}`
+          };
+        }
+      }
+
+      return { state: 'CLOSED', nextDayType: 'tomorrow', nextOpenTime: '09:00' };
+    }
+
+    function updateShopLiveStatusUI() {
+      const status = getShopLiveStatus();
+      const t = TRANSLATIONS[currentLang] || TRANSLATIONS['it'];
+      const lang = currentLang || 'it';
+
+      const badgeEl = document.getElementById('shopStatusBadge');
+      const dotEl = document.getElementById('shopStatusDot');
+      const textEl = document.getElementById('shopStatusText');
+
+      if (!badgeEl || !dotEl || !textEl) return;
+
+      if (status.state === 'OPEN') {
+        badgeEl.className = "inline-flex items-center gap-2 font-semibold text-emerald-400 tracking-wider uppercase text-[10px] sm:text-[11px] transition-colors";
+        dotEl.innerHTML = `
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+        `;
+        const template = t.status_open || "Bottega Aperta (fino alle {time})";
+        textEl.textContent = template.replace('{time}', status.closeTime);
+      } else if (status.state === 'CLOSING_SOON') {
+        badgeEl.className = "inline-flex items-center gap-2 font-semibold text-amber-300 tracking-wider uppercase text-[10px] sm:text-[11px] transition-colors";
+        dotEl.innerHTML = `
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+          </span>
+        `;
+        const template = t.status_closing || "La Bottega chiude a breve (alle {time})";
+        textEl.textContent = template.replace('{time}', status.closeTime);
+      } else { // CLOSED
+        badgeEl.className = "inline-flex items-center gap-2 font-semibold text-rose-300 tracking-wider uppercase text-[10px] sm:text-[11px] transition-colors";
+        dotEl.innerHTML = `
+          <span class="relative flex h-2 w-2">
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-rose-500 ring-2 ring-rose-900/60"></span>
+          </span>
+        `;
+
+        if (status.nextDayType === 'today') {
+          const template = t.status_closed_today || "Bottega Chiusa · Riapre oggi alle {time}";
+          textEl.textContent = template.replace('{time}', status.nextOpenTime);
+        } else if (status.nextDayType === 'tomorrow') {
+          const template = t.status_closed_tomorrow || "Bottega Chiusa · Riapre domani alle {time}";
+          textEl.textContent = template.replace('{time}', status.nextOpenTime);
+        } else {
+          const dayName = (DAY_NAMES[lang] || DAY_NAMES['it'])[status.nextDayIdx];
+          const template = t.status_closed_day || "Bottega Chiusa · Riapre {day} alle {time}";
+          textEl.textContent = template.replace('{day}', dayName).replace('{time}', status.nextOpenTime);
+        }
+      }
+    }
+
     function changeSiteLanguage(lang) {
       if (!TRANSLATIONS[lang]) lang = 'it';
       currentLang = lang;
@@ -1266,6 +1464,9 @@
           el.innerHTML = t[key];
         }
       });
+
+      // Aggiorna indicatore di stato bottega e orari
+      updateShopLiveStatusUI();
 
       // Aggiorna link WhatsApp generici con lingua corrente
       updateGeneralWhatsAppLinks();
@@ -1594,7 +1795,11 @@
       `).join('');
     }
 
-    // Inizializzazione pagina con caricamento asincrono
+    // Inizializzazione pagina con lingua rilevata e caricamento asincrono
+    const initialLang = detectUserLanguage();
+    changeSiteLanguage(initialLang);
+    setInterval(updateShopLiveStatusUI, 30000);
+
     loadProducts().then(items => {
       CATALOG = items;
       renderCategoryFilters();
