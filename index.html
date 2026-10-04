@@ -175,17 +175,45 @@
         </a>
       </div>
 
-      <!-- SELETTORE LINGUA DISCRETO (IT, EN, FR, DE, ES) -->
-      <div class="flex items-center gap-1 bg-neutral-900 border border-neutral-800 rounded-full px-2.5 py-0.5 text-[11px]">
-        <button onclick="changeSiteLanguage('it')" class="lang-btn px-1.5 py-0.5 rounded font-medium transition text-white hover:text-vietri-ocra" data-lang="it" title="Italiano">🇮🇹 IT</button>
-        <span class="text-neutral-700 text-[9px]">•</span>
-        <button onclick="changeSiteLanguage('en')" class="lang-btn px-1.5 py-0.5 rounded font-medium transition text-neutral-400 hover:text-white" data-lang="en" title="English">🇬🇧 EN</button>
-        <span class="text-neutral-700 text-[9px]">•</span>
-        <button onclick="changeSiteLanguage('fr')" class="lang-btn px-1.5 py-0.5 rounded font-medium transition text-neutral-400 hover:text-white" data-lang="fr" title="Français">🇫🇷 FR</button>
-        <span class="text-neutral-700 text-[9px]">•</span>
-        <button onclick="changeSiteLanguage('de')" class="lang-btn px-1.5 py-0.5 rounded font-medium transition text-neutral-400 hover:text-white" data-lang="de" title="Deutsch">🇩🇪 DE</button>
-        <span class="text-neutral-700 text-[9px]">•</span>
-        <button onclick="changeSiteLanguage('es')" class="lang-btn px-1.5 py-0.5 rounded font-medium transition text-neutral-400 hover:text-white" data-lang="es" title="Español">🇪🇸 ES</button>
+      <!-- SELETTORE LINGUA DISCRETO (Solo Bandierine SVG) -->
+      <div class="flex items-center gap-1.5 bg-neutral-900 border border-neutral-800 rounded-full px-2 py-1">
+        <button onclick="changeSiteLanguage('it')" class="lang-btn p-0.5 rounded transition duration-200 opacity-100 ring-1.5 ring-vietri-ocra scale-105 bg-white/10" data-lang="it" title="Italiano" aria-label="Italiano">
+          <svg class="w-5 h-3.5 rounded-[2px] shadow-xs block" viewBox="0 0 3 2">
+            <rect width="1" height="2" fill="#009246"/>
+            <rect width="1" height="2" x="1" fill="#ffffff"/>
+            <rect width="1" height="2" x="2" fill="#ce2b37"/>
+          </svg>
+        </button>
+        <button onclick="changeSiteLanguage('en')" class="lang-btn p-0.5 rounded transition duration-200 opacity-50 hover:opacity-100 hover:scale-105" data-lang="en" title="English" aria-label="English">
+          <svg class="w-5 h-3.5 rounded-[2px] shadow-xs block" viewBox="0 0 600 300">
+            <rect width="600" height="300" fill="#012169"/>
+            <path d="M0,0 L600,300 M600,0 L0,300" stroke="#fff" stroke-width="60"/>
+            <path d="M0,0 L600,300" stroke="#C8102E" stroke-width="20"/>
+            <path d="M600,0 L0,300" stroke="#C8102E" stroke-width="20"/>
+            <path d="M300,0 v300 M0,150 h600" stroke="#fff" stroke-width="100"/>
+            <path d="M300,0 v300 M0,150 h600" stroke="#C8102E" stroke-width="60"/>
+          </svg>
+        </button>
+        <button onclick="changeSiteLanguage('fr')" class="lang-btn p-0.5 rounded transition duration-200 opacity-50 hover:opacity-100 hover:scale-105" data-lang="fr" title="Français" aria-label="Français">
+          <svg class="w-5 h-3.5 rounded-[2px] shadow-xs block" viewBox="0 0 3 2">
+            <rect width="1" height="2" fill="#0055A4"/>
+            <rect width="1" height="2" x="1" fill="#ffffff"/>
+            <rect width="1" height="2" x="2" fill="#EF4135"/>
+          </svg>
+        </button>
+        <button onclick="changeSiteLanguage('de')" class="lang-btn p-0.5 rounded transition duration-200 opacity-50 hover:opacity-100 hover:scale-105" data-lang="de" title="Deutsch" aria-label="Deutsch">
+          <svg class="w-5 h-3.5 rounded-[2px] shadow-xs block" viewBox="0 0 5 3">
+            <rect width="5" height="1" y="0" fill="#000000"/>
+            <rect width="5" height="1" y="1" fill="#DD0000"/>
+            <rect width="5" height="1" y="2" fill="#FFCE00"/>
+          </svg>
+        </button>
+        <button onclick="changeSiteLanguage('es')" class="lang-btn p-0.5 rounded transition duration-200 opacity-50 hover:opacity-100 hover:scale-105" data-lang="es" title="Español" aria-label="Español">
+          <svg class="w-5 h-3.5 rounded-[2px] shadow-xs block" viewBox="0 0 750 500">
+            <rect width="750" height="500" fill="#AA151B"/>
+            <rect width="750" height="250" y="125" fill="#F1BF00"/>
+          </svg>
+        </button>
       </div>
 
     </div>
@@ -1220,12 +1248,12 @@
       localStorage.setItem('solimene_lang', lang);
       document.documentElement.lang = lang;
 
-      // Aggiorna pulsanti lingua attivi
+      // Aggiorna pulsanti lingua attivi (bandierine pure)
       document.querySelectorAll('.lang-btn').forEach(btn => {
         if (btn.dataset.lang === lang) {
-          btn.className = "lang-btn px-1.5 py-0.5 rounded font-bold transition text-white bg-vietri-cobalto shadow-2xs";
+          btn.className = "lang-btn p-0.5 rounded transition duration-200 opacity-100 ring-1.5 ring-vietri-ocra scale-105 bg-white/10";
         } else {
-          btn.className = "lang-btn px-1.5 py-0.5 rounded font-medium transition text-neutral-400 hover:text-white";
+          btn.className = "lang-btn p-0.5 rounded transition duration-200 opacity-50 hover:opacity-100 hover:scale-105";
         }
       });
 
