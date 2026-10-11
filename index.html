@@ -13,11 +13,11 @@
   <link rel="canonical" href="https://www.solimene.net/">
 
   <!-- FAVICON & TOUCH ICONS -->
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=2">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png?v=2">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=2">
+  <link rel="shortcut icon" href="favicon.ico?v=2">
   <meta name="theme-color" content="#0A3764">
 
   <!-- Meta tag social (OpenGraph & WhatsApp Preview) -->
@@ -218,45 +218,42 @@
         </a>
       </div>
 
-      <!-- SELETTORE LINGUA DISCRETO (Solo Bandierine SVG) -->
-      <div class="flex items-center gap-1.5 bg-neutral-900 border border-neutral-800 rounded-full px-2 py-1">
-        <button onclick="changeSiteLanguage('it')" class="lang-btn p-0.5 rounded transition duration-200 opacity-100 ring-1.5 ring-vietri-ocra scale-105 bg-white/10" data-lang="it" title="Italiano" aria-label="Italiano">
-          <svg class="w-5 h-3.5 rounded-[2px] shadow-xs block" viewBox="0 0 3 2">
-            <rect width="1" height="2" fill="#009246"/>
-            <rect width="1" height="2" x="1" fill="#ffffff"/>
-            <rect width="1" height="2" x="2" fill="#ce2b37"/>
+      <!-- SELETTORE LINGUA ELEGANTE MINIMALISTA (Opzione 1: Pillola compatta + Menu Dropdown) -->
+      <div class="relative inline-block text-left" id="langDropdownContainer">
+        <button id="langDropdownBtn" onclick="toggleLangDropdown(event)" 
+                class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-neutral-900 border border-neutral-700/90 hover:border-vietri-ocra text-white text-[11px] font-medium tracking-wider transition-all shadow-xs cursor-pointer focus:outline-none"
+                aria-expanded="false" aria-haspopup="true" aria-label="Seleziona Lingua">
+          <span class="text-xs">🌐</span>
+          <span id="currentLangCode" class="font-semibold text-vietri-ocra">IT</span>
+          <svg class="w-3 h-3 text-neutral-400 transition-transform duration-200" id="langDropdownArrow" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
           </svg>
         </button>
-        <button onclick="changeSiteLanguage('en')" class="lang-btn p-0.5 rounded transition duration-200 opacity-50 hover:opacity-100 hover:scale-105" data-lang="en" title="English" aria-label="English">
-          <svg class="w-5 h-3.5 rounded-[2px] shadow-xs block" viewBox="0 0 600 300">
-            <rect width="600" height="300" fill="#012169"/>
-            <path d="M0,0 L600,300 M600,0 L0,300" stroke="#fff" stroke-width="60"/>
-            <path d="M0,0 L600,300" stroke="#C8102E" stroke-width="20"/>
-            <path d="M600,0 L0,300" stroke="#C8102E" stroke-width="20"/>
-            <path d="M300,0 v300 M0,150 h600" stroke="#fff" stroke-width="100"/>
-            <path d="M300,0 v300 M0,150 h600" stroke="#C8102E" stroke-width="60"/>
-          </svg>
-        </button>
-        <button onclick="changeSiteLanguage('fr')" class="lang-btn p-0.5 rounded transition duration-200 opacity-50 hover:opacity-100 hover:scale-105" data-lang="fr" title="Français" aria-label="Français">
-          <svg class="w-5 h-3.5 rounded-[2px] shadow-xs block" viewBox="0 0 3 2">
-            <rect width="1" height="2" fill="#0055A4"/>
-            <rect width="1" height="2" x="1" fill="#ffffff"/>
-            <rect width="1" height="2" x="2" fill="#EF4135"/>
-          </svg>
-        </button>
-        <button onclick="changeSiteLanguage('de')" class="lang-btn p-0.5 rounded transition duration-200 opacity-50 hover:opacity-100 hover:scale-105" data-lang="de" title="Deutsch" aria-label="Deutsch">
-          <svg class="w-5 h-3.5 rounded-[2px] shadow-xs block" viewBox="0 0 5 3">
-            <rect width="5" height="1" y="0" fill="#000000"/>
-            <rect width="5" height="1" y="1" fill="#DD0000"/>
-            <rect width="5" height="1" y="2" fill="#FFCE00"/>
-          </svg>
-        </button>
-        <button onclick="changeSiteLanguage('es')" class="lang-btn p-0.5 rounded transition duration-200 opacity-50 hover:opacity-100 hover:scale-105" data-lang="es" title="Español" aria-label="Español">
-          <svg class="w-5 h-3.5 rounded-[2px] shadow-xs block" viewBox="0 0 750 500">
-            <rect width="750" height="500" fill="#AA151B"/>
-            <rect width="750" height="250" y="125" fill="#F1BF00"/>
-          </svg>
-        </button>
+
+        <!-- Dropdown Menu a Scomparsa -->
+        <div id="langDropdownMenu" 
+             class="absolute right-0 mt-2 w-36 bg-neutral-950/95 backdrop-blur-md border border-neutral-800 rounded-xl shadow-2xl py-1 z-50 hidden transition-all duration-200">
+          <button onclick="changeSiteLanguage('it'); closeLangDropdown();" data-lang-opt="it" class="w-full text-left px-3 py-1.5 text-xs text-neutral-300 hover:text-white hover:bg-white/10 flex items-center justify-between transition">
+            <span>🇮🇹 Italiano</span>
+            <span class="lang-check text-vietri-ocra text-xs">✓</span>
+          </button>
+          <button onclick="changeSiteLanguage('en'); closeLangDropdown();" data-lang-opt="en" class="w-full text-left px-3 py-1.5 text-xs text-neutral-300 hover:text-white hover:bg-white/10 flex items-center justify-between transition">
+            <span>🇬🇧 English</span>
+            <span class="lang-check text-vietri-ocra text-xs hidden">✓</span>
+          </button>
+          <button onclick="changeSiteLanguage('fr'); closeLangDropdown();" data-lang-opt="fr" class="w-full text-left px-3 py-1.5 text-xs text-neutral-300 hover:text-white hover:bg-white/10 flex items-center justify-between transition">
+            <span>🇫🇷 Français</span>
+            <span class="lang-check text-vietri-ocra text-xs hidden">✓</span>
+          </button>
+          <button onclick="changeSiteLanguage('de'); closeLangDropdown();" data-lang-opt="de" class="w-full text-left px-3 py-1.5 text-xs text-neutral-300 hover:text-white hover:bg-white/10 flex items-center justify-between transition">
+            <span>🇩🇪 Deutsch</span>
+            <span class="lang-check text-vietri-ocra text-xs hidden">✓</span>
+          </button>
+          <button onclick="changeSiteLanguage('es'); closeLangDropdown();" data-lang-opt="es" class="w-full text-left px-3 py-1.5 text-xs text-neutral-300 hover:text-white hover:bg-white/10 flex items-center justify-between transition">
+            <span>🇪🇸 Español</span>
+            <span class="lang-check text-vietri-ocra text-xs hidden">✓</span>
+          </button>
+        </div>
       </div>
 
     </div>
@@ -1530,18 +1527,59 @@
       }
     }
 
+    // GESTIONE DROPDOWN LINGUA ELEGANTE
+    function toggleLangDropdown(e) {
+      if (e) e.stopPropagation();
+      const menu = document.getElementById('langDropdownMenu');
+      const arrow = document.getElementById('langDropdownArrow');
+      const btn = document.getElementById('langDropdownBtn');
+      if (!menu) return;
+      const isHidden = menu.classList.contains('hidden');
+      if (isHidden) {
+        menu.classList.remove('hidden');
+        if (arrow) arrow.classList.add('rotate-180');
+        if (btn) btn.setAttribute('aria-expanded', 'true');
+      } else {
+        closeLangDropdown();
+      }
+    }
+
+    function closeLangDropdown() {
+      const menu = document.getElementById('langDropdownMenu');
+      const arrow = document.getElementById('langDropdownArrow');
+      const btn = document.getElementById('langDropdownBtn');
+      if (menu) menu.classList.add('hidden');
+      if (arrow) arrow.classList.remove('rotate-180');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+    }
+
+    document.addEventListener('click', function(e) {
+      const container = document.getElementById('langDropdownContainer');
+      if (container && !container.contains(e.target)) {
+        closeLangDropdown();
+      }
+    });
+
     function changeSiteLanguage(lang) {
       if (!TRANSLATIONS[lang]) lang = 'it';
       currentLang = lang;
       localStorage.setItem('solimene_lang', lang);
       document.documentElement.lang = lang;
 
-      // Aggiorna pulsanti lingua attivi (bandierine pure)
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        if (btn.dataset.lang === lang) {
-          btn.className = "lang-btn p-0.5 rounded transition duration-200 opacity-100 ring-1.5 ring-vietri-ocra scale-105 bg-white/10";
+      // Aggiorna codice visualizzato sul pulsante dropdown
+      const codeEl = document.getElementById('currentLangCode');
+      if (codeEl) codeEl.textContent = lang.toUpperCase();
+
+      // Aggiorna voci selezionate nel menu a tendina
+      document.querySelectorAll('[data-lang-opt]').forEach(btn => {
+        const isCurrent = btn.getAttribute('data-lang-opt') === lang;
+        const check = btn.querySelector('.lang-check');
+        if (isCurrent) {
+          btn.classList.add('font-semibold', 'text-white', 'bg-white/10');
+          if (check) check.classList.remove('hidden');
         } else {
-          btn.className = "lang-btn p-0.5 rounded transition duration-200 opacity-50 hover:opacity-100 hover:scale-105";
+          btn.classList.remove('font-semibold', 'text-white', 'bg-white/10');
+          if (check) check.classList.add('hidden');
         }
       });
 

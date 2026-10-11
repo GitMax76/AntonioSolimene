@@ -1,48 +1,61 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <defs>
-    <linearGradient id="cobaltGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0F477E"/>
-      <stop offset="100%" stop-color="#062343"/>
+    <!-- Gradiente Terracotta Viva Vietrese -->
+    <linearGradient id="cotto" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E65A2C"/>
+      <stop offset="50%" stop-color="#C84820"/>
+      <stop offset="100%" stop-color="#9E2F0E"/>
     </linearGradient>
-    <linearGradient id="clayGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FAF7F2"/>
-      <stop offset="100%" stop-color="#E8DECE"/>
+    <!-- Gradiente Cobalto Vietri per decorazione e riflesso -->
+    <linearGradient id="cobalto" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00529B"/>
+      <stop offset="100%" stop-color="#0A3663"/>
     </linearGradient>
-    <linearGradient id="cottoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#E26C42"/>
-      <stop offset="100%" stop-color="#B44A24"/>
+    <!-- Riflesso smalto luce -->
+    <linearGradient id="highlight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
     </linearGradient>
   </defs>
 
-  <!-- Sfondo Circolare Cobalto Vietrese -->
-  <circle cx="256" cy="256" r="246" fill="url(#cobaltGrad)" stroke="#D99B26" stroke-width="12"/>
+  <!-- Sagoma Vaso / Anfora Artigianale a tutto spazio (Zero margini inutili) -->
+  <g id="vaso" transform="translate(32, 33) scale(1.05) translate(-32, -33)">
+    
+    <!-- Manico Sinistro Robusto -->
+    <path d="M 18,17 C 7,17 5,34 16,42 C 18,43 19,40 19,38 C 12,32 13,22 20,21 Z" 
+          fill="url(#cotto)" stroke="#7A2208" stroke-width="0.8" stroke-linejoin="round"/>
 
-  <!-- Cerchio decorativo interno sottile (Tradizione Maiolica) -->
-  <circle cx="256" cy="256" r="224" fill="none" stroke="#FAF7F2" stroke-width="3" stroke-opacity="0.4" stroke-dasharray="8 8"/>
+    <!-- Manico Destro Robusto -->
+    <path d="M 46,17 C 57,17 59,34 48,42 C 46,43 45,40 45,38 C 52,32 51,22 44,21 Z" 
+          fill="url(#cotto)" stroke="#7A2208" stroke-width="0.8" stroke-linejoin="round"/>
 
-  <!-- Vaso / Anfora Forgiata al Tornio -->
-  <g id="amphora" transform="translate(0, 5)">
-    <!-- Bocca del Vaso -->
-    <ellipse cx="256" cy="135" rx="58" ry="15" fill="url(#clayGrad)"/>
-    <ellipse cx="256" cy="135" rx="46" ry="10" fill="#0A3764" opacity="0.4"/>
+    <!-- Piede / Base Tornio -->
+    <path d="M 24,54 L 21,59 C 21,60.5 43,60.5 43,59 L 40,54 Z" 
+          fill="url(#cotto)" stroke="#7A2208" stroke-width="0.8"/>
+    <ellipse cx="32" cy="59.5" rx="11" ry="1.5" fill="#7A2208"/>
 
-    <!-- Collo e Corpo Vaso -->
-    <path d="M212 135 C214 175, 218 198, 188 232 C154 270, 154 330, 192 370 C220 400, 240 408, 256 408 C272 408, 292 400, 320 370 C358 330, 358 270, 324 232 C294 198, 298 175, 300 135 Z" 
-          fill="url(#clayGrad)" />
+    <!-- Pancia dell'Anfora (Ampia e rotonda, riempie il frame) -->
+    <path d="M 23,20 C 23,26 15,31 15,41 C 15,51 23,55 32,55 C 41,55 49,51 49,41 C 49,31 41,26 41,20 Z" 
+          fill="url(#cotto)" stroke="#7A2208" stroke-width="0.8"/>
 
-    <!-- Fascia Cotto Vietri -->
-    <path d="M174 282 C196 302, 228 310, 256 310 C284 310, 316 302, 338 282 C340 298, 335 315, 324 330 C302 345, 276 352, 256 352 C236 352, 210 345, 188 330 C177 315, 172 298, 174 282 Z" 
-          fill="url(#cottoGrad)" />
+    <!-- Fascia Smaltata Cobalto Vietri (Decorazione caratteristica maiolica) -->
+    <path d="M 16,39 C 20,44 26,46 32,46 C 38,46 44,44 48,39 C 48.5,42.5 46.5,47 42,50 C 37,52.5 27,52.5 22,50 C 17.5,47 15.5,42.5 16,39 Z" 
+          fill="url(#cobalto)"/>
 
-    <!-- Sole / Spirale Tornio -->
-    <circle cx="256" cy="265" r="18" fill="#D99B26" />
-    <circle cx="256" cy="265" r="9" fill="#0A3764" />
+    <!-- Punto Luce Sole Vietrese Giallo Ocra al centro -->
+    <circle cx="32" cy="45" r="3.2" fill="#F5A623" stroke="#FFF" stroke-width="0.7"/>
 
-    <!-- Manici Volute Anfora -->
-    <path d="M204 165 C158 165, 144 212, 182 248 C186 242, 191 236, 195 231 C170 206, 176 182, 204 178 Z" fill="url(#clayGrad)"/>
-    <path d="M308 165 C354 165, 368 212, 330 248 C326 242, 321 236, 317 231 C342 206, 336 182, 308 178 Z" fill="url(#clayGrad)"/>
+    <!-- Riflesso lucido smalto sul fianco sinistro -->
+    <path d="M 19,30 C 18,35 20,44 23,47 C 22,43 21,36 22,30 Z" 
+          fill="url(#highlight)"/>
 
-    <!-- Piede del Vaso -->
-    <path d="M222 408 L212 430 C212 434, 300 434, 300 430 L290 408 Z" fill="url(#clayGrad)"/>
+    <!-- Collo e Bocca dell'Anfora -->
+    <path d="M 24,11 L 23,20 C 27,21 37,21 41,20 L 40,11 Z" 
+          fill="url(#cotto)"/>
+    
+    <!-- Orlo svasato superiore -->
+    <ellipse cx="32" cy="11" rx="12" ry="4" fill="#F5A623" stroke="#7A2208" stroke-width="0.8"/>
+    <ellipse cx="32" cy="11" rx="10.5" ry="3" fill="#E65A2C"/>
+    <ellipse cx="32" cy="11" rx="7.5" ry="2" fill="#7A2208"/>
   </g>
 </svg>
