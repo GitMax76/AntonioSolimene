@@ -118,12 +118,15 @@
       </div>
     </div>
 
-    <!-- Filtri Rapidi Catalogo (Tutti, Disponibili, Venduti) -->
-    <div class="flex justify-between items-center mb-4 px-1">
-      <div class="flex items-center gap-2 text-xs">
+    <!-- Filtri Rapidi Catalogo (Tutti, Disponibili, Prenotati, Su Ordinazione, Venduti, Portfolio) -->
+    <div class="flex flex-wrap justify-between items-center gap-2 mb-4 px-1">
+      <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs">
         <button onclick="setAdminFilter('tutti')" class="admin-filter-btn px-3 py-1.5 rounded-lg bg-neutral-900 text-white font-medium" data-filter="tutti">Tutti (<span id="countTutti">0</span>)</button>
-        <button onclick="setAdminFilter('disponibile')" class="admin-filter-btn px-3 py-1.5 rounded-lg bg-white border border-neutral-300 text-neutral-700 hover:border-neutral-900" data-filter="disponibile">Disponibili (<span id="countDisp">0</span>)</button>
-        <button onclick="setAdminFilter('venduto')" class="admin-filter-btn px-3 py-1.5 rounded-lg bg-white border border-neutral-300 text-neutral-700 hover:border-neutral-900" data-filter="venduto">Venduti (<span id="countVend">0</span>)</button>
+        <button onclick="setAdminFilter('disponibile')" class="admin-filter-btn px-3 py-1.5 rounded-lg bg-white border border-neutral-300 text-neutral-700 hover:border-neutral-900" data-filter="disponibile">🟢 Disp. (<span id="countDisp">0</span>)</button>
+        <button onclick="setAdminFilter('prenotato')" class="admin-filter-btn px-3 py-1.5 rounded-lg bg-white border border-neutral-300 text-neutral-700 hover:border-neutral-900" data-filter="prenotato">🟡 Prenotati (<span id="countPren">0</span>)</button>
+        <button onclick="setAdminFilter('ordinazione')" class="admin-filter-btn px-3 py-1.5 rounded-lg bg-white border border-neutral-300 text-neutral-700 hover:border-neutral-900" data-filter="ordinazione">🔵 Su Ord. (<span id="countOrd">0</span>)</button>
+        <button onclick="setAdminFilter('venduto')" class="admin-filter-btn px-3 py-1.5 rounded-lg bg-white border border-neutral-300 text-neutral-700 hover:border-neutral-900" data-filter="venduto">🔴 Venduti (<span id="countVend">0</span>)</button>
+        <button onclick="setAdminFilter('portfolio')" class="admin-filter-btn px-3 py-1.5 rounded-lg bg-white border border-amber-300 text-amber-800 hover:border-amber-500" data-filter="portfolio">⭐ Portfolio (<span id="countPort">0</span>)</button>
       </div>
 
       <button onclick="confirmResetCatalog()" class="text-[11px] text-neutral-400 hover:text-neutral-700 underline">
@@ -248,9 +251,22 @@
               <label class="block text-[11px] font-semibold text-neutral-700 mb-1">Stato in Bottega *</label>
               <select id="formStatus" class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-300 text-xs focus:outline-none focus:border-vietri-cobalto bg-white">
                 <option value="disponibile">🟢 Disponibile in Bottega</option>
-                <option value="venduto">🔴 Venduto (Mostrato come Archivio)</option>
+                <option value="prenotato">🟡 Prenotato</option>
+                <option value="ordinazione">🔵 Su Ordinazione</option>
+                <option value="venduto">🔴 Venduto / Esaurito (Archivio)</option>
               </select>
             </div>
+          </div>
+
+          <!-- Opzione Vetrina Portfolio d'Autore -->
+          <div class="mt-3 pt-3 border-t border-neutral-200/80 flex items-center justify-between">
+            <div>
+              <label for="formIsPortfolio" class="text-xs font-bold text-neutral-900 cursor-pointer flex items-center gap-1.5">
+                <span>⭐ Mostra in Evidenza nel Portfolio / Galleria d'Autore</span>
+              </label>
+              <p class="text-[10px] text-neutral-500">I pezzi selezionati compariranno nella vetrina principale della Galleria.</p>
+            </div>
+            <input type="checkbox" id="formIsPortfolio" class="w-5 h-5 rounded text-vietri-cobalto focus:ring-vietri-cobalto cursor-pointer accent-vietri-cobalto">
           </div>
         </div>
 
@@ -431,6 +447,7 @@
     };
 
     const DEFAULT_CATEGORIES = {
+      'arte': 'Sculture & Pezzi Unici',
       'azzurro': 'Azzurro Mediterraneo',
       'terre': 'Terre & Cotto Vivo',
       'tavola': 'Tavola & Servizio'
@@ -504,12 +521,157 @@
 
     const DEFAULT_CATALOG = [
       {
+        id: 101,
+        title: "Pannello Maiolicato «La Dama dei Gatti»",
+        collection: "Sculture & Pezzi Unici",
+        category: "arte",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
+        price: "480 €",
+        status: "disponibile",
+        isPortfolio: true,
+        desc: "Capolavoro su piastrella maiolicata vietrese. Volto femminile etereo con occhi turchesi, incorniciato da una cascata di gatti stilizzati, gabbiani marini e motivi geometrici a scacchi su fondo blu cobalto profondo. Pezzo unico d'autore firmato Antonio Solimene.",
+        img: "images/opere/pannello-maiolicato-dama-gatti.jpg"
+      },
+      {
+        id: 102,
+        title: "Scultura «Ninfa Marina — Medusa del Golfo»",
+        collection: "Sculture & Pezzi Unici",
+        category: "arte",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
+        price: "360 €",
+        status: "disponibile",
+        isPortfolio: true,
+        desc: "Busto scultoreo in ceramica policroma con smalto turchese lucido e dettagli bruni. Il volto sereno della divinità marina si fonde con una chioma di tentacoli e creature dei fondali costieri. Modellata a mano libera e cotta a gran fuoco.",
+        img: "images/opere/scultura-medusa-ninfa-marina.jpg"
+      },
+      {
+        id: 103,
+        title: "Scultura «Don Chisciotte della Costiera»",
+        collection: "Sculture & Pezzi Unici",
+        category: "arte",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
+        price: "290 €",
+        status: "disponibile",
+        isPortfolio: true,
+        desc: "Omaggio scultoreo all'eroe di Cervantes: Don Chisciotte a cavallo del suo Ronzinante, reinterpretato con la vivacità dei colori vietresi, elmo, armatura istoriata e forme plastiche modellate a mano.",
+        img: "images/opere/scultura-don-chisciotte-cavallo.jpg"
+      },
+      {
+        id: 104,
+        title: "Grande Scultura «Metamorfosi Marina»",
+        collection: "Sculture & Pezzi Unici",
+        category: "arte",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
+        price: "320 €",
+        status: "disponibile",
+        isPortfolio: true,
+        desc: "Scultura monumentale a forma di pesce con volti cubisti bifronte. Da un lato il profilo femminile e geometrico nei toni del sole e della terra, dall'altro la maschera arcaica su smalto satinato bianco opaco con incisioni e ossidi metallici. Firmata Antonio Solimene.",
+        img: "images/opere/pesce-scultura-cubista-grande.jpg"
+      },
+      {
+        id: 105,
+        title: "Pesce Scultura «Vietri sul Mare & San Giovanni»",
+        collection: "Sculture & Pezzi Unici",
+        category: "arte",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
+        price: "240 €",
+        status: "prenotato",
+        isPortfolio: true,
+        desc: "Scultura in maiolica sagomata e decorata a pennello. Sul fronte la celebre cupola maiolicata di San Giovanni Battista con il borgo a picco sul mare; sul retro grandi limoni sfumati e motivi geometrici vietresi. Opera firmata Antonio Solimene '24.",
+        img: "images/opere/pesce-ceramica-vietri-cupola.jpg"
+      },
+      {
+        id: 106,
+        title: "Pesce Sagomato «Positano & I Limoni d'Oro»",
+        collection: "Sculture & Pezzi Unici",
+        category: "arte",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
+        price: "220 €",
+        status: "disponibile",
+        isPortfolio: true,
+        desc: "Pesce in ceramica modellato al tornio e traforato a mano. La superficie dipinta a mano racconta le case a cascata di Positano, la cupola arabescata e rami di limone della Costiera Amalfitana incorniciati da greche policrome.",
+        img: "images/opere/pesce-ceramica-positano-limoni.jpg"
+      },
+      {
+        id: 107,
+        title: "Coppia Sculture «I Tentacoli degli Abissi»",
+        collection: "Sculture & Pezzi Unici",
+        category: "arte",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
+        price: "340 € la coppia",
+        status: "ordinazione",
+        isPortfolio: true,
+        desc: "Coppia di sculture verticali slanciate che evocano i tentacoli del polpo che affiorano dalle onde del Golfo. Smalto a lustro metallico lucido, riflessi turchesi, blu oltremare e cremisi profondo con ventose modellate a rilievo una a una.",
+        img: "images/opere/scultura-tentacoli-abissi-coppia.jpg"
+      },
+      {
+        id: 108,
+        title: "Vaso Bottiglia «Volto Bifronte al Tornio»",
+        collection: "Sculture & Pezzi Unici",
+        category: "arte",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
+        price: "190 €",
+        status: "disponibile",
+        isPortfolio: true,
+        desc: "Vaso scultura a collo stretto con tappo geometrico e manico a voluta. Corpo ovoidale forgiato al tornio con doppio volto picassiano dipinto a mano in bianco, nero, ocra e celeste ceruleo. Firmato Antonio Solimene '24.",
+        img: "images/opere/vaso-bottiglia-volto-cubista.jpg"
+      },
+      {
+        id: 109,
+        title: "Scultura «Pesce Sguardo Sommerso»",
+        collection: "Sculture & Pezzi Unici",
+        category: "arte",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
+        price: "150 €",
+        status: "disponibile",
+        isPortfolio: true,
+        desc: "Scultura orizzontale in ceramica che fonde la sagoma marina e il profilo umano. Superficie materica con velatura a biscotto chiaro, inserti grafici in nero fumo e pennellate di giallo ocra e azzurro oltremare.",
+        img: "images/opere/pesce-cubista-sguardo-sommerso.jpg"
+      },
+      {
+        id: 110,
+        title: "Scultura Pesce «Occhi dell'Oceano»",
+        collection: "Sculture & Pezzi Unici",
+        category: "arte",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
+        price: "160 €",
+        status: "disponibile",
+        isPortfolio: false,
+        desc: "Pesce fusiforme modellato a mano con motivi geometrici concentrici, pinne a sbalzo e sguardo penetrante. Doppio lato dipinto con ossidi naturali e vetrina cotta a 960°C.",
+        img: "images/opere/pesce-cubista-occhi-oceano.jpg"
+      },
+      {
+        id: 111,
+        title: "Scultura Storica «Guerriero Sannita con Gerla»",
+        collection: "Sculture & Pezzi Unici",
+        category: "arte",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
+        price: "260 €",
+        status: "venduto",
+        isPortfolio: false,
+        desc: "Rara scultura che rievoca l'iconografia classica campana: guerriero con elmo crestato, lancia e gerla a spalla con greche geometriche a rilievo. Pezzo storico dell'archivio di bottega.",
+        img: "images/opere/scultura-guerriero-sannita-anfora.jpg"
+      },
+      {
+        id: 112,
+        title: "Tappo Scultoreo «Il Piccolo Polpo di Vietri»",
+        collection: "Terre & Cotto Vivo",
+        category: "terre",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
+        price: "45 €",
+        status: "disponibile",
+        isPortfolio: false,
+        desc: "Minuteria artistica d'autore in ceramica smaltata lucida turchese e rame. Ideale come tappo decorativo per bottiglie d'olio o vino o scultura da collezione per la tavola.",
+        img: "images/opere/scultura-polpo-vietri-miniatura.jpg"
+      },
+      {
         id: 1,
         title: "Ciotola Azzurro Profondo",
         collection: "Azzurro Mediterraneo",
         category: "azzurro",
         artists: "Antonio Solimene · Maria Denise Scafuro",
         status: "disponibile",
+        isPortfolio: false,
         price: "38 €",
         desc: "Ispirata agli smalti trasparenti di nonno Ciccio. Smalto cobalto vietrese vetrificato su argilla forgiata a mano libera.",
         img: "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=700&q=80"
@@ -521,6 +683,7 @@
         category: "terre",
         artists: "Antonio Solimene · Maria Denise Scafuro",
         status: "disponibile",
+        isPortfolio: false,
         price: "70 €",
         desc: "Modellata al tornio con impasto poroso campano, finitura naturale a vista senza smalto, come nelle antiche botteghe.",
         img: "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=700&q=80"
@@ -532,6 +695,7 @@
         category: "tavola",
         artists: "Antonio Solimene · Maria Denise Scafuro",
         status: "disponibile",
+        isPortfolio: false,
         price: "64 €",
         desc: "Gres resistente con velatura lucida color limone e sabbia. Bordo sagomato a mano.",
         img: "https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=700&q=80"
@@ -543,6 +707,7 @@
         category: "terre",
         artists: "Antonio Solimene · Maria Denise Scafuro",
         status: "disponibile",
+        isPortfolio: false,
         price: "50 €",
         desc: "Pezzo compatto da piano con fondo a smalto materico ocra lucido. Bordo a vivo.",
         img: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=700&q=80"
@@ -780,18 +945,40 @@
       const container = document.getElementById('productsContainer');
       const counter = document.getElementById('statsCounter');
 
-      // Calcolo contatori
-      const countDisp = CATALOG.filter(p => p.status !== 'venduto').length;
+      // Calcolo contatori 4 stati + portfolio
+      const countDisp = CATALOG.filter(p => (p.status || 'disponibile') === 'disponibile').length;
+      const countPren = CATALOG.filter(p => p.status === 'prenotato').length;
+      const countOrd = CATALOG.filter(p => p.status === 'ordinazione').length;
       const countVend = CATALOG.filter(p => p.status === 'venduto').length;
-      document.getElementById('countTutti').textContent = CATALOG.length;
-      document.getElementById('countDisp').textContent = countDisp;
-      document.getElementById('countVend').textContent = countVend;
+      const countPort = CATALOG.filter(p => p.isPortfolio === true).length;
 
-      counter.textContent = `${CATALOG.length} opere nel catalogo (${countDisp} disponibili, ${countVend} vendute)`;
+      const elTutti = document.getElementById('countTutti');
+      if (elTutti) elTutti.textContent = CATALOG.length;
+      const elDisp = document.getElementById('countDisp');
+      if (elDisp) elDisp.textContent = countDisp;
+      const elPren = document.getElementById('countPren');
+      if (elPren) elPren.textContent = countPren;
+      const elOrd = document.getElementById('countOrd');
+      if (elOrd) elOrd.textContent = countOrd;
+      const elVend = document.getElementById('countVend');
+      if (elVend) elVend.textContent = countVend;
+      const elPort = document.getElementById('countPort');
+      if (elPort) elPort.textContent = countPort;
 
-      const filtered = currentAdminFilter === 'tutti' 
-        ? CATALOG 
-        : (currentAdminFilter === 'venduto' ? CATALOG.filter(p => p.status === 'venduto') : CATALOG.filter(p => p.status !== 'venduto'));
+      counter.textContent = `${CATALOG.length} opere nel catalogo (${countDisp} disp., ${countPren} prenotate, ${countOrd} su ord., ${countVend} vendute)`;
+
+      let filtered = CATALOG;
+      if (currentAdminFilter === 'disponibile') {
+        filtered = CATALOG.filter(p => (p.status || 'disponibile') === 'disponibile');
+      } else if (currentAdminFilter === 'prenotato') {
+        filtered = CATALOG.filter(p => p.status === 'prenotato');
+      } else if (currentAdminFilter === 'ordinazione') {
+        filtered = CATALOG.filter(p => p.status === 'ordinazione');
+      } else if (currentAdminFilter === 'venduto') {
+        filtered = CATALOG.filter(p => p.status === 'venduto');
+      } else if (currentAdminFilter === 'portfolio') {
+        filtered = CATALOG.filter(p => p.isPortfolio === true);
+      }
 
       if (filtered.length === 0) {
         container.innerHTML = `
@@ -802,6 +989,20 @@
         return;
       }
 
+      function getAdminStatusBadge(status) {
+        switch (status) {
+          case 'prenotato':
+            return '<span class="text-[9px] uppercase tracking-wider font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-200">🟡 Prenotato</span>';
+          case 'ordinazione':
+            return '<span class="text-[9px] uppercase tracking-wider font-bold px-2 py-0.5 rounded bg-sky-100 text-sky-800 border border-sky-200">🔵 Su Ordinazione</span>';
+          case 'venduto':
+            return '<span class="text-[9px] uppercase tracking-wider font-bold px-2 py-0.5 rounded bg-red-100 text-red-700 border border-red-200">🔴 Venduto</span>';
+          case 'disponibile':
+          default:
+            return '<span class="text-[9px] uppercase tracking-wider font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-200">🟢 Disponibile</span>';
+        }
+      }
+
       container.innerHTML = filtered.map(item => `
         <div class="bg-white p-4 rounded-2xl border border-neutral-200/90 shadow-2xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition hover:border-neutral-300">
           <div class="flex items-center gap-4 w-full sm:w-auto">
@@ -809,13 +1010,13 @@
               <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover">
             </div>
             <div class="flex-1 min-w-0">
-              <div class="flex items-center gap-2 mb-1">
-                <span class="text-[9px] uppercase tracking-wider font-bold px-2 py-0.5 rounded ${item.status === 'venduto' ? 'bg-red-100 text-red-700' : 'bg-emerald-100 text-emerald-800'}">
-                  ${item.status === 'venduto' ? 'Venduto' : 'Disponibile'}
-                </span>
-                <span class="text-[10px] text-neutral-400 uppercase tracking-widest font-medium">${item.collection}</span>
+              <div class="flex flex-wrap items-center gap-1.5 mb-1">
+                ${getAdminStatusBadge(item.status)}
+                ${item.isPortfolio ? '<span class="text-[9px] uppercase tracking-wider font-bold px-2 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-300">⭐ Portfolio</span>' : ''}
+                <span class="text-[10px] text-neutral-400 uppercase tracking-widest font-medium">${item.collection || ''}</span>
               </div>
               <h3 class="font-serif text-lg text-neutral-950 font-medium truncate">${item.title}</h3>
+              <p class="text-[11px] text-neutral-500 font-serif italic">${item.artists || 'Antonio Solimene · Maria Denise Scafuro'}</p>
               <p class="text-xs font-semibold text-neutral-900 mt-0.5">${item.price}</p>
             </div>
           </div>
@@ -852,6 +1053,7 @@
       populateCategoryDropdown();
       toggleNewCategoryInput(false);
       document.getElementById('formArtists').value = 'Antonio Solimene · Maria Denise Scafuro';
+      document.getElementById('formIsPortfolio').checked = false;
       document.getElementById('imagePlaceholder').classList.remove('hidden');
       document.getElementById('imagePreviewBox').classList.add('hidden');
       currentImageBase64 = null;
@@ -865,10 +1067,11 @@
       document.getElementById('editProductId').value = item.id;
       document.getElementById('formModalTitle').textContent = 'Modifica Creazione';
       document.getElementById('formTitle').value = item.title;
-      populateCategoryDropdown(item.category || 'azzurro');
+      populateCategoryDropdown(item.category || 'arte');
       toggleNewCategoryInput(false);
       document.getElementById('formPrice').value = item.price;
       document.getElementById('formStatus').value = item.status || 'disponibile';
+      document.getElementById('formIsPortfolio').checked = item.isPortfolio === true;
       document.getElementById('formArtists').value = item.artists || 'Antonio Solimene · Maria Denise Scafuro';
       document.getElementById('formDesc').value = item.desc;
       
@@ -983,6 +1186,7 @@
             artists: artistsVal,
             price: priceVal,
             status: document.getElementById('formStatus').value,
+            isPortfolio: document.getElementById('formIsPortfolio').checked,
             desc: document.getElementById('formDesc').value.trim(),
             img: currentImageBase64
           };
@@ -997,6 +1201,7 @@
           artists: artistsVal,
           price: priceVal,
           status: document.getElementById('formStatus').value,
+          isPortfolio: document.getElementById('formIsPortfolio').checked,
           desc: document.getElementById('formDesc').value.trim(),
           img: currentImageBase64
         };

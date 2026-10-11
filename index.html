@@ -263,7 +263,8 @@
         <span class="hidden sm:inline" data-i18n="nav_coast">Costiera Amalfitana</span>
       </div>
       <nav class="flex items-center flex-wrap gap-4 sm:gap-6 text-[11px] font-medium text-neutral-700">
-        <a href="#collezioni" class="hover:text-vietri-cobalto transition" data-i18n="nav_works">Opere</a>
+        <a href="#portfolio" class="hover:text-vietri-cobalto transition" data-i18n="nav_portfolio">Portfolio d'Autore</a>
+        <a href="#collezioni" class="hover:text-vietri-cobalto transition" data-i18n="nav_works">Collezioni</a>
         <a href="#storia" class="hover:text-vietri-cobalto transition" data-i18n="nav_story">Storia</a>
         <a href="#su-misura" class="hover:text-vietri-cobalto transition" data-i18n="nav_bespoke">Su Misura</a>
         <a href="#dove-siamo" class="hover:text-vietri-cobalto transition" data-i18n="nav_location_link">Dove Siamo</a>
@@ -295,8 +296,8 @@
       </p>
       
       <div class="mt-10 flex flex-wrap justify-center gap-5 text-xs uppercase tracking-[0.2em]">
-        <a href="#collezioni" class="bg-neutral-950 text-white px-8 py-4 hover:bg-vietri-cobalto transition-all duration-300 font-medium" data-i18n="hero_explore">
-          Esplora le Opere
+        <a href="#portfolio" class="bg-neutral-950 text-white px-8 py-4 hover:bg-vietri-cobalto transition-all duration-300 font-medium" data-i18n="hero_explore">
+          Galleria d'Autore
         </a>
         <a href="#storia" class="border border-neutral-400 px-8 py-4 text-neutral-800 hover:border-neutral-950 transition-all font-medium" data-i18n="hero_story_btn">
           La Stirpe dei Tornianti
@@ -346,6 +347,24 @@
           </p>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- 2.5 SEZIONE GALLERIA & PORTFOLIO D'AUTORE -->
+  <section id="portfolio" class="py-24 px-6 bg-vietri-pietra/40 border-b border-neutral-300/80">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-xs uppercase tracking-[0.3em] text-vietri-cobalto font-semibold block mb-2" data-i18n="portfolio_badge">Selezione Esclusiva</span>
+        <h2 class="font-serif text-4xl sm:text-5xl text-neutral-950" data-i18n="portfolio_title">Galleria d'Autore</h2>
+        <p class="text-xs sm:text-sm text-neutral-600 mt-3 font-light leading-relaxed" data-i18n="portfolio_subtitle">
+          Una selezione curata delle sculture, pannelli maiolicati e pezzi unici più significativi, modellati a mano al tornio da Antonio Solimene e Maria Denise Scafuro.
+        </p>
+      </div>
+
+      <!-- Griglia Portfolio d'Autore (max 10 opere in evidenza) -->
+      <div id="portfolioGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
+        <!-- Rendering dinamico via renderPortfolio() -->
       </div>
     </div>
   </section>
@@ -849,7 +868,8 @@
         top_subtitle: "— Pezzi unici forgiati a mano al tornio & creazioni su misura.",
         top_wa: "Scrivi su WhatsApp (+39 389 981 9834)",
         nav_coast: "Costiera Amalfitana",
-        nav_works: "Opere",
+        nav_portfolio: "Portfolio d'Autore",
+        nav_works: "Collezioni",
         nav_story: "Storia",
         nav_bespoke: "Su Misura",
         nav_location_link: "Dove Siamo",
@@ -867,6 +887,14 @@
         story_title: "Dal bisnonno Vincenzo a Nonno Ciccio: l'anima dell'argilla viva.",
         story_p1: "La nostra storia inizia con il bisnonno <strong>Vincenzo</strong> (1876-1958), detto <em>“cupaiuolo”</em>, così rapido e instancabile al tornio a pedali che a fine giornata pareva una scultura d'argilla. Un testimone raccolto da nonno <strong>Francesco</strong> (detto <em>Ciccio</em>), che trasformò il mestiere in pura arte, portando i suoi riflessi vitrei e i suoi smalti materici fino alla prestigiosa manifattura fiorentina “Cantagalli” al fianco di Max Malamerson.",
         story_p2: "Soprannominato il <em>“torniante dell’opaco e trasparente azzurro mediterraneo”</em>, Ciccio continuò a forgiare al tornio anche quando la malattia gli faceva tremare le mani, con una precisione che lasciava tutti sbalorditi. Oggi, noi nipoti continuiamo questo gesto: nessun pezzo seriale, nessuna scorciatoia. Solo terra, tornio, acqua e fuoco.",
+        portfolio_badge: "Selezione Esclusiva",
+        portfolio_title: "Galleria d'Autore",
+        portfolio_subtitle: "Una selezione curata delle sculture, pannelli maiolicati e pezzi unici più significativi, modellati a mano al tornio da Antonio Solimene e Maria Denise Scafuro.",
+        portfolio_view_btn: "Esplora l'Opera →",
+        status_disponibile: "Disponibile in Bottega",
+        status_prenotato: "Prenotato",
+        status_ordinazione: "Su Ordinazione",
+        status_venduto: "Venduto (Archivio)",
         works_badge: "Forme & Smalti",
         works_title: "Le Creazioni",
         works_subtitle: "Pezzi unici forgiati al tornio a mano libera e cotti secondo la tradizione ceramica vietrese.",
@@ -941,7 +969,8 @@
         top_subtitle: "— Unique hand-thrown pottery & custom bespoke ceramics.",
         top_wa: "Chat on WhatsApp (+39 389 981 9834)",
         nav_coast: "Amalfi Coast",
-        nav_works: "Creations",
+        nav_portfolio: "Masterworks Portfolio",
+        nav_works: "Collections",
         nav_story: "Heritage",
         nav_bespoke: "Bespoke Craft",
         nav_location_link: "Find Us",
@@ -959,6 +988,14 @@
         story_title: "From Great-Grandfather Vincenzo to Grandpa Ciccio: the living clay.",
         story_p1: "Our history begins with great-grandfather <strong>Vincenzo</strong> (1876-1958), nicknamed <em>“cupaiuolo”</em>, so swift and tireless at the pedal wheel that by day's end he looked like a clay sculpture. A legacy passed to grandfather <strong>Francesco</strong> (known as <em>Ciccio</em>), who turned the craft into pure fine art, bringing his glassy glazes and textured surfaces to the renowned Florentine 'Cantagalli' atelier alongside Max Malamerson.",
         story_p2: "Renowned as the <em>“master potter of opaque and crystal Mediterranean blues”</em>, Ciccio forged on the wheel even when illness made his hands tremble, with a precision that astonished all. Today, we carry on this gesture: no mass production, no shortcuts. Just earth, water, wheel, and fire.",
+        portfolio_badge: "Curated Selection",
+        portfolio_title: "Masterworks Gallery",
+        portfolio_subtitle: "A curated selection of our finest sculptures, majolica wall panels, and unique ceramic artworks hand-thrown by Antonio Solimene and Maria Denise Scafuro.",
+        portfolio_view_btn: "View Artwork →",
+        status_disponibile: "Available in Workshop",
+        status_prenotato: "Reserved",
+        status_ordinazione: "Made to Order",
+        status_venduto: "Sold (Archive)",
         works_badge: "Shapes & Glazes",
         works_title: "The Creations",
         works_subtitle: "Unique pieces forged on the freehand potter's wheel and fired in authentic Vietri ceramic tradition.",
@@ -1033,7 +1070,8 @@
         top_subtitle: "— Céramiques d'art faites main au tour & créations sur mesure.",
         top_wa: "Écrivez sur WhatsApp (+39 389 981 9834)",
         nav_coast: "Côte Amalfitaine",
-        nav_works: "Créations",
+        nav_portfolio: "Galerie d'Auteur",
+        nav_works: "Collections",
         nav_story: "Histoire",
         nav_bespoke: "Sur Mesure",
         nav_location_link: "Où Sommes-Nous",
@@ -1051,6 +1089,14 @@
         story_title: "De l'arrière-grand-père Vincenzo à Nonno Ciccio: l'âme de l'argile vivante.",
         story_p1: "Notre histoire débute avec l'arrière-grand-père <strong>Vincenzo</strong> (1876-1958), dit <em>«cupaiuolo»</em>, si rapide et infatigable au tour à pédales qu'à la fin du jour il ressemblait à une statue d'argile. Un flambeau repris par grand-père <strong>Francesco</strong> (dit <em>Ciccio</em>), qui éleva le métier au rang d'art pur, apportant ses émaux vitreux jusqu'à la prestigieuse manufacture florentine «Cantagalli».",
         story_p2: "Surnommé le <em>«potier du bleu méditerranéen opaque et transparent»</em>, Ciccio continua à façonner au tour avec une précision stupéfiante. Aujourd'hui, nous perpétuons ce geste: aucune production de masse, que de la terre, de l'eau, du tour et du feu.",
+        portfolio_badge: "Sélection Exclusive",
+        portfolio_title: "Galerie de Maître",
+        portfolio_subtitle: "Une sélection soignée de sculptures, panneaux de majolique et pièces uniques remarquables, façonnés à la main au tour par Antonio Solimene et Maria Denise Scafuro.",
+        portfolio_view_btn: "Explorer l'Œuvre →",
+        status_disponibile: "Disponible en Atelier",
+        status_prenotato: "Réservé",
+        status_ordinazione: "Sur Commande",
+        status_venduto: "Vendu (Archive)",
         works_badge: "Formes & Émaux",
         works_title: "Les Créations",
         works_subtitle: "Pièces uniques forgées à main levée au tour selon la tradition séculaire de Vietri.",
@@ -1125,7 +1171,8 @@
         top_subtitle: "— Handgedrehte Unikate & maßgefertigte Keramik von der Amalfiküste.",
         top_wa: "WhatsApp Kontakt (+39 389 981 9834)",
         nav_coast: "Amalfiküste",
-        nav_works: "Werke",
+        nav_portfolio: "Meister-Portfolio",
+        nav_works: "Kollektionen",
         nav_story: "Geschichte",
         nav_bespoke: "Maßanfertigung",
         nav_location_link: "Standort",
@@ -1143,6 +1190,14 @@
         story_title: "Vom Urgroßvater Vincenzo zu Großvater Ciccio: die lebendige Tonerde.",
         story_p1: "Unsere Geschichte beginnt mit Urgroßvater <strong>Vincenzo</strong> (1876-1958), der an der Fußtöpferscheibe unermüdlich wirkte. Sein Erbe führte Großvater <strong>Francesco</strong> (genannt <em>Ciccio</em>) zur reinen Meisterschaft, der seine gläsernen Glasuren bis zur Florentiner Manufaktur 'Cantagalli' trug.",
         story_p2: "Als <em>'Meister des mediterranen Azurblaus'</em> bekannt, töpferte Ciccio mit erstaunlicher Präzision. Heute führen wir diese Geste fort: Keine Massenware, nur Ton, Drehscheibe, Wasser und Feuer.",
+        portfolio_badge: "Exklusive Auswahl",
+        portfolio_title: "Meisterwerke Galerie",
+        portfolio_subtitle: "Eine kuratierte Auswahl unserer bedeutendsten Skulpturen, Majolika-Wandpaneele und Unikate, handgedreht von Antonio Solimene und Maria Denise Scafuro.",
+        portfolio_view_btn: "Werk Ansehen →",
+        status_disponibile: "In der Werkstatt verfügbar",
+        status_prenotato: "Reserviert",
+        status_ordinazione: "Auf Bestellung",
+        status_venduto: "Verkauft (Archiv)",
         works_badge: "Formen & Glasuren",
         works_title: "Die Schöpfungen",
         works_subtitle: "Handgedrehte Einzelstücke nach jahrhundertealter Keramiktradition aus Vietri sul Mare.",
@@ -1217,7 +1272,8 @@
         top_subtitle: "— Cerámica artística hecha a mano en el torno y creaciones a medida.",
         top_wa: "Escribir por WhatsApp (+39 389 981 9834)",
         nav_coast: "Costa Amalfitana",
-        nav_works: "Obras",
+        nav_portfolio: "Galería de Autor",
+        nav_works: "Colecciones",
         nav_story: "Historia",
         nav_bespoke: "A Medida",
         nav_location_link: "Dónde Estamos",
@@ -1235,6 +1291,14 @@
         story_title: "Del bisabuelo Vincenzo al abuelo Ciccio: el alma de la arcilla viva.",
         story_p1: "Nuestra historia comienza con el bisabuelo <strong>Vincenzo</strong> (1876-1958), apodado <em>«cupaiuolo»</em>, incansable en el torno de pedal. Un legado recogido por el abuelo <strong>Francesco</strong> (llamado <em>Ciccio</em>), quien convirtió el oficio en arte puro, llevando sus esmaltes vítreos hasta la prestigiosa manufactura florentina «Cantagalli».",
         story_p2: "Conocido como el <em>«maestro del azul mediterráneo opaco y transparente»</em>, Ciccio continuó torneando con asombrosa precisión. Hoy continuamos este gesto: sin atajos ni piezas en serie. Solo tierra, torno, agua y fuego.",
+        portfolio_badge: "Selección Exclusiva",
+        portfolio_title: "Galería de Autor",
+        portfolio_subtitle: "Una selección cuidada de nuestras mejores esculturas, paneles de mayólica y piezas únicas moldeadas a mano en el torno por Antonio Solimene y Maria Denise Scafuro.",
+        portfolio_view_btn: "Explorar la Obra →",
+        status_disponibile: "Disponible en el Taller",
+        status_prenotato: "Reservado",
+        status_ordinazione: "Por Encargo",
+        status_venduto: "Vendido (Archivo)",
         works_badge: "Formas & Esmaltes",
         works_title: "Las Creaciones",
         works_subtitle: "Piezas únicas forjadas en torno a mano libre según la auténtica tradición de Vietri.",
@@ -1489,8 +1553,10 @@
       // Aggiorna link WhatsApp generici con lingua corrente
       updateGeneralWhatsAppLinks();
 
-      // Rinfresca filtri catalogo e catalogo
+      // Rinfresca filtri catalogo, catalogo e galleria d'autore
       renderCategoryFilters();
+      renderCatalog();
+      renderPortfolio();
     }
 
     function updateGeneralWhatsAppLinks() {
@@ -1536,12 +1602,158 @@
 
     const DEFAULT_CATALOG = [
       {
+        id: 101,
+        title: "Pannello Maiolicato «La Dama dei Gatti»",
+        collection: "Sculture & Pezzi Unici",
+        category: "arte",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
+        price: "480 €",
+        status: "disponibile",
+        isPortfolio: true,
+        desc: "Capolavoro su piastrella maiolicata vietrese. Volto femminile etereo con occhi turchesi, incorniciato da una cascata di gatti stilizzati, gabbiani marini e motivi geometrici a scacchi su fondo blu cobalto profondo. Pezzo unico d'autore firmato Antonio Solimene.",
+        img: "images/opere/pannello-maiolicato-dama-gatti.jpg"
+      },
+      {
+        id: 102,
+        title: "Scultura «Ninfa Marina — Medusa del Golfo»",
+        collection: "Sculture & Pezzi Unici",
+        category: "arte",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
+        price: "360 €",
+        status: "disponibile",
+        isPortfolio: true,
+        desc: "Busto scultoreo in ceramica policroma con smalto turchese lucido e dettagli bruni. Il volto sereno della divinità marina si fonde con una chioma di tentacoli e creature dei fondali costieri. Modellata a mano libera e cotta a gran fuoco.",
+        img: "images/opere/scultura-medusa-ninfa-marina.jpg"
+      },
+      {
+        id: 103,
+        title: "Scultura «Don Chisciotte della Costiera»",
+        collection: "Sculture & Pezzi Unici",
+        category: "arte",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
+        price: "290 €",
+        status: "disponibile",
+        isPortfolio: true,
+        desc: "Omaggio scultoreo all'eroe di Cervantes: Don Chisciotte a cavallo del suo Ronzinante, reinterpretato con la vivacità dei colori vietresi, elmo, armatura istoriata e forme plastiche modellate a mano.",
+        img: "images/opere/scultura-don-chisciotte-cavallo.jpg"
+      },
+      {
+        id: 104,
+        title: "Grande Scultura «Metamorfosi Marina»",
+        collection: "Sculture & Pezzi Unici",
+        category: "arte",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
+        price: "320 €",
+        status: "disponibile",
+        isPortfolio: true,
+        desc: "Scultura monumentale a forma di pesce con volti cubisti bifronte. Da un lato il profilo femminile e geometrico nei toni del sole e della terra, dall'altro la maschera arcaica su smalto satinato bianco opaco con incisioni e ossidi metallici. Firmata Antonio Solimene.",
+        img: "images/opere/pesce-scultura-cubista-grande.jpg"
+      },
+      {
+        id: 105,
+        title: "Pesce Scultura «Vietri sul Mare & San Giovanni»",
+        collection: "Sculture & Pezzi Unici",
+        category: "arte",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
+        price: "240 €",
+        status: "prenotato",
+        isPortfolio: true,
+        desc: "Scultura in maiolica sagomata e decorata a pennello. Sul fronte la celebre cupola maiolicata di San Giovanni Battista con il borgo a picco sul mare; sul retro grandi limoni sfumati e motivi geometrici vietresi. Opera firmata Antonio Solimene '24.",
+        img: "images/opere/pesce-ceramica-vietri-cupola.jpg"
+      },
+      {
+        id: 106,
+        title: "Pesce Sagomato «Positano & I Limoni d'Oro»",
+        collection: "Sculture & Pezzi Unici",
+        category: "arte",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
+        price: "220 €",
+        status: "disponibile",
+        isPortfolio: true,
+        desc: "Pesce in ceramica modellato al tornio e traforato a mano. La superficie dipinta a mano racconta le case a cascata di Positano, la cupola arabescata e rami di limone della Costiera Amalfitana incorniciati da greche policrome.",
+        img: "images/opere/pesce-ceramica-positano-limoni.jpg"
+      },
+      {
+        id: 107,
+        title: "Coppia Sculture «I Tentacoli degli Abissi»",
+        collection: "Sculture & Pezzi Unici",
+        category: "arte",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
+        price: "340 € la coppia",
+        status: "ordinazione",
+        isPortfolio: true,
+        desc: "Coppia di sculture verticali slanciate che evocano i tentacoli del polpo che affiorano dalle onde del Golfo. Smalto a lustro metallico lucido, riflessi turchesi, blu oltremare e cremisi profondo con ventose modellate a rilievo una a una.",
+        img: "images/opere/scultura-tentacoli-abissi-coppia.jpg"
+      },
+      {
+        id: 108,
+        title: "Vaso Bottiglia «Volto Bifronte al Tornio»",
+        collection: "Sculture & Pezzi Unici",
+        category: "arte",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
+        price: "190 €",
+        status: "disponibile",
+        isPortfolio: true,
+        desc: "Vaso scultura a collo stretto con tappo geometrico e manico a voluta. Corpo ovoidale forgiato al tornio con doppio volto picassiano dipinto a mano in bianco, nero, ocra e celeste ceruleo. Firmato Antonio Solimene '24.",
+        img: "images/opere/vaso-bottiglia-volto-cubista.jpg"
+      },
+      {
+        id: 109,
+        title: "Scultura «Pesce Sguardo Sommerso»",
+        collection: "Sculture & Pezzi Unici",
+        category: "arte",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
+        price: "150 €",
+        status: "disponibile",
+        isPortfolio: true,
+        desc: "Scultura orizzontale in ceramica che fonde la sagoma marina e il profilo umano. Superficie materica con velatura a biscotto chiaro, inserti grafici in nero fumo e pennellate di giallo ocra e azzurro oltremare.",
+        img: "images/opere/pesce-cubista-sguardo-sommerso.jpg"
+      },
+      {
+        id: 110,
+        title: "Scultura Pesce «Occhi dell'Oceano»",
+        collection: "Sculture & Pezzi Unici",
+        category: "arte",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
+        price: "160 €",
+        status: "disponibile",
+        isPortfolio: false,
+        desc: "Pesce fusiforme modellato a mano con motivi geometrici concentrici, pinne a sbalzo e sguardo penetrante. Doppio lato dipinto con ossidi naturali e vetrina cotta a 960°C.",
+        img: "images/opere/pesce-cubista-occhi-oceano.jpg"
+      },
+      {
+        id: 111,
+        title: "Scultura Storica «Guerriero Sannita con Gerla»",
+        collection: "Sculture & Pezzi Unici",
+        category: "arte",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
+        price: "260 €",
+        status: "venduto",
+        isPortfolio: false,
+        desc: "Rara scultura che rievoca l'iconografia classica campana: guerriero con elmo crestato, lancia e gerla a spalla con greche geometriche a rilievo. Pezzo storico dell'archivio di bottega.",
+        img: "images/opere/scultura-guerriero-sannita-anfora.jpg"
+      },
+      {
+        id: 112,
+        title: "Tappo Scultoreo «Il Piccolo Polpo di Vietri»",
+        collection: "Terre & Cotto Vivo",
+        category: "terre",
+        artists: "Antonio Solimene · Maria Denise Scafuro",
+        price: "45 €",
+        status: "disponibile",
+        isPortfolio: false,
+        desc: "Minuteria artistica d'autore in ceramica smaltata lucida turchese e rame. Ideale come tappo decorativo per bottiglie d'olio o vino o scultura da collezione per la tavola.",
+        img: "images/opere/scultura-polpo-vietri-miniatura.jpg"
+      },
+      {
         id: 1,
         title: "Ciotola Azzurro Profondo",
         collection: "Azzurro Mediterraneo",
         category: "azzurro",
         artists: "Antonio Solimene · Maria Denise Scafuro",
         price: "38 €",
+        status: "disponibile",
+        isPortfolio: false,
         desc: "Ispirata agli smalti trasparenti di nonno Ciccio. Smalto cobalto vietrese vetrificato su argilla forgiata a mano libera.",
         img: "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=700&q=80"
       },
@@ -1552,6 +1764,8 @@
         category: "terre",
         artists: "Antonio Solimene · Maria Denise Scafuro",
         price: "70 €",
+        status: "disponibile",
+        isPortfolio: false,
         desc: "Modellata al tornio con impasto poroso campano, finitura naturale a vista senza smalto, come nelle antiche botteghe.",
         img: "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=700&q=80"
       },
@@ -1562,6 +1776,8 @@
         category: "tavola",
         artists: "Antonio Solimene · Maria Denise Scafuro",
         price: "64 €",
+        status: "disponibile",
+        isPortfolio: false,
         desc: "Gres resistente con velatura lucida color limone e sabbia. Bordo sagomato a mano.",
         img: "https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=700&q=80"
       },
@@ -1572,6 +1788,8 @@
         category: "terre",
         artists: "Antonio Solimene · Maria Denise Scafuro",
         price: "50 €",
+        status: "disponibile",
+        isPortfolio: false,
         desc: "Pezzo compatto da piano con fondo a smalto materico ocra lucido. Bordo a vivo.",
         img: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=700&q=80"
       }
@@ -1611,26 +1829,128 @@
     let activeFilter = 'tutti';
     let base64UploadBuffer = null;
 
+    // CONFIGURAZIONE BADGE DI STATO OPERA (4 STATI)
+    function getStatusBadgeConfig(status, t) {
+      switch (status) {
+        case 'prenotato':
+          return {
+            label: t.status_prenotato || 'Prenotato',
+            cls: 'bg-amber-100 text-amber-800 border border-amber-200'
+          };
+        case 'ordinazione':
+          return {
+            label: t.status_ordinazione || 'Su Ordinazione',
+            cls: 'bg-sky-100 text-sky-800 border border-sky-200'
+          };
+        case 'venduto':
+          return {
+            label: t.status_venduto || 'Venduto (Archivio)',
+            cls: 'bg-neutral-200 text-neutral-700 border border-neutral-300'
+          };
+        case 'disponibile':
+        default:
+          return {
+            label: t.status_disponibile || 'Disponibile in Bottega',
+            cls: 'bg-emerald-100 text-emerald-800 border border-emerald-200'
+          };
+      }
+    }
+
+    // RENDERING GALLERIA & PORTFOLIO D'AUTORE (MAX 10 OPERE IN EVIDENZA)
+    function renderPortfolio() {
+      const grid = document.getElementById('portfolioGrid');
+      if (!grid) return;
+
+      const t = TRANSLATIONS[currentLang] || TRANSLATIONS['it'];
+      const viewBtnLabel = t.portfolio_view_btn || "Esplora l'Opera →";
+      
+      const portfolioItems = CATALOG.filter(p => p.isPortfolio === true).slice(0, 10);
+
+      if (portfolioItems.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full text-center py-12 text-neutral-400 text-xs italic">
+            Nessuna opera attualmente selezionata per la Galleria d'Autore.
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = portfolioItems.map(p => {
+        const statusConfig = getStatusBadgeConfig(p.status, t);
+        return `
+          <article onclick="openModal(${p.id})" class="group cursor-pointer bg-white rounded-2xl overflow-hidden border border-neutral-200/90 hover:border-vietri-cobalto/50 transition-all duration-300 hover:shadow-xl flex flex-col justify-between">
+            <div>
+              <div class="aspect-[4/3] bg-neutral-100 overflow-hidden relative border-b border-neutral-100">
+                <img src="${p.img}" alt="${p.title}" loading="lazy"
+                     class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105">
+                <div class="absolute top-3 left-3 flex flex-wrap gap-1.5 items-center z-10">
+                  <span class="text-[9px] uppercase tracking-wider font-bold px-2.5 py-1 rounded-full shadow-2xs ${statusConfig.cls}">
+                    ${statusConfig.label}
+                  </span>
+                </div>
+                <div class="absolute top-3 right-3 z-10">
+                  <span class="text-[9px] uppercase tracking-widest font-semibold px-2 py-0.5 rounded bg-white/90 text-neutral-700 backdrop-blur-xs shadow-2xs">
+                    ${p.collection || 'Opera Unica'}
+                  </span>
+                </div>
+              </div>
+
+              <div class="p-6">
+                <div class="text-[10px] uppercase tracking-widest text-neutral-400 font-serif italic mb-1.5">
+                  ${p.artists || 'Antonio Solimene · Maria Denise Scafuro'}
+                </div>
+                <h3 class="font-serif text-xl sm:text-2xl text-neutral-950 group-hover:text-vietri-cobalto transition-colors font-medium leading-snug">
+                  ${p.title}
+                </h3>
+                <p class="text-xs text-neutral-600 font-light leading-relaxed mt-2.5 line-clamp-2">
+                  ${p.desc || ''}
+                </p>
+              </div>
+            </div>
+
+            <div class="px-6 pb-6 pt-2 flex items-center justify-between border-t border-neutral-100 mt-2">
+              <span class="font-serif text-lg font-semibold text-neutral-950">
+                ${p.price}
+              </span>
+              <span class="inline-flex items-center gap-1 text-xs font-semibold text-vietri-cobalto group-hover:translate-x-1 transition-transform">
+                ${viewBtnLabel}
+              </span>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
     // RENDERING CATALOGO PUBBLICO
     function renderCatalog() {
       const grid = document.getElementById('galleryGrid');
+      if (!grid) return;
+      const t = TRANSLATIONS[currentLang] || TRANSLATIONS['it'];
       const items = activeFilter === 'tutti' 
         ? CATALOG 
         : CATALOG.filter(item => item.category === activeFilter);
 
-      grid.innerHTML = items.map(p => `
-        <div onclick="openModal(${p.id})" class="group cursor-pointer">
-          <div class="aspect-square bg-white border border-neutral-200 overflow-hidden relative shadow-sm">
-            <img src="${p.img}" alt="${p.title}" 
-                 class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105">
+      grid.innerHTML = items.map(p => {
+        const statusConfig = getStatusBadgeConfig(p.status, t);
+        return `
+          <div onclick="openModal(${p.id})" class="group cursor-pointer">
+            <div class="aspect-square bg-white border border-neutral-200 overflow-hidden relative shadow-sm rounded-lg">
+              <img src="${p.img}" alt="${p.title}" loading="lazy"
+                   class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105">
+              <div class="absolute top-2 left-2 z-10">
+                <span class="text-[8px] uppercase tracking-wider font-bold px-2 py-0.5 rounded shadow-2xs ${statusConfig.cls}">
+                  ${statusConfig.label}
+                </span>
+              </div>
+            </div>
+            <div class="mt-3 text-center">
+              <span class="text-[9px] uppercase tracking-[0.2em] text-neutral-400 block">${p.collection || ''}</span>
+              <h4 class="text-xs font-serif text-neutral-900 group-hover:text-vietri-cobalto transition-colors font-medium mt-0.5">${p.title}</h4>
+              <p class="text-xs font-semibold text-neutral-800 mt-1">${p.price}</p>
+            </div>
           </div>
-          <div class="mt-3 text-center">
-            <span class="text-[9px] uppercase tracking-[0.2em] text-neutral-400 block">${p.collection}</span>
-            <h4 class="text-xs font-serif text-neutral-900 group-hover:text-vietri-cobalto transition-colors font-medium mt-0.5">${p.title}</h4>
-            <p class="text-xs font-semibold text-neutral-800 mt-1">${p.price}</p>
-          </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     }
 
     // RENDERING FILTRI CATEGORIE DINAMICI
@@ -1693,13 +2013,9 @@
 
       const badge = document.getElementById('modalStatusBadge');
       if (badge) {
-        if (p.status === 'venduto') {
-          badge.className = "text-[9px] uppercase tracking-wider font-bold px-2.5 py-0.5 rounded bg-red-100 text-red-700";
-          badge.textContent = t.modal_sold || "Opera Venduta (Archivio)";
-        } else {
-          badge.className = "text-[9px] uppercase tracking-wider font-bold px-2.5 py-0.5 rounded bg-emerald-100 text-emerald-800";
-          badge.textContent = t.modal_avail || "Disponibile in Bottega";
-        }
+        const statusConfig = getStatusBadgeConfig(p.status, t);
+        badge.className = `text-[9px] uppercase tracking-wider font-bold px-2.5 py-0.5 rounded ${statusConfig.cls}`;
+        badge.textContent = statusConfig.label;
       }
 
       const msgTemplate = t.wa_product_msg || "Ciao Antonio! Ti scrivo dal tuo sito web solimene.net. Sono interessato all'opera \"{title}\" (prezzo: {price}). Vorrei acquistarla o avere maggiori informazioni per la consegna.";
@@ -1831,6 +2147,7 @@
       CATALOG = items;
       renderCategoryFilters();
       renderCatalog();
+      renderPortfolio();
     });
   </script>
 </body>
