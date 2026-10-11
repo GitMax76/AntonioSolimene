@@ -1,61 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <defs>
-    <!-- Gradiente Terracotta Viva Vietrese -->
-    <linearGradient id="cotto" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#E65A2C"/>
-      <stop offset="50%" stop-color="#C84820"/>
-      <stop offset="100%" stop-color="#9E2F0E"/>
+    <!-- Smalto Cobalto Vietrese Profondo -->
+    <linearGradient id="cobaltGlaze" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#104E8B"/>
+      <stop offset="50%" stop-color="#0A3764"/>
+      <stop offset="100%" stop-color="#052242"/>
     </linearGradient>
-    <!-- Gradiente Cobalto Vietri per decorazione e riflesso -->
-    <linearGradient id="cobalto" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#00529B"/>
-      <stop offset="100%" stop-color="#0A3663"/>
-    </linearGradient>
-    <!-- Riflesso smalto luce -->
-    <linearGradient id="highlight" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.6"/>
-      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    <!-- Oro / Ocra Vietri -->
+    <linearGradient id="goldDeco" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCD34D"/>
+      <stop offset="100%" stop-color="#D97706"/>
     </linearGradient>
   </defs>
 
-  <!-- Sagoma Vaso / Anfora Artigianale a tutto spazio (Zero margini inutili) -->
-  <g id="vaso" transform="translate(32, 33) scale(1.05) translate(-32, -33)">
-    
-    <!-- Manico Sinistro Robusto -->
-    <path d="M 18,17 C 7,17 5,34 16,42 C 18,43 19,40 19,38 C 12,32 13,22 20,21 Z" 
-          fill="url(#cotto)" stroke="#7A2208" stroke-width="0.8" stroke-linejoin="round"/>
+  <!-- Piastrella Ceramica Maiolicata a forma Squircle (Pieno spazio, visibilità massima) -->
+  <rect x="8" y="8" width="496" height="496" rx="112" fill="url(#cobaltGlaze)" stroke="#D99B26" stroke-width="14"/>
 
-    <!-- Manico Destro Robusto -->
-    <path d="M 46,17 C 57,17 59,34 48,42 C 46,43 45,40 45,38 C 52,32 51,22 44,21 Z" 
-          fill="url(#cotto)" stroke="#7A2208" stroke-width="0.8" stroke-linejoin="round"/>
+  <!-- Filetto decorativo sottile stile ceramica artigianale -->
+  <rect x="28" y="28" width="456" height="456" rx="96" fill="none" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="4"/>
 
-    <!-- Piede / Base Tornio -->
-    <path d="M 24,54 L 21,59 C 21,60.5 43,60.5 43,59 L 40,54 Z" 
-          fill="url(#cotto)" stroke="#7A2208" stroke-width="0.8"/>
-    <ellipse cx="32" cy="59.5" rx="11" ry="1.5" fill="#7A2208"/>
+  <!-- Monogramma Tipografico AS (Antonio Solimene) -->
+  <text x="256" y="345" 
+        font-family="'Cormorant Garamond', 'Georgia', 'Times New Roman', serif" 
+        font-size="285" 
+        font-weight="700" 
+        letter-spacing="-12" 
+        text-anchor="middle" 
+        fill="#FFFFFF">
+    AS
+  </text>
 
-    <!-- Pancia dell'Anfora (Ampia e rotonda, riempie il frame) -->
-    <path d="M 23,20 C 23,26 15,31 15,41 C 15,51 23,55 32,55 C 41,55 49,51 49,41 C 49,31 41,26 41,20 Z" 
-          fill="url(#cotto)" stroke="#7A2208" stroke-width="0.8"/>
-
-    <!-- Fascia Smaltata Cobalto Vietri (Decorazione caratteristica maiolica) -->
-    <path d="M 16,39 C 20,44 26,46 32,46 C 38,46 44,44 48,39 C 48.5,42.5 46.5,47 42,50 C 37,52.5 27,52.5 22,50 C 17.5,47 15.5,42.5 16,39 Z" 
-          fill="url(#cobalto)"/>
-
-    <!-- Punto Luce Sole Vietrese Giallo Ocra al centro -->
-    <circle cx="32" cy="45" r="3.2" fill="#F5A623" stroke="#FFF" stroke-width="0.7"/>
-
-    <!-- Riflesso lucido smalto sul fianco sinistro -->
-    <path d="M 19,30 C 18,35 20,44 23,47 C 22,43 21,36 22,30 Z" 
-          fill="url(#highlight)"/>
-
-    <!-- Collo e Bocca dell'Anfora -->
-    <path d="M 24,11 L 23,20 C 27,21 37,21 41,20 L 40,11 Z" 
-          fill="url(#cotto)"/>
-    
-    <!-- Orlo svasato superiore -->
-    <ellipse cx="32" cy="11" rx="12" ry="4" fill="#F5A623" stroke="#7A2208" stroke-width="0.8"/>
-    <ellipse cx="32" cy="11" rx="10.5" ry="3" fill="#E65A2C"/>
-    <ellipse cx="32" cy="11" rx="7.5" ry="2" fill="#7A2208"/>
-  </g>
+  <!-- Dettaglio Bottega d'Autore: Piccolo punto smalto ceramico Ocra / Cotto -->
+  <circle cx="256" cy="405" r="16" fill="url(#goldDeco)"/>
 </svg>
