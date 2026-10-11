@@ -794,11 +794,11 @@
       window.location.reload();
     }
 
-    // Caricamento Dati (Supporta public/catalog.json, catalog.json, api_save.php e LocalStorage)
+    // Caricamento Dati (Supporta catalog.json, public/catalog.json, api_save.php e LocalStorage)
     async function loadCatalogData() {
       const endpoints = [
-        './public/catalog.json?v=' + Date.now(),
         './catalog.json?v=' + Date.now(),
+        './public/catalog.json?v=' + Date.now(),
         './api_save.php?v=' + Date.now()
       ];
 
@@ -820,7 +820,17 @@
       }
 
       const stored = localStorage.getItem(CONFIG.storageKey);
-      CATALOG = stored ? JSON.parse(stored) : [...DEFAULT_CATALOG];
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed) && parsed.length >= 10 && parsed.some(p => p.isPortfolio === true)) {
+            CATALOG = parsed;
+            renderProductsList();
+            return;
+          }
+        } catch(e) {}
+      }
+      CATALOG = [...DEFAULT_CATALOG];
       renderProductsList();
     }
 

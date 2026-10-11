@@ -1798,8 +1798,8 @@
     // STORAGE ADAPTER (Supporta catalog.json dinamico/statico e localStorage)
     async function loadProducts() {
       const endpoints = [
-        './public/catalog.json?v=' + Date.now(),
         './catalog.json?v=' + Date.now(),
+        './public/catalog.json?v=' + Date.now(),
         './api_save.php?v=' + Date.now()
       ];
 
@@ -1809,6 +1809,7 @@
           if (res.ok) {
             const data = await res.json();
             if (Array.isArray(data) && data.length > 0) {
+              localStorage.setItem('antonio_catalog', JSON.stringify(data));
               return data;
             }
           }
@@ -1818,7 +1819,15 @@
       }
 
       const saved = localStorage.getItem('antonio_catalog');
-      return saved ? JSON.parse(saved) : DEFAULT_CATALOG;
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length >= 10 && parsed.some(p => p.isPortfolio === true)) {
+            return parsed;
+          }
+        } catch (e) {}
+      }
+      return DEFAULT_CATALOG;
     }
 
     function saveProducts(items) {
