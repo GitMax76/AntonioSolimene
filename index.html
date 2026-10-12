@@ -618,9 +618,13 @@
       <button onclick="closeModal()" class="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 z-30 w-8 h-8 sm:w-9 sm:h-9 bg-white/95 hover:bg-neutral-950 hover:text-white rounded-full flex items-center justify-center text-neutral-600 shadow-md border border-neutral-200 transition-colors text-base sm:text-lg" title="Chiudi finestra" aria-label="Chiudi">✕</button>
 
       <div class="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-7 items-center overflow-y-auto pr-1">
-        <!-- Immagine dell'opera: responsive, ad altezza controllata -->
-        <div class="md:col-span-6 bg-neutral-50 rounded-xl overflow-hidden border border-neutral-200/80 flex items-center justify-center max-h-[40vh] sm:max-h-[50vh] min-h-[200px]">
-          <img id="modalImg" src="" alt="Opera Antonio Solimene" class="w-full h-full max-h-[40vh] sm:max-h-[50vh] object-contain p-2">
+        <!-- Immagine dell'opera: responsive, ad altezza controllata con zoom a schermo intero -->
+        <div class="md:col-span-6 bg-neutral-100/60 rounded-xl overflow-hidden border border-neutral-200/80 flex items-center justify-center max-h-[44vh] sm:max-h-[54vh] min-h-[220px] relative group cursor-zoom-in" onclick="openLightbox()" title="Clicca per visualizzare a schermo intero e ingrandire i dettagli">
+          <img id="modalImg" src="" alt="Opera Antonio Solimene" class="w-full h-full max-h-[44vh] sm:max-h-[54vh] object-contain p-2 transition-transform duration-300 group-hover:scale-[1.02]">
+          <div class="absolute bottom-2.5 right-2.5 bg-neutral-950/80 group-hover:bg-neutral-950 text-white text-[10px] sm:text-[11px] font-medium px-2.5 py-1 rounded-full backdrop-blur-xs flex items-center gap-1.5 shadow-sm transition pointer-events-none">
+            <svg class="w-3 h-3 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+            <span data-i18n="modal_zoom_hint">Schermo intero & Zoom</span>
+          </div>
         </div>
 
         <!-- Dettagli, Autori e Azione WhatsApp -->
@@ -668,6 +672,54 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX / FULLSCREEN VIEWER PER DETTAGLI OPERE -->
+  <div id="lightboxModal" class="fixed inset-0 bg-neutral-950/95 backdrop-blur-md z-[70] hidden flex flex-col justify-between p-3 sm:p-5 select-none transition-opacity duration-200" onclick="if(event.target === this || event.target === document.getElementById('lightboxStage')) { if(lbScale === 1) closeLightbox(); }">
+    <!-- Header Lightbox -->
+    <div class="flex items-center justify-between gap-3 text-white z-20 pb-3 border-b border-white/10 shrink-0">
+      <div class="flex items-center gap-2.5 min-w-0 pr-2">
+        <span class="text-[10px] uppercase tracking-widest text-white/50 font-serif hidden sm:inline">Dettaglio Opera</span>
+        <span class="text-white/30 hidden sm:inline">·</span>
+        <h4 id="lightboxTitle" class="font-serif text-xs sm:text-base text-white font-medium truncate"></h4>
+      </div>
+
+      <!-- Barra Strumenti Zoom & Chiusura -->
+      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+        <button onclick="lightboxZoom(-0.4)" class="w-8 h-8 sm:w-9 sm:h-9 bg-white/10 hover:bg-white/20 active:scale-95 text-white rounded-full flex items-center justify-center transition text-base font-bold" title="Riduci Zoom">
+          −
+        </button>
+        <span id="lightboxZoomLevel" class="text-[11px] font-mono text-white/90 px-2 min-w-[50px] text-center select-none">100%</span>
+        <button onclick="lightboxZoom(0.4)" class="w-8 h-8 sm:w-9 sm:h-9 bg-white/10 hover:bg-white/20 active:scale-95 text-white rounded-full flex items-center justify-center transition text-base font-bold" title="Aumenta Zoom">
+          +
+        </button>
+        <button onclick="lightboxResetZoom()" class="px-3 py-1.5 bg-white/10 hover:bg-white/20 active:scale-95 text-white text-xs font-medium rounded-full transition hidden sm:inline-block" title="Ripristina 100%">
+          Adatta
+        </button>
+        <button onclick="closeLightbox()" class="ml-2 w-8 h-8 sm:w-9 sm:h-9 bg-white/20 hover:bg-red-600 active:scale-95 text-white rounded-full flex items-center justify-center transition text-lg font-bold" title="Chiudi (Esc)">
+          ✕
+        </button>
+      </div>
+    </div>
+
+    <!-- Palcoscenico Immagine (Drag & Zoom) -->
+    <div id="lightboxStage" class="relative flex-1 w-full h-full overflow-hidden flex items-center justify-center cursor-zoom-in my-2"
+         onmousedown="startLightboxDrag(event)"
+         onmousemove="doLightboxDrag(event)"
+         onmouseup="endLightboxDrag(event)"
+         onmouseleave="endLightboxDrag(event)"
+         onwheel="handleLightboxWheel(event)"
+         ondblclick="toggleLightboxZoom(event)">
+      <img id="lightboxImg" src="" alt="Dettaglio Opera Schermo Intero"
+           class="max-w-full max-h-[82vh] object-contain pointer-events-none transition-transform duration-100 ease-out will-change-transform shadow-2xl drop-shadow-2xl">
+    </div>
+
+    <!-- Footer Lightbox con suggerimenti d'uso -->
+    <div class="flex items-center justify-between text-white/50 text-[11px] pt-2 border-t border-white/10 z-20 shrink-0">
+      <span class="hidden sm:inline" data-i18n="lightbox_hint">💡 Rotellina mouse o doppio clic per ingrandire · Trascina con il mouse per muoverti nei dettagli</span>
+      <span class="sm:hidden">💡 Tocca due volte per ingrandire i dettagli</span>
+      <button onclick="closeLightbox()" class="text-white/80 hover:text-white underline ml-auto text-xs" data-i18n="lightbox_close">Torna all'opera ✕</button>
     </div>
   </div>
 
@@ -735,9 +787,22 @@
             <label class="block text-xs uppercase tracking-wider text-neutral-600 mb-1">Fotografia del pezzo</label>
             <input type="file" id="newImageFile" accept="image/*" required onchange="previewSelectedImage(event)"
                    class="w-full text-xs text-neutral-500 file:mr-4 file:py-2 file:px-4 file:border-0 file:text-xs file:bg-neutral-100 file:text-neutral-700 hover:file:bg-neutral-200">
-            <div id="imagePreviewContainer" class="mt-3 aspect-square w-32 border border-neutral-200 rounded overflow-hidden hidden">
-              <img id="previewImg" src="" alt="Anteprima" class="w-full h-full object-cover">
+            <div id="imagePreviewContainer" class="mt-3 aspect-square w-32 border border-neutral-200 rounded overflow-hidden hidden bg-neutral-100 flex items-center justify-center">
+              <img id="previewImg" src="" alt="Anteprima" class="w-full h-full object-contain p-2">
             </div>
+          </div>
+
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-neutral-600 mb-1 flex items-center justify-between">
+              <span>Inquadratura Anteprima (Riquadro)</span>
+              <span class="text-[10px] text-vietri-cobalto font-normal">Scegli come inquadrare il pezzo</span>
+            </label>
+            <select id="newImgFit" onchange="const pImg=document.getElementById('previewImg'); if(pImg){ pImg.className='w-full h-full ' + (this.value==='top'?'object-cover object-top':(this.value==='center'?'object-cover object-center':(this.value==='bottom'?'object-cover object-bottom':'object-contain p-2'))); }" class="w-full px-3 py-2 border border-neutral-300 text-xs focus:outline-none focus:border-neutral-900 bg-white">
+              <option value="contain" selected>🖼️ Opera Intera (Consigliata per sculture e foto verticali - nessun taglio)</option>
+              <option value="top">⬆️ Ritaglio in Alto (Viso / Dettaglio superiore)</option>
+              <option value="center">🎯 Ritaglio al Centro (Standard)</option>
+              <option value="bottom">⬇️ Ritaglio in Basso</option>
+            </select>
           </div>
 
           <div>
@@ -961,6 +1026,9 @@
         modal_sold: "Opera Venduta (Archivio)",
         modal_buy_wa: "Richiedi / Acquista su WhatsApp",
         modal_contact_direct: "Contatto diretto con la bottega artigiana",
+        modal_zoom_hint: "Schermo intero & Zoom",
+        lightbox_hint: "💡 Rotellina mouse o doppio clic per ingrandire · Trascina con il mouse per muoverti nei dettagli",
+        lightbox_close: "Torna all'opera ✕",
         footer_sub: "Bottega Ceramica Artigiana — Tradizione centenaria a Vietri sul Mare, Costiera Amalfitana",
         footer_copy: "© 2026 Antonio Solimene — Ceramiche Vietresi modellate a mano",
         footer_admin: "🔒 Gestione Bottega",
@@ -1066,6 +1134,9 @@
         modal_sold: "Sold Piece (Archive)",
         modal_buy_wa: "Inquire / Purchase on WhatsApp",
         modal_contact_direct: "Direct contact with the artisanal workshop",
+        modal_zoom_hint: "Fullscreen & Zoom",
+        lightbox_hint: "💡 Mouse wheel or double-click to zoom · Drag to explore fine details",
+        lightbox_close: "Back to artwork ✕",
         footer_sub: "Artisanal Ceramic Workshop — Centenary tradition in Vietri sul Mare, Amalfi Coast",
         footer_copy: "© 2026 Antonio Solimene — Handmade Vietri Ceramics",
         footer_admin: "🔒 Workshop Admin",
@@ -1171,6 +1242,9 @@
         modal_sold: "Œuvre Vendue (Archive)",
         modal_buy_wa: "Demander / Acheter sur WhatsApp",
         modal_contact_direct: "Contact direct avec l'atelier artisanal",
+        modal_zoom_hint: "Plein écran & Zoom",
+        lightbox_hint: "💡 Molette ou double-clic pour zoomer · Glisser pour explorer les détails",
+        lightbox_close: "Retour à l'œuvre ✕",
         footer_sub: "Atelier Céramique Artisanal — Tradition séculaire à Vietri sul Mare, Côte Amalfitaine",
         footer_copy: "© 2026 Antonio Solimene — Céramiques de Vietri faites main",
         footer_admin: "🔒 Gestion Atelier",
@@ -1276,6 +1350,9 @@
         modal_sold: "Verkauftes Werk (Archiv)",
         modal_buy_wa: "Über WhatsApp anfragen / kaufen",
         modal_contact_direct: "Direkter Kontakt mit der Kunstkeramik-Werkstatt",
+        modal_zoom_hint: "Vollbild & Zoom",
+        lightbox_hint: "💡 Mausrad oder Doppelklick zum Zoomen · Ziehen zum Bewegen",
+        lightbox_close: "Zurück zum Werk ✕",
         footer_sub: "Kunstkeramik-Werkstatt — Hundertjährige Tradition in Vietri sul Mare, Amalfiküste",
         footer_copy: "© 2026 Antonio Solimene — Handgemachte Vietri-Keramik",
         footer_admin: "🔒 Werkstatt-Verwaltung",
@@ -1381,6 +1458,9 @@
         modal_sold: "Obra Vendida (Archivo)",
         modal_buy_wa: "Consultar / Comprar por WhatsApp",
         modal_contact_direct: "Contacto directo con el taller artesanal",
+        modal_zoom_hint: "Pantalla completa & Zoom",
+        lightbox_hint: "💡 Rueda del ratón o doble clic para ampliar · Arrastra para explorar detalles",
+        lightbox_close: "Volver a la obra ✕",
         footer_sub: "Taller Cerámico Artesanal — Tradición centenaria en Vietri sul Mare, Costa Amalfitana",
         footer_copy: "© 2026 Antonio Solimene — Cerámica de Vietri hecha a mano",
         footer_admin: "🔒 Gestión Taller",
@@ -1667,198 +1747,214 @@
     };
 
     const DEFAULT_CATALOG = [
-      {
-        id: 101,
-        title: "Pannello Maiolicato «La Dama dei Gatti»",
-        collection: "Sculture & Pezzi Unici",
-        category: "arte",
-        artists: "Antonio Solimene · Maria Denise Scafuro",
-        price: "480 €",
-        status: "disponibile",
-        isPortfolio: true,
-        desc: "Capolavoro su piastrella maiolicata vietrese. Volto femminile etereo con occhi turchesi, incorniciato da una cascata di gatti stilizzati, gabbiani marini e motivi geometrici a scacchi su fondo blu cobalto profondo. Pezzo unico d'autore firmato Antonio Solimene.",
-        img: "images/opere/pannello-maiolicato-dama-gatti.jpg"
-      },
-      {
-        id: 102,
-        title: "Scultura «Ninfa Marina — Medusa del Golfo»",
-        collection: "Sculture & Pezzi Unici",
-        category: "arte",
-        artists: "Antonio Solimene · Maria Denise Scafuro",
-        price: "360 €",
-        status: "disponibile",
-        isPortfolio: true,
-        desc: "Busto scultoreo in ceramica policroma con smalto turchese lucido e dettagli bruni. Il volto sereno della divinità marina si fonde con una chioma di tentacoli e creature dei fondali costieri. Modellata a mano libera e cotta a gran fuoco.",
-        img: "images/opere/scultura-medusa-ninfa-marina.jpg"
-      },
-      {
-        id: 103,
-        title: "Scultura «Don Chisciotte della Costiera»",
-        collection: "Sculture & Pezzi Unici",
-        category: "arte",
-        artists: "Antonio Solimene · Maria Denise Scafuro",
-        price: "290 €",
-        status: "disponibile",
-        isPortfolio: true,
-        desc: "Omaggio scultoreo all'eroe di Cervantes: Don Chisciotte a cavallo del suo Ronzinante, reinterpretato con la vivacità dei colori vietresi, elmo, armatura istoriata e forme plastiche modellate a mano.",
-        img: "images/opere/scultura-don-chisciotte-cavallo.jpg"
-      },
-      {
-        id: 104,
-        title: "Grande Scultura «Metamorfosi Marina»",
-        collection: "Sculture & Pezzi Unici",
-        category: "arte",
-        artists: "Antonio Solimene · Maria Denise Scafuro",
-        price: "320 €",
-        status: "disponibile",
-        isPortfolio: true,
-        desc: "Scultura monumentale a forma di pesce con volti cubisti bifronte. Da un lato il profilo femminile e geometrico nei toni del sole e della terra, dall'altro la maschera arcaica su smalto satinato bianco opaco con incisioni e ossidi metallici. Firmata Antonio Solimene.",
-        img: "images/opere/pesce-scultura-cubista-grande.jpg"
-      },
-      {
-        id: 105,
-        title: "Pesce Scultura «Vietri sul Mare & San Giovanni»",
-        collection: "Sculture & Pezzi Unici",
-        category: "arte",
-        artists: "Antonio Solimene · Maria Denise Scafuro",
-        price: "240 €",
-        status: "prenotato",
-        isPortfolio: true,
-        desc: "Scultura in maiolica sagomata e decorata a pennello. Sul fronte la celebre cupola maiolicata di San Giovanni Battista con il borgo a picco sul mare; sul retro grandi limoni sfumati e motivi geometrici vietresi. Opera firmata Antonio Solimene '24.",
-        img: "images/opere/pesce-ceramica-vietri-cupola.jpg"
-      },
-      {
-        id: 106,
-        title: "Pesce Sagomato «Positano & I Limoni d'Oro»",
-        collection: "Sculture & Pezzi Unici",
-        category: "arte",
-        artists: "Antonio Solimene · Maria Denise Scafuro",
-        price: "220 €",
-        status: "disponibile",
-        isPortfolio: true,
-        desc: "Pesce in ceramica modellato al tornio e traforato a mano. La superficie dipinta a mano racconta le case a cascata di Positano, la cupola arabescata e rami di limone della Costiera Amalfitana incorniciati da greche policrome.",
-        img: "images/opere/pesce-ceramica-positano-limoni.jpg"
-      },
-      {
-        id: 107,
-        title: "Coppia Sculture «I Tentacoli degli Abissi»",
-        collection: "Sculture & Pezzi Unici",
-        category: "arte",
-        artists: "Antonio Solimene · Maria Denise Scafuro",
-        price: "340 € la coppia",
-        status: "ordinazione",
-        isPortfolio: true,
-        desc: "Coppia di sculture verticali slanciate che evocano i tentacoli del polpo che affiorano dalle onde del Golfo. Smalto a lustro metallico lucido, riflessi turchesi, blu oltremare e cremisi profondo con ventose modellate a rilievo una a una.",
-        img: "images/opere/scultura-tentacoli-abissi-coppia.jpg"
-      },
-      {
-        id: 108,
-        title: "Vaso Bottiglia «Volto Bifronte al Tornio»",
-        collection: "Sculture & Pezzi Unici",
-        category: "arte",
-        artists: "Antonio Solimene · Maria Denise Scafuro",
-        price: "190 €",
-        status: "disponibile",
-        isPortfolio: true,
-        desc: "Vaso scultura a collo stretto con tappo geometrico e manico a voluta. Corpo ovoidale forgiato al tornio con doppio volto picassiano dipinto a mano in bianco, nero, ocra e celeste ceruleo. Firmato Antonio Solimene '24.",
-        img: "images/opere/vaso-bottiglia-volto-cubista.jpg"
-      },
-      {
-        id: 109,
-        title: "Scultura «Pesce Sguardo Sommerso»",
-        collection: "Sculture & Pezzi Unici",
-        category: "arte",
-        artists: "Antonio Solimene · Maria Denise Scafuro",
-        price: "150 €",
-        status: "disponibile",
-        isPortfolio: true,
-        desc: "Scultura orizzontale in ceramica che fonde la sagoma marina e il profilo umano. Superficie materica con velatura a biscotto chiaro, inserti grafici in nero fumo e pennellate di giallo ocra e azzurro oltremare.",
-        img: "images/opere/pesce-cubista-sguardo-sommerso.jpg"
-      },
-      {
-        id: 110,
-        title: "Scultura Pesce «Occhi dell'Oceano»",
-        collection: "Sculture & Pezzi Unici",
-        category: "arte",
-        artists: "Antonio Solimene · Maria Denise Scafuro",
-        price: "160 €",
-        status: "disponibile",
-        isPortfolio: false,
-        desc: "Pesce fusiforme modellato a mano con motivi geometrici concentrici, pinne a sbalzo e sguardo penetrante. Doppio lato dipinto con ossidi naturali e vetrina cotta a 960°C.",
-        img: "images/opere/pesce-cubista-occhi-oceano.jpg"
-      },
-      {
-        id: 111,
-        title: "Scultura Storica «Guerriero Sannita con Gerla»",
-        collection: "Sculture & Pezzi Unici",
-        category: "arte",
-        artists: "Antonio Solimene · Maria Denise Scafuro",
-        price: "260 €",
-        status: "venduto",
-        isPortfolio: false,
-        desc: "Rara scultura che rievoca l'iconografia classica campana: guerriero con elmo crestato, lancia e gerla a spalla con greche geometriche a rilievo. Pezzo storico dell'archivio di bottega.",
-        img: "images/opere/scultura-guerriero-sannita-anfora.jpg"
-      },
-      {
-        id: 112,
-        title: "Tappo Scultoreo «Il Piccolo Polpo di Vietri»",
-        collection: "Terre & Cotto Vivo",
-        category: "terre",
-        artists: "Antonio Solimene · Maria Denise Scafuro",
-        price: "45 €",
-        status: "disponibile",
-        isPortfolio: false,
-        desc: "Minuteria artistica d'autore in ceramica smaltata lucida turchese e rame. Ideale come tappo decorativo per bottiglie d'olio o vino o scultura da collezione per la tavola.",
-        img: "images/opere/scultura-polpo-vietri-miniatura.jpg"
-      },
-      {
-        id: 1,
-        title: "Ciotola Azzurro Profondo",
-        collection: "Azzurro Mediterraneo",
-        category: "azzurro",
-        artists: "Antonio Solimene · Maria Denise Scafuro",
-        price: "38 €",
-        status: "disponibile",
-        isPortfolio: false,
-        desc: "Ispirata agli smalti trasparenti di nonno Ciccio. Smalto cobalto vietrese vetrificato su argilla forgiata a mano libera.",
-        img: "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 2,
-        title: "Anfora Terracotta Grezza",
-        collection: "Terre & Cotto Vivo",
-        category: "terre",
-        artists: "Antonio Solimene · Maria Denise Scafuro",
-        price: "70 €",
-        status: "disponibile",
-        isPortfolio: false,
-        desc: "Modellata al tornio con impasto poroso campano, finitura naturale a vista senza smalto, come nelle antiche botteghe.",
-        img: "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 3,
-        title: "Set Piatti Ocra e Sabbia",
-        collection: "Tavola & Servizio",
-        category: "tavola",
-        artists: "Antonio Solimene · Maria Denise Scafuro",
-        price: "64 €",
-        status: "disponibile",
-        isPortfolio: false,
-        desc: "Gres resistente con velatura lucida color limone e sabbia. Bordo sagomato a mano.",
-        img: "https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 4,
-        title: "Svuotatasche Ocra Calda",
-        collection: "Terre & Cotto Vivo",
-        category: "terre",
-        artists: "Antonio Solimene · Maria Denise Scafuro",
-        price: "50 €",
-        status: "disponibile",
-        isPortfolio: false,
-        desc: "Pezzo compatto da piano con fondo a smalto materico ocra lucido. Bordo a vivo.",
-        img: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=700&q=80"
-      }
+          {
+                "id": 101,
+                "title": "Pannello Maiolicato «La Dama dei Gatti»",
+                "collection": "Sculture & Pezzi Unici",
+                "category": "arte",
+                "artists": "Antonio Solimene · Maria Denise Scafuro",
+                "price": "480 €",
+                "status": "disponibile",
+                "isPortfolio": true,
+                "desc": "Capolavoro su piastrella maiolicata vietrese. Volto femminile etereo con occhi turchesi, incorniciato da una cascata di gatti stilizzati, gabbiani marini e motivi geometrici a scacchi su fondo blu cobalto profondo. Pezzo unico d'autore firmato Antonio Solimene.",
+                "img": "images/opere/pannello-maiolicato-dama-gatti.jpg",
+                "imgFit": "contain"
+          },
+          {
+                "id": 102,
+                "title": "Scultura «Ninfa Marina — Medusa del Golfo»",
+                "collection": "Sculture & Pezzi Unici",
+                "category": "arte",
+                "artists": "Antonio Solimene · Maria Denise Scafuro",
+                "price": "360 €",
+                "status": "disponibile",
+                "isPortfolio": true,
+                "desc": "Busto scultoreo in ceramica policroma con smalto turchese lucido e dettagli bruni. Il volto sereno della divinità marina si fonde con una chioma di tentacoli e creature dei fondali costieri. Modellata a mano libera e cotta a gran fuoco.",
+                "img": "images/opere/scultura-medusa-ninfa-marina.jpg",
+                "imgFit": "contain"
+          },
+          {
+                "id": 103,
+                "title": "Scultura «Don Chisciotte della Costiera»",
+                "collection": "Sculture & Pezzi Unici",
+                "category": "arte",
+                "artists": "Antonio Solimene · Maria Denise Scafuro",
+                "price": "290 €",
+                "status": "disponibile",
+                "isPortfolio": true,
+                "desc": "Omaggio scultoreo all'eroe di Cervantes: Don Chisciotte a cavallo del suo Ronzinante, reinterpretato con la vivacità dei colori vietresi, elmo, armatura istoriata e forme plastiche modellate a mano.",
+                "img": "images/opere/scultura-don-chisciotte-cavallo.jpg",
+                "imgFit": "contain"
+          },
+          {
+                "id": 104,
+                "title": "Grande Scultura «Metamorfosi Marina»",
+                "collection": "Sculture & Pezzi Unici",
+                "category": "arte",
+                "artists": "Antonio Solimene · Maria Denise Scafuro",
+                "price": "320 €",
+                "status": "disponibile",
+                "isPortfolio": true,
+                "desc": "Scultura monumentale a forma di pesce con volti cubisti bifronte. Da un lato il profilo femminile e geometrico nei toni del sole e della terra, dall'altro la maschera arcaica su smalto satinato bianco opaco con incisioni e ossidi metallici. Firmata Antonio Solimene.",
+                "img": "images/opere/pesce-scultura-cubista-grande.jpg",
+                "imgFit": "contain"
+          },
+          {
+                "id": 105,
+                "title": "Pesce Scultura «Vietri sul Mare & San Giovanni»",
+                "collection": "Sculture & Pezzi Unici",
+                "category": "arte",
+                "artists": "Antonio Solimene · Maria Denise Scafuro",
+                "price": "240 €",
+                "status": "prenotato",
+                "isPortfolio": true,
+                "desc": "Scultura in maiolica sagomata e decorata a pennello. Sul fronte la celebre cupola maiolicata di San Giovanni Battista con il borgo a picco sul mare; sul retro grandi limoni sfumati e motivi geometrici vietresi. Opera firmata Antonio Solimene '24.",
+                "img": "images/opere/pesce-ceramica-vietri-cupola.jpg",
+                "imgFit": "contain"
+          },
+          {
+                "id": 106,
+                "title": "Pesce Sagomato «Positano & I Limoni d'Oro»",
+                "collection": "Sculture & Pezzi Unici",
+                "category": "arte",
+                "artists": "Antonio Solimene · Maria Denise Scafuro",
+                "price": "220 €",
+                "status": "disponibile",
+                "isPortfolio": true,
+                "desc": "Pesce in ceramica modellato al tornio e traforato a mano. La superficie dipinta a mano racconta le case a cascata di Positano, la cupola arabescata e rami di limone della Costiera Amalfitana incorniciati da greche policrome.",
+                "img": "images/opere/pesce-ceramica-positano-limoni.jpg",
+                "imgFit": "contain"
+          },
+          {
+                "id": 107,
+                "title": "Coppia Sculture «I Tentacoli degli Abissi»",
+                "collection": "Sculture & Pezzi Unici",
+                "category": "arte",
+                "artists": "Antonio Solimene · Maria Denise Scafuro",
+                "price": "340 € la coppia",
+                "status": "ordinazione",
+                "isPortfolio": true,
+                "desc": "Coppia di sculture verticali slanciate che evocano i tentacoli del polpo che affiorano dalle onde del Golfo. Smalto a lustro metallico lucido, riflessi turchesi, blu oltremare e cremisi profondo con ventose modellate a rilievo una a una.",
+                "img": "images/opere/scultura-tentacoli-abissi-coppia.jpg",
+                "imgFit": "contain"
+          },
+          {
+                "id": 108,
+                "title": "Vaso Bottiglia «Volto Bifronte al Tornio»",
+                "collection": "Sculture & Pezzi Unici",
+                "category": "arte",
+                "artists": "Antonio Solimene · Maria Denise Scafuro",
+                "price": "190 €",
+                "status": "disponibile",
+                "isPortfolio": true,
+                "desc": "Vaso scultura a collo stretto con tappo geometrico e manico a voluta. Corpo ovoidale forgiato al tornio con doppio volto picassiano dipinto a mano in bianco, nero, ocra e celeste ceruleo. Firmato Antonio Solimene '24.",
+                "img": "images/opere/vaso-bottiglia-volto-cubista.jpg",
+                "imgFit": "contain"
+          },
+          {
+                "id": 109,
+                "title": "Scultura «Pesce Sguardo Sommerso»",
+                "collection": "Sculture & Pezzi Unici",
+                "category": "arte",
+                "artists": "Antonio Solimene · Maria Denise Scafuro",
+                "price": "150 €",
+                "status": "disponibile",
+                "isPortfolio": true,
+                "desc": "Scultura orizzontale in ceramica che fonde la sagoma marina e il profilo umano. Superficie materica con velatura a biscotto chiaro, inserti grafici in nero fumo e pennellate di giallo ocra e azzurro oltremare.",
+                "img": "images/opere/pesce-cubista-sguardo-sommerso.jpg",
+                "imgFit": "contain"
+          },
+          {
+                "id": 110,
+                "title": "Scultura Pesce «Occhi dell'Oceano»",
+                "collection": "Sculture & Pezzi Unici",
+                "category": "arte",
+                "artists": "Antonio Solimene · Maria Denise Scafuro",
+                "price": "160 €",
+                "status": "disponibile",
+                "isPortfolio": false,
+                "desc": "Pesce fusiforme modellato a mano con motivi geometrici concentrici, pinne a sbalzo e sguardo penetrante. Doppio lato dipinto con ossidi naturali e vetrina cotta a 960°C.",
+                "img": "images/opere/pesce-cubista-occhi-oceano.jpg",
+                "imgFit": "contain"
+          },
+          {
+                "id": 111,
+                "title": "Scultura Storica «Guerriero Sannita con Gerla»",
+                "collection": "Sculture & Pezzi Unici",
+                "category": "arte",
+                "artists": "Antonio Solimene · Maria Denise Scafuro",
+                "price": "260 €",
+                "status": "venduto",
+                "isPortfolio": false,
+                "desc": "Rara scultura che rievoca l'iconografia classica campana: guerriero con elmo crestato, lancia e gerla a spalla con greche geometriche a rilievo. Pezzo storico dell'archivio di bottega.",
+                "img": "images/opere/scultura-guerriero-sannita-anfora.jpg",
+                "imgFit": "contain"
+          },
+          {
+                "id": 112,
+                "title": "Tappo Scultoreo «Il Piccolo Polpo di Vietri»",
+                "collection": "Terre & Cotto Vivo",
+                "category": "terre",
+                "artists": "Antonio Solimene · Maria Denise Scafuro",
+                "price": "45 €",
+                "status": "disponibile",
+                "isPortfolio": false,
+                "desc": "Minuteria artistica d'autore in ceramica smaltata lucida turchese e rame. Ideale come tappo decorativo per bottiglie d'olio o vino o scultura da collezione per la tavola.",
+                "img": "images/opere/scultura-polpo-vietri-miniatura.jpg",
+                "imgFit": "contain"
+          },
+          {
+                "id": 1,
+                "title": "Ciotola Azzurro Profondo",
+                "collection": "Azzurro Mediterraneo",
+                "category": "azzurro",
+                "artists": "Antonio Solimene · Maria Denise Scafuro",
+                "price": "38 €",
+                "status": "disponibile",
+                "isPortfolio": false,
+                "desc": "Ispirata agli smalti trasparenti di nonno Ciccio. Smalto cobalto vietrese vetrificato su argilla forgiata a mano libera.",
+                "img": "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=700&q=80",
+                "imgFit": "center"
+          },
+          {
+                "id": 2,
+                "title": "Anfora Terracotta Grezza",
+                "collection": "Terre & Cotto Vivo",
+                "category": "terre",
+                "artists": "Antonio Solimene · Maria Denise Scafuro",
+                "price": "70 €",
+                "status": "disponibile",
+                "isPortfolio": false,
+                "desc": "Modellata al tornio con impasto poroso campano, finitura naturale a vista senza smalto, come nelle antiche botteghe.",
+                "img": "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=700&q=80",
+                "imgFit": "center"
+          },
+          {
+                "id": 3,
+                "title": "Set Piatti Ocra e Sabbia",
+                "collection": "Tavola & Servizio",
+                "category": "tavola",
+                "artists": "Antonio Solimene · Maria Denise Scafuro",
+                "price": "64 €",
+                "status": "disponibile",
+                "isPortfolio": false,
+                "desc": "Gres resistente con velatura lucida color limone e sabbia. Bordo sagomato a mano.",
+                "img": "https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=700&q=80",
+                "imgFit": "center"
+          },
+          {
+                "id": 4,
+                "title": "Svuotatasche Ocra Calda",
+                "collection": "Terre & Cotto Vivo",
+                "category": "terre",
+                "artists": "Antonio Solimene · Maria Denise Scafuro",
+                "price": "50 €",
+                "status": "disponibile",
+                "isPortfolio": false,
+                "desc": "Pezzo compatto da piano con fondo a smalto materico ocra lucido. Bordo a vivo.",
+                "img": "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=700&q=80",
+                "imgFit": "center"
+          }
     ];
 
     // STORAGE ADAPTER (Supporta catalog.json dinamico/statico e localStorage)
@@ -1931,6 +2027,23 @@
       }
     }
 
+    // CLASSE CSS INQUADRATURA IMMAGINE (RISPETTA SCELTA ANTEPRIMA)
+    function getImageClass(p) {
+      const fit = p.imgFit || 'contain';
+      switch (fit) {
+        case 'top':
+          return 'w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105';
+        case 'center':
+        case 'cover':
+          return 'w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105';
+        case 'bottom':
+          return 'w-full h-full object-cover object-bottom transition-transform duration-700 ease-out group-hover:scale-105';
+        case 'contain':
+        default:
+          return 'w-full h-full object-contain p-2.5 transition-transform duration-700 ease-out group-hover:scale-105';
+      }
+    }
+
     // RENDERING GALLERIA & PORTFOLIO D'AUTORE (MAX 10 OPERE IN EVIDENZA)
     function renderPortfolio() {
       const grid = document.getElementById('portfolioGrid');
@@ -1955,9 +2068,9 @@
         return `
           <article onclick="openModal(${p.id})" class="group cursor-pointer bg-white rounded-2xl overflow-hidden border border-neutral-200/90 hover:border-vietri-cobalto/50 transition-all duration-300 hover:shadow-xl flex flex-col justify-between">
             <div>
-              <div class="aspect-[4/3] bg-neutral-100 overflow-hidden relative border-b border-neutral-100">
+              <div class="aspect-[4/3] bg-neutral-50 overflow-hidden relative border-b border-neutral-100 flex items-center justify-center">
                 <img src="${p.img}" alt="${p.title}" loading="lazy"
-                     class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105">
+                     class="${getImageClass(p)}">
                 <div class="absolute top-3 left-3 flex flex-wrap gap-1.5 items-center z-10">
                   <span class="text-[9px] uppercase tracking-wider font-bold px-2.5 py-1 rounded-full shadow-2xs ${statusConfig.cls}">
                     ${statusConfig.label}
@@ -2009,9 +2122,9 @@
         const statusConfig = getStatusBadgeConfig(p.status, t);
         return `
           <div onclick="openModal(${p.id})" class="group cursor-pointer">
-            <div class="aspect-square bg-white border border-neutral-200 overflow-hidden relative shadow-sm rounded-lg">
+            <div class="aspect-square bg-neutral-50 border border-neutral-200 overflow-hidden relative shadow-sm rounded-lg flex items-center justify-center">
               <img src="${p.img}" alt="${p.title}" loading="lazy"
-                   class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105">
+                   class="${getImageClass(p)}">
               <div class="absolute top-2 left-2 z-10">
                 <span class="text-[8px] uppercase tracking-wider font-bold px-2 py-0.5 rounded shadow-2xs ${statusConfig.cls}">
                   ${statusConfig.label}
@@ -2072,6 +2185,7 @@
     function openModal(id) {
       const p = CATALOG.find(x => x.id === id);
       if (!p) return;
+      currentModalProduct = p;
 
       const t = TRANSLATIONS[currentLang] || TRANSLATIONS['it'];
 
@@ -2128,6 +2242,141 @@
       if (floatBtn) floatBtn.classList.remove('hidden');
     }
 
+    
+
+    // -------------------------------------------------------------
+    // LIGHTBOX FULLSCREEN & ZOOM INTERATTIVO DETTAGLI
+    // -------------------------------------------------------------
+    let currentModalProduct = null;
+    let lbScale = 1;
+    let lbX = 0;
+    let lbY = 0;
+    let lbIsDragging = false;
+    let lbStartX = 0;
+    let lbStartY = 0;
+
+    function openLightbox() {
+      if (!currentModalProduct) return;
+      const modal = document.getElementById('lightboxModal');
+      const img = document.getElementById('lightboxImg');
+      const title = document.getElementById('lightboxTitle');
+      if (!modal || !img) return;
+
+      img.src = currentModalProduct.img;
+      img.alt = currentModalProduct.title;
+      if (title) title.textContent = currentModalProduct.title;
+
+      lbScale = 1;
+      lbX = 0;
+      lbY = 0;
+      lbIsDragging = false;
+      updateLightboxTransform();
+
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('lightboxModal');
+      if (modal) modal.classList.add('hidden');
+      lbScale = 1;
+      lbX = 0;
+      lbY = 0;
+      lbIsDragging = false;
+      updateLightboxTransform();
+      const detailModal = document.getElementById('detailModal');
+      if (detailModal && detailModal.classList.contains('hidden')) {
+        document.body.style.overflow = '';
+      }
+    }
+
+    function updateLightboxTransform() {
+      const img = document.getElementById('lightboxImg');
+      const stage = document.getElementById('lightboxStage');
+      const zoomLevel = document.getElementById('lightboxZoomLevel');
+      if (!img) return;
+
+      img.style.transform = `translate(${lbX}px, ${lbY}px) scale(${lbScale})`;
+      if (zoomLevel) {
+        zoomLevel.textContent = `${Math.round(lbScale * 100)}%`;
+      }
+      if (stage) {
+        if (lbScale > 1) {
+          stage.style.cursor = lbIsDragging ? 'grabbing' : 'grab';
+        } else {
+          stage.style.cursor = 'zoom-in';
+        }
+      }
+    }
+
+    function lightboxZoom(delta) {
+      lbScale = Math.max(1, Math.min(4, Math.round((lbScale + delta) * 10) / 10));
+      if (lbScale === 1) {
+        lbX = 0;
+        lbY = 0;
+      }
+      updateLightboxTransform();
+    }
+
+    function lightboxResetZoom() {
+      lbScale = 1;
+      lbX = 0;
+      lbY = 0;
+      updateLightboxTransform();
+    }
+
+    function toggleLightboxZoom(e) {
+      if (lbScale > 1.1) {
+        lightboxResetZoom();
+      } else {
+        lbScale = 2.4;
+        updateLightboxTransform();
+      }
+    }
+
+    function handleLightboxWheel(e) {
+      e.preventDefault();
+      const delta = e.deltaY < 0 ? 0.3 : -0.3;
+      lightboxZoom(delta);
+    }
+
+    function startLightboxDrag(e) {
+      if (lbScale <= 1) return;
+      lbIsDragging = true;
+      lbStartX = e.clientX - lbX;
+      lbStartY = e.clientY - lbY;
+      updateLightboxTransform();
+    }
+
+    function doLightboxDrag(e) {
+      if (!lbIsDragging || lbScale <= 1) return;
+      lbX = e.clientX - lbStartX;
+      lbY = e.clientY - lbStartY;
+      updateLightboxTransform();
+    }
+
+    function endLightboxDrag() {
+      if (lbIsDragging) {
+        lbIsDragging = false;
+        updateLightboxTransform();
+      }
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        const lb = document.getElementById('lightboxModal');
+        if (lb && !lb.classList.contains('hidden')) {
+          closeLightbox();
+          return;
+        }
+        const dm = document.getElementById('detailModal');
+        if (dm && !dm.classList.contains('hidden')) {
+          closeModal();
+          return;
+        }
+      }
+    });
+
     // -------------------------------------------------------------
     // GESTIONE PANNELLO AMMINISTRAZIONE BOTTEGA
     // -------------------------------------------------------------
@@ -2182,6 +2431,7 @@
         category: catValue,
         collection: collectionsMap[catValue],
         price: document.getElementById('newPrice').value,
+        imgFit: document.getElementById('newImgFit') ? document.getElementById('newImgFit').value : 'contain',
         desc: document.getElementById('newDesc').value,
         img: base64UploadBuffer
       };

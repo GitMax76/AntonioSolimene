@@ -9,7 +9,8 @@
     "status": "disponibile",
     "isPortfolio": true,
     "desc": "Capolavoro su piastrella maiolicata vietrese. Volto femminile etereo con occhi turchesi, incorniciato da una cascata di gatti stilizzati, gabbiani marini e motivi geometrici a scacchi su fondo blu cobalto profondo. Pezzo unico d'autore firmato Antonio Solimene.",
-    "img": "images/opere/pannello-maiolicato-dama-gatti.jpg"
+    "img": "images/opere/pannello-maiolicato-dama-gatti.jpg",
+    "imgFit": "contain"
   },
   {
     "id": 102,
@@ -21,7 +22,8 @@
     "status": "disponibile",
     "isPortfolio": true,
     "desc": "Busto scultoreo in ceramica policroma con smalto turchese lucido e dettagli bruni. Il volto sereno della divinità marina si fonde con una chioma di tentacoli e creature dei fondali costieri. Modellata a mano libera e cotta a gran fuoco.",
-    "img": "images/opere/scultura-medusa-ninfa-marina.jpg"
+    "img": "images/opere/scultura-medusa-ninfa-marina.jpg",
+    "imgFit": "contain"
   },
   {
     "id": 103,
@@ -33,7 +35,8 @@
     "status": "disponibile",
     "isPortfolio": true,
     "desc": "Omaggio scultoreo all'eroe di Cervantes: Don Chisciotte a cavallo del suo Ronzinante, reinterpretato con la vivacità dei colori vietresi, elmo, armatura istoriata e forme plastiche modellate a mano.",
-    "img": "images/opere/scultura-don-chisciotte-cavallo.jpg"
+    "img": "images/opere/scultura-don-chisciotte-cavallo.jpg",
+    "imgFit": "contain"
   },
   {
     "id": 104,
@@ -45,7 +48,8 @@
     "status": "disponibile",
     "isPortfolio": true,
     "desc": "Scultura monumentale a forma di pesce con volti cubisti bifronte. Da un lato il profilo femminile e geometrico nei toni del sole e della terra, dall'altro la maschera arcaica su smalto satinato bianco opaco con incisioni e ossidi metallici. Firmata Antonio Solimene.",
-    "img": "images/opere/pesce-scultura-cubista-grande.jpg"
+    "img": "images/opere/pesce-scultura-cubista-grande.jpg",
+    "imgFit": "contain"
   },
   {
     "id": 105,
@@ -57,7 +61,8 @@
     "status": "prenotato",
     "isPortfolio": true,
     "desc": "Scultura in maiolica sagomata e decorata a pennello. Sul fronte la celebre cupola maiolicata di San Giovanni Battista con il borgo a picco sul mare; sul retro grandi limoni sfumati e motivi geometrici vietresi. Opera firmata Antonio Solimene '24.",
-    "img": "images/opere/pesce-ceramica-vietri-cupola.jpg"
+    "img": "images/opere/pesce-ceramica-vietri-cupola.jpg",
+    "imgFit": "contain"
   },
   {
     "id": 106,
@@ -69,7 +74,8 @@
     "status": "disponibile",
     "isPortfolio": true,
     "desc": "Pesce in ceramica modellato al tornio e traforato a mano. La superficie dipinta a mano racconta le case a cascata di Positano, la cupola arabescata e rami di limone della Costiera Amalfitana incorniciati da greche policrome.",
-    "img": "images/opere/pesce-ceramica-positano-limoni.jpg"
+    "img": "images/opere/pesce-ceramica-positano-limoni.jpg",
+    "imgFit": "contain"
   },
   {
     "id": 107,
@@ -81,7 +87,8 @@
     "status": "ordinazione",
     "isPortfolio": true,
     "desc": "Coppia di sculture verticali slanciate che evocano i tentacoli del polpo che affiorano dalle onde del Golfo. Smalto a lustro metallico lucido, riflessi turchesi, blu oltremare e cremisi profondo con ventose modellate a rilievo una a una.",
-    "img": "images/opere/scultura-tentacoli-abissi-coppia.jpg"
+    "img": "images/opere/scultura-tentacoli-abissi-coppia.jpg",
+    "imgFit": "contain"
   },
   {
     "id": 108,
@@ -93,7 +100,8 @@
     "status": "disponibile",
     "isPortfolio": true,
     "desc": "Vaso scultura a collo stretto con tappo geometrico e manico a voluta. Corpo ovoidale forgiato al tornio con doppio volto picassiano dipinto a mano in bianco, nero, ocra e celeste ceruleo. Firmato Antonio Solimene '24.",
-    "img": "images/opere/vaso-bottiglia-volto-cubista.jpg"
+    "img": "images/opere/vaso-bottiglia-volto-cubista.jpg",
+    "imgFit": "contain"
   },
   {
     "id": 109,
@@ -105,7 +113,8 @@
     "status": "disponibile",
     "isPortfolio": true,
     "desc": "Scultura orizzontale in ceramica che fonde la sagoma marina e il profilo umano. Superficie materica con velatura a biscotto chiaro, inserti grafici in nero fumo e pennellate di giallo ocra e azzurro oltremare.",
-    "img": "images/opere/pesce-cubista-sguardo-sommerso.jpg"
+    "img": "images/opere/pesce-cubista-sguardo-sommerso.jpg",
+    "imgFit": "contain"
   },
   {
     "id": 110,
@@ -117,7 +126,8 @@
     "status": "disponibile",
     "isPortfolio": false,
     "desc": "Pesce fusiforme modellato a mano con motivi geometrici concentrici, pinne a sbalzo e sguardo penetrante. Doppio lato dipinto con ossidi naturali e vetrina cotta a 960°C.",
-    "img": "images/opere/pesce-cubista-occhi-oceano.jpg"
+    "img": "images/opere/pesce-cubista-occhi-oceano.jpg",
+    "imgFit": "contain"
   },
   {
     "id": 111,
@@ -129,7 +139,8 @@
     "status": "venduto",
     "isPortfolio": false,
     "desc": "Rara scultura che rievoca l'iconografia classica campana: guerriero con elmo crestato, lancia e gerla a spalla con greche geometriche a rilievo. Pezzo storico dell'archivio di bottega.",
-    "img": "images/opere/scultura-guerriero-sannita-anfora.jpg"
+    "img": "images/opere/scultura-guerriero-sannita-anfora.jpg",
+    "imgFit": "contain"
   },
   {
     "id": 112,
@@ -141,7 +152,8 @@
     "status": "disponibile",
     "isPortfolio": false,
     "desc": "Minuteria artistica d'autore in ceramica smaltata lucida turchese e rame. Ideale come tappo decorativo per bottiglie d'olio o vino o scultura da collezione per la tavola.",
-    "img": "images/opere/scultura-polpo-vietri-miniatura.jpg"
+    "img": "images/opere/scultura-polpo-vietri-miniatura.jpg",
+    "imgFit": "contain"
   },
   {
     "id": 1,
@@ -153,7 +165,8 @@
     "status": "disponibile",
     "isPortfolio": false,
     "desc": "Ispirata agli smalti trasparenti di nonno Ciccio. Smalto cobalto vietrese vetrificato su argilla forgiata a mano libera.",
-    "img": "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=700&q=80"
+    "img": "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=700&q=80",
+    "imgFit": "center"
   },
   {
     "id": 2,
@@ -165,7 +178,8 @@
     "status": "disponibile",
     "isPortfolio": false,
     "desc": "Modellata al tornio con impasto poroso campano, finitura naturale a vista senza smalto, come nelle antiche botteghe.",
-    "img": "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=700&q=80"
+    "img": "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=700&q=80",
+    "imgFit": "center"
   },
   {
     "id": 3,
@@ -177,7 +191,8 @@
     "status": "disponibile",
     "isPortfolio": false,
     "desc": "Gres resistente con velatura lucida color limone e sabbia. Bordo sagomato a mano.",
-    "img": "https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=700&q=80"
+    "img": "https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=700&q=80",
+    "imgFit": "center"
   },
   {
     "id": 4,
@@ -189,6 +204,7 @@
     "status": "disponibile",
     "isPortfolio": false,
     "desc": "Pezzo compatto da piano con fondo a smalto materico ocra lucido. Bordo a vivo.",
-    "img": "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=700&q=80"
+    "img": "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=700&q=80",
+    "imgFit": "center"
   }
 ]

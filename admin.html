@@ -197,6 +197,22 @@
               </div>
             </div>
 
+            
+            <!-- Selettore Inquadratura Anteprima (Riquadro) -->
+            <div id="imageFramingBox" class="mt-3.5 pt-3 border-t border-neutral-200 text-left">
+              <label class="block text-[11px] font-semibold text-neutral-800 mb-1 flex items-center justify-between">
+                <span>Inquadratura Anteprima (Riquadro Scheda)</span>
+                <span class="text-[10px] text-vietri-cobalto font-normal">Scegli come mostrare la foto</span>
+              </label>
+              <select id="formImgFit" onchange="updateImagePreviewFraming(this.value)" class="w-full px-3 py-2 rounded-xl border border-neutral-300 text-xs bg-white focus:outline-none focus:border-vietri-cobalto">
+                <option value="contain" selected>🖼️ Opera Intera (Consigliata per sculture e foto verticali - nessun taglio)</option>
+                <option value="top">⬆️ Ritaglio in Alto (Viso / Dettaglio superiore)</option>
+                <option value="center">🎯 Ritaglio al Centro (Standard)</option>
+                <option value="bottom">⬇️ Ritaglio in Basso</option>
+              </select>
+              <p class="text-[10px] text-neutral-500 mt-1">Con "Opera Intera" la scultura è visibile al 100% da cima a fondo senza tagliare la testa o la base.</p>
+            </div>
+
             <p id="compressStatus" class="text-[11px] text-vietri-cobalto font-medium mt-2 hidden animate-pulse">
               ⏳ Ottimizzazione foto in corso...
             </p>
@@ -1064,6 +1080,18 @@
       renderProductsList();
     }
 
+    
+    function updateImagePreviewFraming(fit) {
+      const el = document.getElementById('imagePreviewEl');
+      if (!el) return;
+      el.className = 'w-full h-full ' + (
+        fit === 'top' ? 'object-cover object-top' :
+        fit === 'center' ? 'object-cover object-center' :
+        fit === 'bottom' ? 'object-cover object-bottom' :
+        'object-contain p-2'
+      );
+    }
+
     function openCreateModal() {
       document.getElementById('editProductId').value = '';
       document.getElementById('formModalTitle').textContent = 'Nuova Creazione';
@@ -1072,6 +1100,10 @@
       toggleNewCategoryInput(false);
       document.getElementById('formArtists').value = 'Antonio Solimene · Maria Denise Scafuro';
       document.getElementById('formIsPortfolio').checked = false;
+      if (document.getElementById('formImgFit')) {
+        document.getElementById('formImgFit').value = 'contain';
+        updateImagePreviewFraming('contain');
+      }
       document.getElementById('imagePlaceholder').classList.remove('hidden');
       document.getElementById('imagePreviewBox').classList.add('hidden');
       currentImageBase64 = null;
@@ -1090,6 +1122,10 @@
       document.getElementById('formPrice').value = item.price;
       document.getElementById('formStatus').value = item.status || 'disponibile';
       document.getElementById('formIsPortfolio').checked = item.isPortfolio === true;
+      if (document.getElementById('formImgFit')) {
+        document.getElementById('formImgFit').value = item.imgFit || 'contain';
+        updateImagePreviewFraming(item.imgFit || 'contain');
+      }
       document.getElementById('formArtists').value = item.artists || 'Antonio Solimene · Maria Denise Scafuro';
       document.getElementById('formDesc').value = item.desc;
       
@@ -1206,7 +1242,8 @@
             status: document.getElementById('formStatus').value,
             isPortfolio: document.getElementById('formIsPortfolio').checked,
             desc: document.getElementById('formDesc').value.trim(),
-            img: currentImageBase64
+            img: currentImageBase64,
+            imgFit: document.getElementById('formImgFit') ? document.getElementById('formImgFit').value : 'contain'
           };
         }
       } else {
@@ -1221,8 +1258,9 @@
           status: document.getElementById('formStatus').value,
           isPortfolio: document.getElementById('formIsPortfolio').checked,
           desc: document.getElementById('formDesc').value.trim(),
-          img: currentImageBase64
-        };
+          img: currentImageBase64,
+            imgFit: document.getElementById('formImgFit') ? document.getElementById('formImgFit').value : 'contain'
+          };
         CATALOG.unshift(newEntry);
       }
 
