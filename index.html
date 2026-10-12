@@ -662,7 +662,7 @@
               <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/>
               </svg>
-              <span data-i18n="modal_buy_wa">Richiedi / Acquista su WhatsApp</span>
+              <span id="modalWaBtnText" data-i18n="modal_buy_wa">Richiedi / Acquista su WhatsApp</span>
             </a>
             <p class="text-[10px] text-center text-neutral-400 mt-1 font-light" data-i18n="modal_contact_direct">Contatto diretto con la bottega artigiana</p>
           </div>
@@ -895,6 +895,9 @@
         portfolio_badge: "Selezione Esclusiva",
         portfolio_title: "Galleria d'Autore",
         portfolio_subtitle: "Una selezione curata delle sculture, pannelli maiolicati e pezzi unici più significativi, modellati a mano al tornio da Antonio Solimene e Maria Denise Scafuro.",
+        portfolio_quote_label: "Pezzo Unico · Quotazione Riservata",
+        portfolio_modal_quote: "Pezzo Unico d'Autore · Trattativa Riservata",
+        portfolio_inquire_btn: "Richiedi Quotazione su WhatsApp",
         portfolio_view_btn: "Esplora l'Opera →",
         status_disponibile: "Disponibile in Bottega",
         status_prenotato: "Prenotato",
@@ -963,6 +966,7 @@
         footer_admin: "🔒 Gestione Bottega",
         float_wa: "Scrivi su WhatsApp",
         wa_product_msg: "Ciao Antonio! Ti scrivo dal tuo sito web solimene.net. Sono interessato all'opera \"{title}\" (prezzo: {price}). Vorrei acquistarla o avere maggiori informazioni per la consegna.",
+        wa_portfolio_msg: "Ciao Antonio! Ti scrivo dal tuo sito web solimene.net. Sono interessato all'opera d'arte \"{title}\" della Galleria d'Autore. Vorrei maggiori informazioni e la quotazione per quest'opera.",
         wa_general_msg: "Ciao Antonio! Ti contatto dal tuo sito solimene.net, vorrei informazioni sulle tue creazioni.",
         wa_visit_msg: "Ciao Antonio! Vorrei visitare la tua bottega a Vietri sul Mare.",
         wa_bespoke1_msg: "Ciao Antonio! Vorrei informazioni per un servizio di piatti o stoviglie su misura.",
@@ -996,6 +1000,9 @@
         portfolio_badge: "Curated Selection",
         portfolio_title: "Masterworks Gallery",
         portfolio_subtitle: "A curated selection of our finest sculptures, majolica wall panels, and unique ceramic artworks hand-thrown by Antonio Solimene and Maria Denise Scafuro.",
+        portfolio_quote_label: "Unique Masterpiece · Private Quote",
+        portfolio_modal_quote: "Unique Masterpiece · Private Acquisition",
+        portfolio_inquire_btn: "Inquire Quote via WhatsApp",
         portfolio_view_btn: "View Artwork →",
         status_disponibile: "Available in Workshop",
         status_prenotato: "Reserved",
@@ -1064,6 +1071,7 @@
         footer_admin: "🔒 Workshop Admin",
         float_wa: "Chat on WhatsApp",
         wa_product_msg: "Hello Antonio! I am contacting you from your website solimene.net. I am interested in the artwork \"{title}\" (price: {price}). I would like to purchase it or get shipping details.",
+        wa_portfolio_msg: "Hello Antonio! I am contacting you from your website solimene.net. I am interested in the fine art piece \"{title}\" from your Masterworks Gallery. I would like more information and a price quotation.",
         wa_general_msg: "Hello Antonio! I am contacting you from your website solimene.net regarding your ceramic creations.",
         wa_visit_msg: "Hello Antonio! I would like to visit your ceramic workshop in Vietri sul Mare.",
         wa_bespoke1_msg: "Hello Antonio! I would like information regarding custom bespoke tableware sets.",
@@ -1097,6 +1105,9 @@
         portfolio_badge: "Sélection Exclusive",
         portfolio_title: "Galerie de Maître",
         portfolio_subtitle: "Une sélection soignée de sculptures, panneaux de majolique et pièces uniques remarquables, façonnés à la main au tour par Antonio Solimene et Maria Denise Scafuro.",
+        portfolio_quote_label: "Pièce Unique · Sur Demande",
+        portfolio_modal_quote: "Pièce Unique de Maître · Vente Privée",
+        portfolio_inquire_btn: "Demander la Cotation sur WhatsApp",
         portfolio_view_btn: "Explorer l'Œuvre →",
         status_disponibile: "Disponible en Atelier",
         status_prenotato: "Réservé",
@@ -1165,6 +1176,7 @@
         footer_admin: "🔒 Gestion Atelier",
         float_wa: "Écrire sur WhatsApp",
         wa_product_msg: "Bonjour Antonio! Je vous contacte depuis votre site solimene.net. Je suis intéressé(e) par l'œuvre \"{title}\" (prix: {price}). Je souhaiterais l'acheter ou avoir des informations pour la livraison.",
+        wa_portfolio_msg: "Bonjour Antonio ! Je vous contacte depuis votre site solimene.net. Je suis intéressé(e) par l'œuvre d'art \"{title}\" de votre Galerie d'Auteur. J'aimerais recevoir des informations et une cotation.",
         wa_general_msg: "Bonjour Antonio! Je vous contacte depuis votre site solimene.net au sujet de vos créations céramiques.",
         wa_visit_msg: "Bonjour Antonio! Je souhaiterais visiter votre atelier à Vietri sul Mare.",
         wa_bespoke1_msg: "Bonjour Antonio! J'aimerais des informations pour un service de vaisselle sur mesure.",
@@ -1198,6 +1210,9 @@
         portfolio_badge: "Exklusive Auswahl",
         portfolio_title: "Meisterwerke Galerie",
         portfolio_subtitle: "Eine kuratierte Auswahl unserer bedeutendsten Skulpturen, Majolika-Wandpaneele und Unikate, handgedreht von Antonio Solimene und Maria Denise Scafuro.",
+        portfolio_quote_label: "Meister-Unikat · Auf Anfrage",
+        portfolio_modal_quote: "Meister-Unikat · Diskrete Anfrage",
+        portfolio_inquire_btn: "Preis via WhatsApp Anfragen",
         portfolio_view_btn: "Werk Ansehen →",
         status_disponibile: "In der Werkstatt verfügbar",
         status_prenotato: "Reserviert",
@@ -1266,6 +1281,7 @@
         footer_admin: "🔒 Werkstatt-Verwaltung",
         float_wa: "Auf WhatsApp schreiben",
         wa_product_msg: "Hallo Antonio! Ich kontaktiere Sie über Ihre Website solimene.net. Ich interessiere mich für das Werk \"{title}\" (Preis: {price}). Ich möchte es erwerben oder Versanddetails anfragen.",
+        wa_portfolio_msg: "Hallo Antonio! Ich kontaktiere Sie über Ihre Website solimene.net. Ich interessiere mich für das Kunstwerk \"{title}\" aus Ihrer Meistergalerie und möchte mich nach dem Preis und Details erkundigen.",
         wa_general_msg: "Hallo Antonio! Ich kontaktiere Sie über Ihre Website solimene.net bezüglich Ihrer Keramikwerke.",
         wa_visit_msg: "Hallo Antonio! Ich möchte Ihre Töpferwerkstatt in Vietri sul Mare besuchen.",
         wa_bespoke1_msg: "Hallo Antonio! Ich interessiere mich für ein maßgefertigtes Geschirrset.",
@@ -1299,6 +1315,9 @@
         portfolio_badge: "Selección Exclusiva",
         portfolio_title: "Galería de Autor",
         portfolio_subtitle: "Una selección cuidada de nuestras mejores esculturas, paneles de mayólica y piezas únicas moldeadas a mano en el torno por Antonio Solimene y Maria Denise Scafuro.",
+        portfolio_quote_label: "Pieza Única · Cotización Privada",
+        portfolio_modal_quote: "Pieza Única de Autor · Consulta Privada",
+        portfolio_inquire_btn: "Consultar Cotización por WhatsApp",
         portfolio_view_btn: "Explorar la Obra →",
         status_disponibile: "Disponible en el Taller",
         status_prenotato: "Reservado",
@@ -1367,6 +1386,7 @@
         footer_admin: "🔒 Gestión Taller",
         float_wa: "Escribir por WhatsApp",
         wa_product_msg: "¡Hola Antonio! Te contacto desde tu sitio web solimene.net. Me interesa la obra \"{title}\" (precio: {price}). Desearía comprarla o recibir detalles de envío.",
+        wa_portfolio_msg: "¡Hola Antonio! Te escribo desde tu sitio web solimene.net. Estoy interesado en la obra de arte \"{title}\" de la Galería de Autor. Me gustaría recibir más información y la cotización de esta pieza.",
         wa_general_msg: "¡Hola Antonio! Te contacto desde tu sitio web solimene.net sobre tus creaciones cerámicas.",
         wa_visit_msg: "¡Hola Antonio! Me gustaría visitar tu taller en Vietri sul Mare.",
         wa_bespoke1_msg: "¡Hola Antonio! Quisiera información para una vajilla personalizada.",
@@ -1964,8 +1984,8 @@
             </div>
 
             <div class="px-6 pb-6 pt-2 flex items-center justify-between border-t border-neutral-100 mt-2">
-              <span class="font-serif text-lg font-semibold text-neutral-950">
-                ${p.price}
+              <span class="text-[11px] font-medium tracking-wide text-vietri-cobalto bg-vietri-cobalto/5 px-3 py-1 rounded-full border border-vietri-cobalto/15">
+                ${t.portfolio_quote_label || "Pezzo Unico · Quotazione Riservata"}
               </span>
               <span class="inline-flex items-center gap-1 text-xs font-semibold text-vietri-cobalto group-hover:translate-x-1 transition-transform">
                 ${viewBtnLabel}
@@ -2058,7 +2078,6 @@
       document.getElementById('modalImg').src = p.img;
       document.getElementById('modalTitle').textContent = p.title;
       document.getElementById('modalCollection').textContent = p.collection || 'Bottega Antonio Solimene';
-      document.getElementById('modalPrice').textContent = p.price;
       document.getElementById('modalDesc').textContent = p.desc;
 
       const artistsEl = document.getElementById('modalArtists');
@@ -2073,10 +2092,26 @@
         badge.textContent = statusConfig.label;
       }
 
-      const msgTemplate = t.wa_product_msg || "Ciao Antonio! Ti scrivo dal tuo sito web solimene.net. Sono interessato all'opera \"{title}\" (prezzo: {price}). Vorrei acquistarla o avere maggiori informazioni per la consegna.";
-      const filledMsg = msgTemplate.replace('{title}', p.title).replace('{price}', p.price);
-      
-      document.getElementById('modalWaBtn').href = `https://wa.me/${CONFIG.phone}?text=${encodeURIComponent(filledMsg)}`;
+      const modalPriceEl = document.getElementById('modalPrice');
+      const modalWaBtnText = document.getElementById('modalWaBtnText');
+
+      if (p.isPortfolio === true) {
+        modalPriceEl.innerHTML = `<span class="text-sm sm:text-base font-serif italic text-neutral-600 font-normal tracking-wide">${t.portfolio_modal_quote || "Pezzo Unico d'Autore · Trattativa Riservata"}</span>`;
+        if (modalWaBtnText) {
+          modalWaBtnText.textContent = t.portfolio_inquire_btn || "Richiedi Quotazione su WhatsApp";
+        }
+        const msgTemplate = t.wa_portfolio_msg || "Ciao Antonio! Ti scrivo dal tuo sito web solimene.net. Sono interessato all'opera d'arte \"{title}\" della Galleria d'Autore. Vorrei maggiori informazioni e la quotazione per quest'opera.";
+        const filledMsg = msgTemplate.replace('{title}', p.title);
+        document.getElementById('modalWaBtn').href = `https://wa.me/${CONFIG.phone}?text=${encodeURIComponent(filledMsg)}`;
+      } else {
+        modalPriceEl.textContent = p.price;
+        if (modalWaBtnText) {
+          modalWaBtnText.textContent = t.modal_buy_wa || "Richiedi / Acquista su WhatsApp";
+        }
+        const msgTemplate = t.wa_product_msg || "Ciao Antonio! Ti scrivo dal tuo sito web solimene.net. Sono interessato all'opera \"{title}\" (prezzo: {price}). Vorrei acquistarla o avere maggiori informazioni per la consegna.";
+        const filledMsg = msgTemplate.replace('{title}', p.title).replace('{price}', p.price);
+        document.getElementById('modalWaBtn').href = `https://wa.me/${CONFIG.phone}?text=${encodeURIComponent(filledMsg)}`;
+      }
 
       // Nasconde il pulsante fluttuante generico durante la visualizzazione dei dettagli
       const floatBtn = document.getElementById('floatingWhatsAppBtn');
