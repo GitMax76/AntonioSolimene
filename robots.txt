@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /api_save.php
+
+Sitemap: https://www.solimene.net/sitemap.xml

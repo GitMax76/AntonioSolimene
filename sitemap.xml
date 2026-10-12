@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://www.solimene.net/</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.solimene.net/antonio-solimene.jpg</image:loc>
+      <image:title>Maestro Ceramista Antonio Solimene al tornio a Vietri sul Mare</image:title>
+      <image:caption>Bottega artigiana Antonio Solimene - Tradizione ceramica dal 1876</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.solimene.net/images/opere/pannello-maiolicato-dama-gatti.jpg</image:loc>
+      <image:title>Pannello Maiolicato La Dama dei Gatti - Antonio Solimene</image:title>
+      <image:caption>Opera maiolicata vietrese d'autore</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.solimene.net/images/opere/scultura-medusa-ninfa-marina.jpg</image:loc>
+      <image:title>Scultura Ninfa Marina Medusa del Golfo - Antonio Solimene</image:title>
+      <image:caption>Scultura ceramica policroma modellata a mano</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.solimene.net/images/opere/scultura-don-chisciotte-cavallo.jpg</image:loc>
+      <image:title>Scultura Don Chisciotte della Costiera - Antonio Solimene</image:title>
+      <image:caption>Scultura a cavallo in ceramica vietrese</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.solimene.net/images/opere/pesce-scultura-cubista-grande.jpg</image:loc>
+      <image:title>Grande Scultura Metamorfosi Marina - Antonio Solimene</image:title>
+      <image:caption>Scultura pesce con volti bifronte</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.solimene.net/images/opere/scultura-razza-manta-vietri.jpg</image:loc>
+      <image:title>Scultura Razza Manta del Golfo di Salerno - Antonio Solimene</image:title>
+      <image:caption>Pezzo unico in maiolica modellato a mano libera</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.solimene.net/images/opere/scultura-dama-ninfa-coralli.jpg</image:loc>
+      <image:title>Scultura Busto Ninfa dei Coralli - Antonio Solimene</image:title>
+      <image:caption>Busto in ceramica d'autore con chioma di corallo</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.solimene.net/images/opere/pannello-pescatori-sirena.jpg</image:loc>
+      <image:title>Grande Pannello Maiolicato I Pescatori e la Sirena - Antonio Solimene</image:title>
+      <image:caption>Pannello artistico maiolicato vietrese contemporaneo</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.solimene.net/images/opere/tondo-maiolicato-tre-sirene.jpg</image:loc>
+      <image:title>Grande Tondo Maiolicato La Danza delle Tre Sirene - Antonio Solimene</image:title>
+      <image:caption>Grande piatto d'autore al tornio e decorato a pennello</image:caption>
+    </image:image>
+  </url>
+</urlset>
