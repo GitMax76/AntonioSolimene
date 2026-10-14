@@ -379,8 +379,10 @@
         <!-- Scheda 1: Rappresentanza & Alta Formazione -->
         <div class="bg-vietri-pietra/60 rounded-2xl p-7 sm:p-8 border border-neutral-200/90 shadow-2xs hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
           <div>
-            <div class="w-11 h-11 rounded-xl bg-white border border-neutral-200/80 flex items-center justify-center text-lg mb-6 shadow-2xs group-hover:scale-105 transition-transform">
-              🏛️
+            <div class="w-11 h-11 rounded-xl bg-white border border-neutral-200/90 flex items-center justify-center mb-6 shadow-2xs group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5 stroke-vietri-cobalto fill-none stroke-[1.8]" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21h18M4 18h16M6 18V9M10 18V9M14 18V9M18 18V9M3 9h18L12 3 3 9z"/>
+              </svg>
             </div>
             <span class="text-[10px] uppercase tracking-[0.25em] text-vietri-cobalto font-bold block mb-1" data-i18n="curatorial_card1_tag">Rappresentanza & Formazione</span>
             <h3 class="font-serif text-xl sm:text-2xl text-neutral-950 font-medium leading-snug mb-4" data-i18n="curatorial_card1_title">
@@ -410,8 +412,12 @@
         <!-- Scheda 2: Tutela dell'Autenticità & Marchio IGP -->
         <div class="bg-vietri-pietra/60 rounded-2xl p-7 sm:p-8 border border-neutral-200/90 shadow-2xs hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
           <div>
-            <div class="w-11 h-11 rounded-xl bg-white border border-neutral-200/80 flex items-center justify-center text-lg mb-6 shadow-2xs group-hover:scale-105 transition-transform">
-              🛡️
+            <div class="w-11 h-11 rounded-xl bg-white border border-neutral-200/90 flex items-center justify-center mb-6 shadow-2xs group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5 stroke-emerald-600 fill-none stroke-[1.8]" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <circle cx="12" cy="11" r="3"/>
+                <path d="M12 8v1M12 13v1M9 11h1M14 11h1"/>
+              </svg>
             </div>
             <span class="text-[10px] uppercase tracking-[0.25em] text-vietri-cobalto font-bold block mb-1" data-i18n="curatorial_card2_tag">Tutela dell'Autenticità</span>
             <h3 class="font-serif text-xl sm:text-2xl text-neutral-950 font-medium leading-snug mb-4" data-i18n="curatorial_card2_title">
@@ -441,8 +447,12 @@
         <!-- Scheda 3: Opere d'Onore & Rassegne Istituzionali -->
         <div class="bg-vietri-pietra/60 rounded-2xl p-7 sm:p-8 border border-neutral-200/90 shadow-2xs hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
           <div>
-            <div class="w-11 h-11 rounded-xl bg-white border border-neutral-200/80 flex items-center justify-center text-lg mb-6 shadow-2xs group-hover:scale-105 transition-transform">
-              🎖️
+            <div class="w-11 h-11 rounded-xl bg-white border border-neutral-200/90 flex items-center justify-center mb-6 shadow-2xs group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5 stroke-vietri-ocra fill-none stroke-[1.8]" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="6"/>
+                <path d="M15.5 13.5L18 22l-6-3-6 3 2.5-8.5"/>
+                <circle cx="12" cy="8" r="2.5"/>
+              </svg>
             </div>
             <span class="text-[10px] uppercase tracking-[0.25em] text-vietri-cobalto font-bold block mb-1" data-i18n="curatorial_card3_tag">Premi & Opere d'Onore</span>
             <h3 class="font-serif text-xl sm:text-2xl text-neutral-950 font-medium leading-snug mb-4" data-i18n="curatorial_card3_title">
@@ -520,62 +530,85 @@
     </div>
   </section>
 
-  <!-- 4. SEZIONE CREAZIONI SU MISURA & FORNITURE (Bespoke Craft) -->
-  <section id="su-misura" class="py-20 px-6 bg-white border-y border-neutral-300/80">
+  <!-- 4. SEZIONE ALTO ARTIGIANATO SU COMMISSIONE (Bespoke Luxury Craft) -->
+  <section id="su-misura" class="py-24 px-6 bg-white border-y border-neutral-300/80">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center max-w-2xl mx-auto mb-16">
-        <span class="text-xs uppercase tracking-[0.3em] text-vietri-cobalto font-semibold block mb-2" data-i18n="bespoke_badge">Artigianato su Commissione</span>
-        <h2 class="font-serif text-3xl sm:text-5xl text-neutral-950" data-i18n="bespoke_title">Creazioni su Misura</h2>
-        <p class="text-xs sm:text-sm text-neutral-500 mt-3 font-light leading-relaxed" data-i18n="bespoke_subtitle">
-          Dalla singola opera per collezionisti ai servizi per l'alta ristorazione e bomboniere nuziali per eventi in Costiera Amalfitana.
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs uppercase tracking-[0.3em] text-vietri-cobalto font-semibold block mb-2" data-i18n="bespoke_badge">Alto Artigianato su Commissione</span>
+        <h2 class="font-serif text-3xl sm:text-5xl text-neutral-950 font-normal leading-tight" data-i18n="bespoke_title">Creazioni su Misura</h2>
+        <p class="text-xs sm:text-sm text-neutral-600 mt-3 font-light leading-relaxed max-w-2xl mx-auto" data-i18n="bespoke_subtitle">
+          Dalle sculture monumentali per dimore e collezionisti privati, alle tavole d'autore per l'alta ristorazione e doni esclusivi per eventi di prestigio in Costiera Amalfitana.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Card 1: Ristorazione e Tavola -->
-        <div class="bg-vietri-pietra/60 p-8 rounded-2xl border border-neutral-200/80 flex flex-col justify-between hover:border-vietri-cobalto/40 transition-colors">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+        <!-- Card 1: Haute Hospitality & Private Dining -->
+        <div class="bg-vietri-pietra/60 p-8 rounded-2xl border border-neutral-200/90 flex flex-col justify-between hover:border-vietri-cobalto/50 hover:shadow-md transition-all duration-300 group">
           <div>
-            <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-2xl shadow-2xs mb-6">🍽️</div>
-            <span class="text-[10px] uppercase tracking-widest text-vietri-cobalto font-bold block mb-1" data-i18n="bespoke_c1_badge">Tavola & Hospitality</span>
-            <h3 class="font-serif text-2xl text-neutral-900 mb-3" data-i18n="bespoke_c1_title">Servizi per Case & Ristoranti</h3>
+            <div class="w-12 h-12 rounded-xl bg-white border border-neutral-200/90 flex items-center justify-center shadow-2xs mb-6 group-hover:scale-105 transition-transform">
+              <svg class="w-6 h-6 stroke-vietri-cobalto fill-none stroke-[1.6]" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <ellipse cx="12" cy="7" rx="9" ry="3"/>
+                <path d="M3 7c0 4 4.03 7.3 9 7.3s9-3.3 9-7.3"/>
+                <path d="M8 14.3v4.2a4 4 0 0 0 8 0v-4.2"/>
+                <line x1="6" y1="21" x2="18" y2="21"/>
+              </svg>
+            </div>
+            <span class="text-[10px] uppercase tracking-[0.2em] text-vietri-cobalto font-bold block mb-1" data-i18n="bespoke_c1_badge">Haute Hospitality & Private Dining</span>
+            <h3 class="font-serif text-2xl text-neutral-950 font-medium leading-snug mb-3" data-i18n="bespoke_c1_title">Servizi d'Autore per Ville & Fine Dining</h3>
             <p class="text-xs text-neutral-600 font-light leading-relaxed mb-6" data-i18n="bespoke_c1_desc">
-              Piatti piani, fondine a cappello, vassoi e alzate forgiati al tornio con diametri e smalti personalizzati (cobalto, cotto vivo, ramina o smalti neutri). Atossici e lavabili.
+              Piani, fondine a cappello, alzate e vasellame esclusivo forgiati interamente al tornio a pedale. Forme organiche e smalti formulati in bottega secondo tradizione (cobalto, cotto vivo, ramina, neutri materici). 100% atossici, resistenti all'uso e personalizzati sul concept della tua dimora o del tuo ristorante.
             </p>
           </div>
-          <a id="bespokeWaLink1" href="https://wa.me/393899819834?text=Ciao%20Antonio!%20Vorrei%20informazioni%20per%20un%20servizio%20di%20piatti%20o%20stoviglie%20su%20misura." target="_blank" rel="noopener noreferrer" 
-             class="inline-flex items-center gap-2 text-xs font-semibold text-neutral-900 hover:text-vietri-cobalto transition">
-            <span data-i18n="bespoke_c1_btn">Richiedi Proposta Tavola →</span>
+          <a id="bespokeWaLink1" href="https://wa.me/393899819834?text=Ciao%20Antonio!%20Vorrei%20informazioni%20per%20un%20servizio%20di%20piatti%20d%27autore%20su%20misura%20per%20la%20mia%20dimora%20o%20ristorante." target="_blank" rel="noopener noreferrer" 
+             class="inline-flex items-center gap-2 text-xs font-semibold text-neutral-900 hover:text-vietri-cobalto transition group-hover:translate-x-1 duration-200">
+            <span data-i18n="bespoke_c1_btn">Richiedi Progetto Tavola →</span>
           </a>
         </div>
 
-        <!-- Card 2: Bomboniere d'Autore -->
-        <div class="bg-vietri-pietra/60 p-8 rounded-2xl border border-neutral-200/80 flex flex-col justify-between hover:border-vietri-cobalto/40 transition-colors">
+        <!-- Card 2: Private Events & Art Commissions -->
+        <div class="bg-vietri-pietra/60 p-8 rounded-2xl border border-neutral-200/90 flex flex-col justify-between hover:border-vietri-cotto/50 hover:shadow-md transition-all duration-300 group">
           <div>
-            <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-2xl shadow-2xs mb-6">💍</div>
-            <span class="text-[10px] uppercase tracking-widest text-vietri-cotto font-bold block mb-1" data-i18n="bespoke_c2_badge">Eventi & Cerimonie</span>
-            <h3 class="font-serif text-2xl text-neutral-900 mb-3" data-i18n="bespoke_c2_title">Bomboniere & Ricordi di Nozze</h3>
+            <div class="w-12 h-12 rounded-xl bg-white border border-neutral-200/90 flex items-center justify-center shadow-2xs mb-6 group-hover:scale-105 transition-transform">
+              <svg class="w-6 h-6 stroke-vietri-cotto fill-none stroke-[1.6]" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 3h6"/>
+                <path d="M10 3v2a3 3 0 0 1-1 2.2C7.3 8.7 6 10.7 6 13a6 6 0 0 0 12 0c0-2.3-1.3-4.3-3-5.8A3 3 0 0 1 14 5V3"/>
+                <circle cx="12" cy="13" r="2"/>
+                <path d="M11 15l-1.5 4"/>
+                <path d="M13 15l1.5 4"/>
+              </svg>
+            </div>
+            <span class="text-[10px] uppercase tracking-[0.2em] text-vietri-cotto font-bold block mb-1" data-i18n="bespoke_c2_badge">Private Events & Art Commissions</span>
+            <h3 class="font-serif text-2xl text-neutral-950 font-medium leading-snug mb-3" data-i18n="bespoke_c2_title">Cadeaux d'Arte & Doni per Eventi Esclusivi</h3>
             <p class="text-xs text-neutral-600 font-light leading-relaxed mb-6" data-i18n="bespoke_c2_desc">
-              Piccoli vasi d'autore, svuotatasche e ciotoline smaltate a mano, personalizzabili con iniziali incise a crudo, date e confezione con certificato di autenticità artigianale vietrese.
+              Micro-vasi scultorei, ciotole materiche e creazioni uniche tornite a mano a una a una per nozze di prestigio, eventi privati e ricorrenze in Costiera Amalfitana. Ogni opera è personalizzata con sigillo o iniziali incise a crudo prima della cottura e accompagnata dal Certificato di Autenticità del Maestro.
             </p>
           </div>
-          <a id="bespokeWaLink2" href="https://wa.me/393899819834?text=Ciao%20Antonio!%20Vorrei%20informazioni%20e%20un%20preventivo%20per%20bomboniere%20in%20ceramica%20per%20un%20evento." target="_blank" rel="noopener noreferrer" 
-             class="inline-flex items-center gap-2 text-xs font-semibold text-neutral-900 hover:text-vietri-cobalto transition">
-            <span data-i18n="bespoke_c2_btn">Preventivo Bomboniere →</span>
+          <a id="bespokeWaLink2" href="https://wa.me/393899819834?text=Ciao%20Antonio!%20Vorrei%20discutere%20un%20progetto%20per%20una%20serie%20di%20cadeaux%20d%27arte%20e%20doni%20esclusivi%20per%20un%20evento%20in%20Costiera%20Amalfitana." target="_blank" rel="noopener noreferrer" 
+             class="inline-flex items-center gap-2 text-xs font-semibold text-neutral-900 hover:text-vietri-cotto transition group-hover:translate-x-1 duration-200">
+            <span data-i18n="bespoke_c2_btn">Richiedi Serie d'Autore →</span>
           </a>
         </div>
 
-        <!-- Card 3: Arredo & Pezzi Unici -->
-        <div class="bg-vietri-pietra/60 p-8 rounded-2xl border border-neutral-200/80 flex flex-col justify-between hover:border-vietri-cobalto/40 transition-colors">
+        <!-- Card 3: Architecture & Interior Design -->
+        <div class="bg-vietri-pietra/60 p-8 rounded-2xl border border-neutral-200/90 flex flex-col justify-between hover:border-vietri-ocra/50 hover:shadow-md transition-all duration-300 group">
           <div>
-            <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-2xl shadow-2xs mb-6">🏺</div>
-            <span class="text-[10px] uppercase tracking-widest text-vietri-ocra font-bold block mb-1" data-i18n="bespoke_c3_badge">Interior Design</span>
-            <h3 class="font-serif text-2xl text-neutral-900 mb-3" data-i18n="bespoke_c3_title">Grandi Vasi, Lampade & Arredo</h3>
+            <div class="w-12 h-12 rounded-xl bg-white border border-neutral-200/90 flex items-center justify-center shadow-2xs mb-6 group-hover:scale-105 transition-transform">
+              <svg class="w-6 h-6 stroke-vietri-ocra fill-none stroke-[1.6]" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 2h8"/>
+                <path d="M9 2v3c0 1.5-1 3-3 4.5C4.5 10.5 4 12 4 14a8 8 0 0 0 16 0c0-2-.5-3.5-2-4.5-2-1.5-3-3-3-4.5V2"/>
+                <path d="M4 11c-1.5 0-2.5 1-2.5 2.5S2.5 16 4 16"/>
+                <path d="M20 11c1.5 0 2.5 1 2.5 2.5s-1 2.5-2.5 2.5"/>
+                <line x1="8" y1="22" x2="16" y2="22"/>
+              </svg>
+            </div>
+            <span class="text-[10px] uppercase tracking-[0.2em] text-vietri-ocra font-bold block mb-1" data-i18n="bespoke_c3_badge">Architecture & Interior Design</span>
+            <h3 class="font-serif text-2xl text-neutral-950 font-medium leading-snug mb-3" data-i18n="bespoke_c3_title">Grandi Vasi Monumentali, Lampade & Sculture</h3>
             <p class="text-xs text-neutral-600 font-light leading-relaxed mb-6" data-i18n="bespoke_c3_desc">
-              Elementi d'arredo scultorei per interni, giardini e terrazze in Costiera: anfore materiche in terracotta naturale, basi lampada al tornio e cachepot smaltati a fuoco.
+              Elementi scultorei su misura per ingressi, terrazze panoramiche, giardini e interni di pregio: grandi anfore materiche in cotto crudo o smaltato, basi per lampade monumentali e cachepot cotti a gran fuoco. Collaboriamo direttamente con architetti e interior designer su committenze contract.
             </p>
           </div>
-          <a id="bespokeWaLink3" href="https://wa.me/393899819834?text=Ciao%20Antonio!%20Vorrei%20concordare%20la%20creazione%20di%20un%20vaso%20o%20pezzo%20d%27arredo%20su%20misura." target="_blank" rel="noopener noreferrer" 
-             class="inline-flex items-center gap-2 text-xs font-semibold text-neutral-900 hover:text-vietri-cobalto transition">
+          <a id="bespokeWaLink3" href="https://wa.me/393899819834?text=Ciao%20Antonio!%20Vorrei%20informazioni%20e%20collaborare%20per%20vasi%20monumentali%2C%20lampade%20o%20sculture%20d%27arredo%20su%20misura." target="_blank" rel="noopener noreferrer" 
+             class="inline-flex items-center gap-2 text-xs font-semibold text-neutral-900 hover:text-vietri-ocra transition group-hover:translate-x-1 duration-200">
             <span data-i18n="bespoke_c3_btn">Progetta con Antonio →</span>
           </a>
         </div>
@@ -1192,9 +1225,9 @@
         wa_portfolio_msg: "Ciao Antonio! Ti scrivo dal tuo sito web solimene.net. Sono interessato all'opera d'arte \"{title}\" della Galleria d'Autore. Vorrei maggiori informazioni e la quotazione per quest'opera.",
         wa_general_msg: "Ciao Antonio! Ti contatto dal tuo sito solimene.net, vorrei informazioni sulle tue creazioni.",
         wa_visit_msg: "Ciao Antonio! Vorrei visitare la tua bottega a Vietri sul Mare.",
-        wa_bespoke1_msg: "Ciao Antonio! Vorrei informazioni per un servizio di piatti o stoviglie su misura.",
-        wa_bespoke2_msg: "Ciao Antonio! Vorrei informazioni e un preventivo per bomboniere in ceramica per un evento.",
-        wa_bespoke3_msg: "Ciao Antonio! Vorrei concordare la creazione di un vaso o pezzo d'arredo su misura."
+        wa_bespoke1_msg: "Ciao Antonio! Vorrei informazioni per un servizio di piatti d'autore su misura per la mia dimora o ristorante.",
+        wa_bespoke2_msg: "Ciao Antonio! Vorrei discutere un progetto per una serie di cadeaux d'arte e doni esclusivi per un evento in Costiera Amalfitana.",
+        wa_bespoke3_msg: "Ciao Antonio! Vorrei informazioni e concordare la creazione di vasi monumentali, lampade o sculture d'arredo su misura."
       },
       en: {
         top_badge: "Workshop Open in Vietri sul Mare",
