@@ -377,34 +377,54 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
         
         <!-- Scheda 1: Rappresentanza & Alta Formazione -->
-        <div class="bg-vietri-pietra/60 rounded-2xl p-7 sm:p-8 border border-neutral-200/90 shadow-2xs hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
+        <div class="bg-vietri-pietra/60 rounded-2xl p-6 sm:p-7 border border-neutral-200/90 shadow-2xs hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
           <div>
-            <div class="w-11 h-11 rounded-xl bg-white border border-neutral-200/90 flex items-center justify-center mb-6 shadow-2xs group-hover:scale-105 transition-transform">
-              <svg class="w-5 h-5 stroke-vietri-cobalto fill-none stroke-[1.8]" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 21h18M4 18h16M6 18V9M10 18V9M14 18V9M18 18V9M3 9h18L12 3 3 9z"/>
-              </svg>
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-10 h-10 rounded-xl bg-white border border-neutral-200/90 flex items-center justify-center shadow-2xs group-hover:scale-105 transition-transform">
+                <svg class="w-5 h-5 stroke-vietri-cobalto fill-none stroke-[1.8]" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 21h18M4 18h16M6 18V9M10 18V9M14 18V9M18 18V9M3 9h18L12 3 3 9z"/>
+                </svg>
+              </div>
+              <span class="text-[9px] uppercase tracking-wider font-bold px-2.5 py-0.5 rounded-full bg-red-100 text-red-700 border border-red-200/60 flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+                <span>RaiNews · TTG Rimini</span>
+              </span>
             </div>
+
             <span class="text-[10px] uppercase tracking-[0.25em] text-vietri-cobalto font-bold block mb-1" data-i18n="curatorial_card1_tag">Rappresentanza & Formazione</span>
-            <h3 class="font-serif text-xl sm:text-2xl text-neutral-950 font-medium leading-snug mb-4" data-i18n="curatorial_card1_title">
+            <h3 class="font-serif text-xl sm:text-2xl text-neutral-950 font-medium leading-snug mb-3" data-i18n="curatorial_card1_title">
               Presidenza CNA & Scuola di Ceramica
             </h3>
+
+            <!-- Foto Autentica TTG Rimini con Antonio al Tornio e Servizio RaiNews -->
+            <div class="relative w-full h-44 sm:h-48 rounded-xl overflow-hidden border border-neutral-200/90 mb-4 bg-neutral-900 group/img">
+              <img src="images/antonio-solimene-ttg-rimini.jpg" alt="Antonio Solimene al tornio TTG Rimini RaiNews" class="w-full h-full object-cover object-top filter brightness-[0.98] contrast-105 group-hover/img:scale-105 transition-transform duration-500">
+              <a href="https://www.instagram.com/reel/DefG_Eila5D/" target="_blank" rel="noopener noreferrer" 
+                 class="absolute inset-0 bg-neutral-950/30 hover:bg-neutral-950/50 transition-colors flex items-center justify-center group/btn"
+                 title="Guarda il servizio video di RaiNews su Instagram">
+                <span class="px-3 py-1.5 rounded-full bg-white/95 text-neutral-900 text-[10.5px] font-semibold flex items-center gap-1.5 shadow-md group-hover/btn:scale-105 transition-transform">
+                  <svg class="w-3.5 h-3.5 fill-red-600" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  <span data-i18n="curatorial_card1_video_btn">Servizio RaiNews al Tornio ↗</span>
+                </span>
+              </a>
+            </div>
             
-            <div class="space-y-3.5 text-xs text-neutral-600 font-light leading-relaxed">
+            <div class="space-y-3 text-xs text-neutral-600 font-light leading-relaxed">
               <div class="border-l-2 border-vietri-cobalto/40 pl-3">
                 <strong class="font-medium text-neutral-900 block" data-i18n="curatorial_card1_role1_title">Presidente Provinciale Ceramisti — CNA Salerno</strong>
                 <span data-i18n="curatorial_card1_role1_desc">Ruolo apicale nella rappresentanza sindacale e di settore dell'artigianato artistico salernitano e vietrese.</span>
               </div>
               <div class="border-l-2 border-vietri-cobalto/40 pl-3">
-                <strong class="font-medium text-neutral-900 block" data-i18n="curatorial_card1_role2_title">Coordinatore Botteghe Scuola di Ceramica Vietrese</strong>
-                <span data-i18n="curatorial_card1_role2_desc">Progetto formativo d'eccellenza promosso da CNA Salerno e Comune di Vietri sul Mare, presentato ufficialmente a Roma presso il Ministero delle Imprese e del Made in Italy (MIMIT).</span>
+                <strong class="font-medium text-neutral-900 block" data-i18n="curatorial_card1_role2_title">Scuola di Ceramica & Botteghe Esperienziali</strong>
+                <span data-i18n="curatorial_card1_role2_desc">Progetto di eccellenza promosso con CNA e Comune di Vietri presentato a Roma al MIMIT e protagonista al TTG di Rimini per buyer internazionali.</span>
               </div>
             </div>
           </div>
 
-          <div class="pt-6 mt-6 border-t border-neutral-200/60 flex items-center justify-between text-[11px] text-neutral-500 font-medium">
+          <div class="pt-5 mt-5 border-t border-neutral-200/60 flex items-center justify-between text-[11px] text-neutral-500 font-medium">
             <span class="flex items-center gap-1.5">
               <span class="w-1.5 h-1.5 rounded-full bg-vietri-cobalto"></span>
-              <span data-i18n="curatorial_card1_badge">MIMIT Roma · CNA Salerno</span>
+              <span data-i18n="curatorial_card1_badge">MIMIT Roma · TTG Rimini · CNA</span>
             </span>
           </div>
         </div>
@@ -1126,9 +1146,10 @@
         curatorial_card1_title: "Presidenza CNA & Scuola di Ceramica",
         curatorial_card1_role1_title: "Presidente Provinciale Ceramisti — CNA Salerno",
         curatorial_card1_role1_desc: "Ruolo apicale nella rappresentanza sindacale e di settore dell'artigianato artistico salernitano e vietrese.",
-        curatorial_card1_role2_title: "Coordinatore Botteghe Scuola di Ceramica Vietrese",
-        curatorial_card1_role2_desc: "Progetto formativo d'eccellenza promosso da CNA Salerno e Comune di Vietri sul Mare, presentato ufficialmente a Roma presso il Ministero delle Imprese e del Made in Italy (MIMIT).",
-        curatorial_card1_badge: "MIMIT Roma · CNA Salerno",
+        curatorial_card1_video_btn: "Servizio RaiNews al Tornio ↗",
+        curatorial_card1_role2_title: "Scuola di Ceramica & Botteghe Esperienziali",
+        curatorial_card1_role2_desc: "Progetto di eccellenza promosso con CNA e Comune di Vietri presentato a Roma al MIMIT e protagonista al TTG di Rimini per buyer internazionali.",
+        curatorial_card1_badge: "MIMIT Roma · TTG Rimini · CNA",
         curatorial_card2_tag: "Tutela dell'Autenticità",
         curatorial_card2_title: "Marchio IGP Ceramica di Vietri sul Mare",
         curatorial_card2_role1_title: "Socio Fondatore & Promotore Comitato IGP",
@@ -1260,9 +1281,10 @@
         curatorial_card1_title: "CNA Presidency & Ceramic Academy",
         curatorial_card1_role1_title: "Provincial President of Potters — CNA Salerno",
         curatorial_card1_role1_desc: "Leading institutional role representing fine artisanal ceramics across the Salerno and Vietri sul Mare region.",
-        curatorial_card1_role2_title: "Workshop Coordinator — Vietri Ceramic School",
-        curatorial_card1_role2_desc: "Excellence training program promoted by CNA Salerno and the Municipality of Vietri, officially presented in Rome at the Ministry of Enterprises and Made in Italy (MIMIT).",
-        curatorial_card1_badge: "MIMIT Rome · CNA Salerno",
+        curatorial_card1_video_btn: "Watch RaiNews Feature ↗",
+        curatorial_card1_role2_title: "Ceramic Academy & Experiential Studios",
+        curatorial_card1_role2_desc: "Excellence program with CNA and Vietri presented in Rome at MIMIT and highlighted live at TTG Rimini for global luxury travel buyers.",
+        curatorial_card1_badge: "MIMIT Rome · TTG Rimini · CNA",
         curatorial_card2_tag: "Heritage & Authenticity",
         curatorial_card2_title: "PGI Protected Geographical Indication",
         curatorial_card2_role1_title: "Founding Member & PGI Committee Promoter",
@@ -1394,9 +1416,10 @@
         curatorial_card1_title: "Présidence CNA & École de Céramique",
         curatorial_card1_role1_title: "Président Provincial des Céramistes — CNA Salerne",
         curatorial_card1_role1_desc: "Rôle de premier plan dans la représentation de l'artisanat d'art salernitain et de Vietri sul Mare.",
-        curatorial_card1_role2_title: "Coordinateur des Ateliers de l'École de Céramique",
-        curatorial_card1_role2_desc: "Projet d'excellence promu par la CNA et la Ville de Vietri sul Mare, présenté à Rome au Ministère des Entreprises et du Made in Italy (MIMIT).",
-        curatorial_card1_badge: "MIMIT Rome · CNA Salerne",
+        curatorial_card1_video_btn: "Reportage RaiNews au Tour ↗",
+        curatorial_card1_role2_title: "École de Céramique & Ateliers d'Art",
+        curatorial_card1_role2_desc: "Programme d'excellence présenté au MIMIT à Rome et en vedette au salon TTG de Rimini pour les prescripteurs internationaux.",
+        curatorial_card1_badge: "MIMIT Rome · TTG Rimini · CNA",
         curatorial_card2_tag: "Protection de l'Authenticité",
         curatorial_card2_title: "Label IGP Céramique de Vietri sul Mare",
         curatorial_card2_role1_title: "Membre Fondateur & Promoteur du Comité IGP",
