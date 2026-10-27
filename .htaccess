@@ -1,0 +1,14 @@
+# Proteggi file nascosti e dotfiles
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Proteggi log, configurazioni e file di ambiente
+<FilesMatch "\.(log|env|bak|ini)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Blocca accesso diretto alla cartella storage
+RedirectMatch 403 ^/storage/.*$
